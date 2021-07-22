@@ -41,5 +41,5 @@ plt.show()
 
 The plot is like this:
 
-
+![seaborn_bar_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_1.png?raw=true)
 

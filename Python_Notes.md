@@ -2,6 +2,46 @@
 
 
 
+### Random Number Generator
+
+Uniform distribution:
+
+```
+from random import *
+
+x_list = []
+y_list = []
+
+for n in range(5000):
+  x = uniform(0,1)
+  y = uniform(0,1)
+  x_list.append(x)
+  y_list.append(y)
+```
+
+
+
+Linear regression and Plot
+
+```Python
+# Linear Regression Fit
+coef = np.polyfit(x_list,y_list,1)
+poly1d_fn = np.poly1d(coef)
+
+# Plot
+plt.figure(figsize=(6, 6))          
+plt.scatter(x_list,y_list, c='y', s=6)
+plt.plot(x_list, poly1d_fn(x_list), '--k')
+plt.xlim(0,1)
+plt.ylim(0,1)
+plt.show()
+```
+
+![random_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/random_1.png?raw=true)
+
+
+Note that we can use random.randint(a,b) to generate random integers between a and b. 
+
 
 
 ## Matplotlib & Seaborn

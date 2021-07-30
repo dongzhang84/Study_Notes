@@ -19,9 +19,11 @@
 - seaborn barplot (basic)
 - seaborn bar plot with hues
 
+---
 
 
-### Pandas Data Manipulation
+
+## Pandas Data Manipulation
 
 **Aggregation Function**
 
@@ -88,7 +90,7 @@ df['col_new'] = df.apply(lambda x: f(x.col_1, x.col_2, x.col_3), axis=1)
 
 ----
 
-### Random Number Generator
+## Random Number Generator
 
 **Uniform Distribution**:
 

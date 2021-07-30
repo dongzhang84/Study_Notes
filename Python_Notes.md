@@ -44,10 +44,14 @@ Note that we can use random.randint(a,b) to generate random integers between a a
 
 
 
-**Gaussian Distribution** 
+**Gaussian Distribution**
+
+
 $$
 p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2 \sigma^2}}
 $$
+
+
 Generate random numbers: 
 
 ```python

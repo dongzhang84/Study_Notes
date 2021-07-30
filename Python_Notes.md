@@ -4,7 +4,7 @@
 
 ### Random Number Generator
 
-Uniform distribution:
+**Uniform Distribution**:
 
 ```
 from random import *
@@ -41,6 +41,43 @@ plt.show()
 
 
 Note that we can use random.randint(a,b) to generate random integers between a and b. 
+
+
+
+**Gaussian Distribution** 
+$$
+p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+$$
+Generate random numbers: 
+
+```python
+import numpy as np
+
+# generte 1000 random number with Gaussian distribution
+
+mu, sigma = 0, 0.1 
+s = np.random.normal(mu, sigma, 1000)
+count, bins, ignored = plt.hist(s, 30, density=True)
+```
+
+![gaussian_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_1.png?raw=true)
+
+Visualization: 
+
+```python
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(10, 6))
+count, bins, ignored = plt.hist(s, 30, density=True)
+plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
+               np.exp( - (bins - mu)**2 / (2 * sigma**2) ),
+         linewidth=2, color='r')
+plt.show()
+```
+
+![gaussian_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_2.png?raw=true)
+
+
 
 
 

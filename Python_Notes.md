@@ -1,10 +1,22 @@
 # Notes on Python coding for Data Science
 
-```md
-[Random Number Generator](#random-number-generator)
-```
+## Content
+
+**Random Number Generator**
+
+- Uniform Distribution
+- Gaussian Distribution
+
+**Matplotlib & Seaborn**
+
+- seaborn barplot (basic)
+- seaborn bar plot with hues
 
 
+
+
+
+------
 
 ### Random Number Generator
 

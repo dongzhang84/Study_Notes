@@ -39,10 +39,10 @@ plt.show()
 
 ![random_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/random_1.png?raw=true)
 
-
 Note that we can use random.randint(a,b) to generate random integers between a and b. 
 
 
+---------
 
 **Gaussian Distribution**
 
@@ -134,7 +134,7 @@ The plot becomes:
 
 ![seaborn_bar_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_2.png?raw=true)
 
-
+----
 
 #### seaborn bar plot with hues
 

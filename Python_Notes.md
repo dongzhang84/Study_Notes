@@ -2,6 +2,13 @@
 
 ## Content
 
+**Pandas Data Manipulation**
+
+- Aggregation Function
+- Function using multiple columns
+
+
+
 **Random Number Generator**
 
 - Uniform Distribution
@@ -14,9 +21,72 @@
 
 
 
+### Pandas Data Manipulation
+
+**Aggregation Function**
+
+The simplest case for a single aggregation:
+
+```
+df.groupby('A')['B'].count()
+df.groupby('A')['B'].sum()
+df.groupby('A')['B'].mean()
+```
+
+For multiple aggregations:
+
+```python
+# Sample database
+
+df = pd.DataFrame(
+    {"A": [1, 1, 2, 2],
+     "B": [1, 2, 3, 4],
+     "C": [0.362838, 0.227877, 1.267767, -0.562860],
+    }
+)
+```
+
+Aggregation of one column:
+
+```python
+df.groupby('A').B.agg(['min', 'max', 'sum', 'mean', 'median', 'count']).reset_index()
+```
+
+|      |    A |  min |  max |  sum | mean | median | count |
+| ---: | ---: | ---: | ---: | ---: | ---: | -----: | ----: |
+|    0 |    1 |    1 |    2 |    3 |  1.5 |    1.5 |     2 |
+|    1 |    2 |    3 |    4 |    7 |  3.5 |    3.5 |     2 |
 
 
-------
+
+Aggregation of multiple columns:
+
+```python
+df.groupby('A').agg({'B': ['min', 'max','count'], 'C': ['sum','median']})
+```
+
+|      |    B |      |       |        C |          |
+| ---: | ---: | ---: | ----: | -------: | -------: |
+|      |  min |  max | count |      sum |   median |
+|    A |      |      |       |          |          |
+|    1 |    1 |    2 |     2 | 0.590715 | 0.295357 |
+|    2 |    3 |    4 |     2 | 0.704907 | 0.352454 |
+
+
+
+**Function Using Multiple Columns**
+
+
+
+Define a function  f(x1, x2, x3)
+
+```python
+df['col_new'] = df.apply(lambda x: f(x.col_1, x.col_2, x.col_3), axis=1)
+```
+
+
+
+----
 
 ### Random Number Generator
 
@@ -96,8 +166,6 @@ plt.show()
 ```
 
 ![gaussian_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_2.png?raw=true)
-
-
 
 
 

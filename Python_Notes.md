@@ -1,5 +1,9 @@
 # Notes on Python coding for Data Science
 
+```md
+[Random Number Generator](#random-number-generator)
+```
+
 
 
 ### Random Number Generator

@@ -14,8 +14,12 @@
 - Uniform Distribution
 - Gaussian Distribution
 
+
+
 **Matplotlib & Seaborn**
 
+- plot basic: multiple panels
+- plot basic: contour
 - seaborn barplot (basic)
 - seaborn bar plot with hues
 
@@ -181,6 +185,84 @@ Import the libraries:
 import matplotlib.pyplot as plt
 import seaborn as sns
 ```
+
+
+
+Plot multiple panels:
+
+```python
+# generate a random data set 
+
+N = 1000
+
+random_list1 = np.random.uniform(0,1,size=(N,2))
+random_list2 = np.concatenate((random_list1, np.random.uniform(0,1,size=(N,2))))
+random_list3 = np.concatenate((random_list2, np.random.uniform(0,1,size=(3 * N,2))))
+random_list4 = np.concatenate((random_list3, np.random.uniform(0,1,size=(5 * N,2))))
+
+random_list = [random_list1, random_list2, random_list3, random_list4]
+
+# plot multiple panels
+
+fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(9, 8.5))
+
+i = 0
+for row in ax:
+  for col in row:
+     
+    col.scatter(random_list[i][:,0], random_list[i][:,1], c='b', s=3)
+    col.set_xlim(0,1)
+    col.set_ylim(0,1)
+
+    i += 1
+
+plt.show()
+```
+
+
+
+![multiple_panels.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/multiple_panels.png?raw=true)
+
+
+
+#### contour
+
+```python
+df= pd.DataFrame(data={'M': [10,20,30,40,50],
+                       '10':[-0.029, -0.13, -0.58, -1.55, -2.82],
+                       '20':[-0.014, -0.062, -0.29, -1.01, -2.16],
+                       '30':[-0.0059, -0.0237, -0.106, -0.464, -1.37],
+                       '50':[-0.0031, -0.0123, -0.051, -0.223, -0.854]})
+```
+
+The table is:
+
+|      |    M |     10 |     20 |      30 |      50 |
+| ---: | ---: | -----: | -----: | ------: | ------: |
+|    0 |   10 | -0.029 | -0.014 | -0.0059 | -0.0031 |
+|    1 |   20 | -0.130 | -0.062 | -0.0237 | -0.0123 |
+|    2 |   30 | -0.580 | -0.290 | -0.1060 | -0.0510 |
+|    3 |   40 | -1.550 | -1.010 | -0.4640 | -0.2230 |
+|    4 |   50 | -2.820 | -2.160 | -1.3700 | -0.8540 |
+
+
+
+Make the contour plot:
+
+```
+X=[10, 20, 30, 50]
+Y = df.M.values
+Z = df.iloc[:,1:].values
+
+fig,ax = plt.subplots(figsize=(7.5, 6))
+contourf_ = plt.contourf(X,Y,Z, 100)
+cbar = fig.colorbar(contourf_)
+plt.show()
+```
+
+
+
+![plot_contour_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/plot_contour_1.png?raw=true)
 
 
 

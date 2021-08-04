@@ -223,7 +223,7 @@ plt.show()
 
 ![multiple_panels.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/multiple_panels.png?raw=true)
 
-
+------
 
 #### contour
 
@@ -264,7 +264,7 @@ plt.show()
 
 ![plot_contour_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/plot_contour_1.png?raw=true)
 
-
+-------
 
 #### seaborn barplot (basic)
 

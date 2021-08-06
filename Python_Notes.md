@@ -4,6 +4,7 @@
 
 **Pandas Data Manipulation**
 
+- Show all columns
 - Aggregation Function
 - Function using multiple columns
 
@@ -29,7 +30,15 @@
 
 ## Pandas Data Manipulation
 
-**Aggregation Function**
+- **Show all columns**
+
+```python
+pd.set_option('display.max_columns', None)
+```
+
+
+
+- **Aggregation Function**
 
 The simplest case for a single aggregation:
 
@@ -80,7 +89,9 @@ df.groupby('A').agg({'B': ['min', 'max','count'], 'C': ['sum','median']})
 
 
 
-**Function Using Multiple Columns**
+
+
+- **Function Using Multiple Columns**
 
 
 
@@ -96,7 +107,7 @@ df['col_new'] = df.apply(lambda x: f(x.col_1, x.col_2, x.col_3), axis=1)
 
 ## Random Number Generator
 
-**Uniform Distribution**:
+- **Uniform Distribution**:
 
 ```
 from random import *
@@ -136,7 +147,7 @@ Note that we can use random.randint(a,b) to generate random integers between a a
 
 ---------
 
-**Gaussian Distribution**
+- **Gaussian Distribution**
 
 
 $$
@@ -172,6 +183,16 @@ plt.show()
 ```
 
 ![gaussian_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_2.png?raw=true)
+
+2D Gaussian Distribution
+
+```Python
+mean = [0.5, 0.5]
+cov = [[0.2*0.2, 0.], [0., 0.1*0.1]] 
+random_list = np.random.multivariate_normal(mean, cov, N)
+```
+
+
 
 
 

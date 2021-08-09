@@ -7,6 +7,7 @@
 - Show all columns
 - Aggregation Function
 - Function using multiple columns
+- Outliers remover
 
 
 
@@ -23,6 +24,7 @@
 - plot basic: contour
 - seaborn barplot (basic)
 - seaborn bar plot with hues
+- seaborn box plot
 
 ---
 
@@ -30,7 +32,7 @@
 
 ## Pandas Data Manipulation
 
-- **Show all columns**
+#### Show all columns
 
 ```python
 pd.set_option('display.max_columns', None)
@@ -38,7 +40,7 @@ pd.set_option('display.max_columns', None)
 
 
 
-- **Aggregation Function**
+#### Aggregation Function
 
 The simplest case for a single aggregation:
 
@@ -89,11 +91,7 @@ df.groupby('A').agg({'B': ['min', 'max','count'], 'C': ['sum','median']})
 
 
 
-
-
-- **Function Using Multiple Columns**
-
-
+#### Function Using Multiple Columns
 
 Define a function  f(x1, x2, x3)
 
@@ -103,11 +101,31 @@ df['col_new'] = df.apply(lambda x: f(x.col_1, x.col_2, x.col_3), axis=1)
 
 
 
+#### Outliers Remover
+
+````python
+Q1 = df[field].quantile(0.25)
+Q3 = df[field].quantile(0.75)
+IQR = Q3 - Q1
+minimal = Q1 - 1.5*IQR
+maximal = Q3 + 1.5*IQR
+
+print(Q1,Q3,minimal,maximal)
+
+outliers = df[(df[field] <= minimal) & (df[field] >= maximal)]
+````
+
+
+
+
+
+
+
 ----
 
 ## Random Number Generator
 
-- **Uniform Distribution**:
+#### Uniform Distribution
 
 ```
 from random import *
@@ -147,12 +165,12 @@ Note that we can use random.randint(a,b) to generate random integers between a a
 
 ---------
 
-- **Gaussian Distribution**
-
+#### Gaussian Distribution
 
 $$
 p(x) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2 \sigma^2}}
 $$
+
 
 
 Generate random numbers: 
@@ -418,3 +436,32 @@ plt.show()
 The above plot code is very useful, and the result is:
 
 ![seaborn_bar_hue_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_hue_2.png?raw=true)
+
+----
+
+#### seaborn barplot
+
+Load the iris data:
+
+```Python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset('iris')
+
+sns.boxplot(y=df["sepal_length"])
+plt.show()
+```
+
+![seaborn_box_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_box_1.png?raw=true)
+
+Another plot: 
+
+```python
+sns.boxplot( y=df["species"], x=df["sepal_length"] );
+plt.show()
+```
+
+![seaborn_box_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_box_2.png?raw=true)
+
+See [this link](https://pythonbasics.org/seaborn-boxplot/) for more details. 

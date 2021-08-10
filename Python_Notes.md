@@ -4,10 +4,12 @@
 
 **Pandas Data Manipulation**
 
+- Remove warnings
 - Show all columns
 - Aggregation Function
 - Function using multiple columns
 - Outliers remover
+- Quantile rankings
 
 
 
@@ -31,6 +33,15 @@
 
 
 ## Pandas Data Manipulation
+
+#### Remove Warnings
+
+```python
+import warnings
+warnings.filterwarnings("ignore")
+```
+
+
 
 #### Show all columns
 
@@ -116,6 +127,23 @@ outliers = df[(df[field] <= minimal) & (df[field] >= maximal)]
 ````
 
 
+
+#### Quantile Ranking
+
+This is one example to make quantile ranking based on a random list:
+
+```Python
+from scipy import stats
+
+df = pd.DataFrame()
+x = np.random.uniform(0,1,1000)
+ranking = [stats.percentileofscore(x, a, 'rank')/100 for a in x]
+
+df['x'] = x
+df['ranking'] = ranking
+
+df
+```
 
 
 

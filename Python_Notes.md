@@ -6,6 +6,7 @@
 
 - Remove warnings
 - Show all columns
+- Remove duplicates
 - Add rows
 - Aggregation Function
 - Function using multiple columns
@@ -48,6 +49,36 @@ warnings.filterwarnings("ignore")
 
 ```python
 pd.set_option('display.max_columns', None)
+```
+
+
+
+#### Remove Duplicates
+
+Follow [this link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html).
+
+For a dataframe df, removes duplicate rows based on all columns by default:
+
+```python
+df.drop_duplicates()
+```
+
+To remove duplicates on specific column(s), use **subset**:
+
+```python
+df.drop_duplicates(subset=['brand'])
+```
+
+To remove duplicates and keep last occurrences, use **keep**:
+
+```python
+df.drop_duplicates(subset=['brand', 'style'], keep='last')
+```
+
+```python
+# check if the data includes duplications
+
+df[df.duplicated(keep=False)]
 ```
 
 

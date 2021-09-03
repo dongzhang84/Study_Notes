@@ -12,6 +12,7 @@
 - Function using multiple columns
 - Outliers remover
 - Quantile rankings
+- Test running duration
 
 
 
@@ -19,11 +20,14 @@
 
 - Uniform Distribution
 - Gaussian Distribution
+- Exponential Distribution
+- Binomial Distribution
 
 
 
 **Matplotlib & Seaborn**
 
+- plot basic: quick plot (dots and lines)
 - plot basic: multiple panels
 - plot basic: contour
 - seaborn barplot (basic)
@@ -205,6 +209,12 @@ df
 
 
 
+#### Time Running Time
+
+```python
+%%time
+```
+
 
 
 ----
@@ -298,6 +308,85 @@ random_list = np.random.multivariate_normal(mean, cov, N)
 
 
 
+#### Exponential Distribution
+
+$$
+f(x) = \lambda e^{-\lambda x} = \frac{1}{\beta} e^{-x/\beta}
+$$
+
+```Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# generte 1000 random number with Gaussian distribution
+
+scale = 0.2 # beta
+s = np.random.exponential(scale, 5000)
+```
+
+Data visualization:
+
+```python
+fig, ax = plt.subplots(figsize=(10, 6))
+count, bins, ignored = plt.hist(s, 30, density=True)
+plt.plot(bins, np.exp(-bins/scale)/scale, linewidth=2, color='r')
+plt.show()
+```
+
+![exponential_dist](https://raw.githubusercontent.com/dongzhang84/Study_Notes/main/figures/python_notes/exponential_1.png)
+
+
+
+
+
+#### Binomial Distribution
+
+See this [link](https://numpy.org/doc/stable/reference/random/generated/numpy.random.binomial.html)
+
+```python
+n, p = 1, .5
+
+s = np.random.binomial(n, p, 1000)
+unique_elements, counts_elements = np.unique(s, return_counts=True)
+print(np.asarray((unique_elements, counts_elements)))
+```
+
+The output:
+
+[[  0   1] 
+[498 502]]
+
+```python
+n, p = 10, .5
+
+s = np.random.binomial(n, p, 1000)
+unique_elements, counts_elements = np.unique(s, return_counts=True)
+print(np.asarray((unique_elements, counts_elements)))
+```
+
+
+
+The output is
+
+[[  0   1   2   3   4   5   6   7   8   9  10] 
+[  3  15  45 125 185 243 202 127  46   7   2]]
+
+Quick data visualization:
+
+```Python
+fig, ax = plt.subplots(figsize=(10, 6))
+count, bins, ignored = plt.hist(s, 30, density=True)
+plt.show()
+```
+
+![binomial_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/binomial_1.png?raw=true)
+
+
+
+
+
+
+
 
 
 ## Matplotlib & Seaborn
@@ -313,7 +402,37 @@ import seaborn as sns
 
 
 
-Plot multiple panels:
+#### Quick Plot
+
+Generate a dataframe:
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame()
+df['X'] = np.arange(10)
+df['Y'] = np.random.rand(10)
+```
+
+The quick basic plot:
+
+```
+fig, ax = plt.subplots(figsize=(8, 6))
+plt.scatter(df.X, df.Y, s=50, c= 'red')
+plt.plot(df.X, df.Y, '--', c= 'b')
+plt.xlabel('X', fontsize=15)
+plt.ylabel('Y',fontsize=15)
+plt.xticks(fontsize='x-large')
+plt.yticks(fontsize=15)
+plt.show()
+```
+
+---
+
+
+
+#### multiple panels
 
 ```python
 # generate a random data set 

@@ -56,22 +56,6 @@ git push origin master --force
 
 
 
-**Personal  Access Token**
-
-Note that since August 13 2021 you need to use a personal access token instead of passowrd authentication. 
-
-You can follow [this link](https://blog.csdn.net/weixin_41010198/article/details/119698015), or github account, **Settings** --> **Developer setting** --> **Personal access tokens** -- > Select "repo" and "delete repo" --> **Generate new token**
-
-Use your email address and token as password to access to github. 
-
-Add in your MacOS, you can do (see more details [here](https://whatibroke.com/2021/08/14/support-for-password-authentication-was-removed-on-august-13-2021-please-use-a-personal-access-token-instead-fix-for-mac/)):
-
-1. go to KeyChain Access,
-2. Search for "GitHub",
-3. then when then result "github.com" pops up, change the account or password to your new account, and save.
-
-
-
 **Remove .DS_Store files**
 
 To remove .DS_Store fiels from a Git repository, you can first remove exisiting fields from the repository: 
@@ -87,4 +71,44 @@ echo .DS_Store >> .gitignore
 ```
 
 More details see [this link](https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository).
+
+### Update Github Repo
+
+```
+git add .
+```
+
+Then do commit:
+
+```
+git commmit -m "updated"
+```
+
+Check if the repo is connected to the directory:
+
+```
+git remote -v
+```
+
+Then do the push:
+
+```
+git push origin main --force
+```
+
+
+
+### Personal  Access Token
+
+Note that since August 13 2021 you need to use a personal access token instead of passowrd authentication. 
+
+You can follow [this link](https://blog.csdn.net/weixin_41010198/article/details/119698015), or github account, **Settings** --> **Developer setting** --> **Personal access tokens** -- > Select "repo" and "delete repo" --> **Generate new token**
+
+Use your email address and token as password to access to github. 
+
+Add in your MacOS, you can do (see more details [here](https://whatibroke.com/2021/08/14/support-for-password-authentication-was-removed-on-august-13-2021-please-use-a-personal-access-token-instead-fix-for-mac/)):
+
+1. go to KeyChain Access,
+2. Search for "GitHub",
+3. then when then result "github.com" pops up, change the account or password to your new account, and save.
 

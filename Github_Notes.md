@@ -40,6 +40,20 @@ or
 git push origin master
 ```
 
+If they does not work, we can use:
+
+```
+git push origin main --force
+```
+
+or
+
+```
+git push origin master --force
+```
+
+
+
 
 
 **Personal  Access Token**
@@ -55,4 +69,22 @@ Add in your MacOS, you can do (see more details [here](https://whatibroke.com/20
 1. go to KeyChain Access,
 2. Search for "GitHub",
 3. then when then result "github.com" pops up, change the account or password to your new account, and save.
+
+
+
+**Remove .DS_Store files**
+
+To remove .DS_Store fiels from a Git repository, you can first remove exisiting fields from the repository: 
+
+```
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+```
+
+then do 
+
+```
+echo .DS_Store >> .gitignore
+```
+
+More details see [this link](https://stackoverflow.com/questions/107701/how-can-i-remove-ds-store-files-from-a-git-repository).
 

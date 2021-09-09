@@ -30,7 +30,7 @@
 
   And your conda is working. 
 
-- To remove the (base) you can do
+- To remove the (base) when conda is still active, you can do
 
   ```
   conda config --set changeps1 false
@@ -47,4 +47,22 @@
   ```
 
 
+
+- To deactivate conda by default, you can do
+
+  ```
+  conda config --set auto_activate_base false
+  ```
+
+  See [this link](http://progsharing.blogspot.com/2019/07/deactivate-condas-base-environment-on.html).
+
+  To active conda just use
+
+  ```
+  conda activate
+  ```
+
+  
+
+  
 

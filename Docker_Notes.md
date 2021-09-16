@@ -24,7 +24,7 @@ Here is the simplest way to build an image:
 $ docker build -t IMAGE_NAME:TAG .
 ```
 
-For example, in the [instruction](https://docs.docker.com/get-started/02_our_app/) to build the "hello world" image by:
+For example, in the [instruction](https://docs.docker.com/get-started/02_our_app/) to build the "hello world" image by (without tag):
 
 ```
 $ docker build -t getting-started .
@@ -38,6 +38,56 @@ The `.` at the end of the `docker build` command tells that Docker should look f
 
 ### Start a Container
 
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. See the demo picture for the architecture:
 
+![img](https://www.docker.com/sites/default/files/d8/styles/large/public/2018-11/container-what-is-container.png?itok=vle7kjDj)
+
+The command to start a container the simplest way:
+
+```
+$ docker run IMAGE_NAME:TAG
+```
 
  
+
+- We can view containers in Docker Dashboard
+
+- How to check containers? 
+
+  ```
+  $ docker ps
+  ```
+
+  or
+
+  ```
+  $ docker ps -a
+  ```
+
+- Stop and remove docker container
+
+  ```
+  $ docker stop <the-container-id>
+  $ docker rm <the-container-id>
+  ```
+
+  Or stop and remove a container in a single command:
+
+  ```
+  $ docker rm -rf <the-container-id>
+  ```
+
+- Check all images
+
+  ```
+  $ docker images
+  ```
+
+- Remove an image
+
+  ```
+  $ docker image rm <the-image-id>
+  ```
+
+  
+

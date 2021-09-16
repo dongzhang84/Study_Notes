@@ -1,10 +1,15 @@
 # Notes on Docker and Data Science Application
 
+- Docker Introduction (installation, build an image, start a container, basic commands)
+- First Python Application
+- First C++ Application
+- First Machine Learning Application
+
+
+
 
 
 ## Docker Introduction
-
-
 
 ### Installation
 
@@ -50,6 +55,8 @@ $ docker run IMAGE_NAME:TAG
 
  
 
+### Basic Commands
+
 - We can view containers in Docker Dashboard
 
 - How to check containers? 
@@ -58,7 +65,7 @@ $ docker run IMAGE_NAME:TAG
   $ docker ps
   ```
 
-  or
+  or (also see stoped containers)
 
   ```
   $ docker ps -a
@@ -71,10 +78,10 @@ $ docker run IMAGE_NAME:TAG
   $ docker rm <the-container-id>
   ```
 
-  Or stop and remove a container in a single command:
+  Or stop and remove a container in a single command (or do it from the Dashboard):
 
   ```
-  $ docker rm -rf <the-container-id>
+  $ docker rm -f <the-container-id>
   ```
 
 - Check all images
@@ -83,11 +90,152 @@ $ docker run IMAGE_NAME:TAG
   $ docker images
   ```
 
-- Remove an image
+- Remove an image (or do it from the Dashboard)
 
   ```
   $ docker image rm <the-image-id>
   ```
 
   
+
+## First Python Application
+
+The first Python application only includes two files in the directory:
+
+- hello.py
+- Dockerfile
+
+In **hello.py**, just put one line: 
+
+```python
+print("Hello from Docker container :)")
+```
+
+In **Dockerfile**, put
+
+```
+FROM python:3.7
+
+WORKDIR /app
+
+COPY hello.py .
+
+CMD ["python", "./hello.py"]
+```
+
+Note than an other version gives (they are basically the same)
+
+```
+FROM python:3.7
+
+WORKDIR /usr/src/app
+
+COPY hello.py .
+
+CMD ["python", "./hello.py"]
+```
+
+
+
+One can test the python code without Docker by
+
+```
+$ python3 hello.py
+```
+
+Or build an image and start a container by:
+
+```
+$ docker build -t hello_world .
+$ docker run hello_world
+```
+
+In the terminal one can observe the following result:
+
+![first_python.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_python.png?raw=true)
+
+Check the container (which has been stoped) by 
+
+```
+docker ps -a
+```
+
+![first_python_check_container.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_python_check_container.png?raw=true)
+
+You can remove the container by the command mentioned in the previous section. 
+
+For running a container, one can also use
+
+```
+$ docker run --rm hello_world
+```
+
+So the container will be removed instantaneously right after running the python code. 
+
+Discussion about all flag commands can be seen in [this link](https://docs.docker.com/engine/reference/run/).
+
+
+
+## First C++ Application
+
+In a directory write up a C++ file called **main.cpp**:
+
+```c++
+# include <iostream>
+
+int main(int argc, char const *argv[])
+{
+    std::cout <<"Hello Docker container!"<< std::endl;
+    return 0;
+}
+```
+
+And in the command line you can type:
+
+```
+$ g++ -o test main.cpp
+```
+
+to generate a compiler called **test**. 
+
+Now run it:
+
+```
+$ ./test
+```
+
+The result is shown in the terminal: 
+
+```
+$ Hello Docker container!
+```
+
+![first_cpp_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_cpp_1.png?raw=true)
+
+
+
+Now create a **Dockerfile**:
+
+```
+FROM gcc:latest
+
+COPY . /usr/src/cpp_test
+
+WORKDIR /usr/src/cpp_test
+
+RUN g++ -o test main.cpp
+
+CMD ["./test"]
+```
+
+and build an image and start a container by
+
+```
+$ docker build -t cpp_test .
+$ docker run --rm cpp_test
+```
+
+The result is as follows:
+
+![first_cpp_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_cpp_2.png?raw=true)
 

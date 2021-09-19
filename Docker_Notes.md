@@ -4,6 +4,9 @@
 - First Python Application
 - First C++ Application
 - First Machine Learning Application
+- Flask Basic
+- First ML deployment using Flask
+- Deploy ML model using Flask in Docker
 
 
 
@@ -374,3 +377,243 @@ $ docker run first_ml
 ![first_ml_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_ml_1.png?raw=true)
 
  
+
+
+
+## Flask Basic
+
+A very good instruction can be seen in [this link](https://medium.com/@nutanbhogendrasharma/deploy-machine-learning-model-with-flask-on-heroku-cd079b692b1d). Recall python flask. Create a python file **app.py** as 
+
+```python
+#import Flask 
+from flask import Flask
+
+#create an instance of Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello World"
+    
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+Run **app.py** (the flask application) by 
+
+```
+$ python3 app.py
+```
+
+This launches a very simple builtin server http://127.0.0.1:5000/:
+
+![flask_hello_world.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_hello_world.png?raw=true)
+
+
+
+## Model Deployment with Flask
+
+Deploy the **iris flower model** with Flask. One example can be seen in [this blog](https://medium.com/@nutanbhogendrasharma/deploy-machine-learning-model-with-flask-on-heroku-cd079b692b1d). Here I give a simpler version, based on the description in [another blog](https://medium.com/analytics-vidhya/deploying-a-machine-learning-model-using-flask-for-beginners-674944714b86).
+
+Create a folder with the following files:
+
+![flask_ml_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_2.png?raw=true)
+
+Here the **train.py** is necessary to generate the model pickle file. The **index.html** and **result.html** are two basic html pages to load the input page and prediction (output) page. 
+
+The **index.html** is written as
+
+```html
+<html> 
+<body> 
+    <h3>Iris Flowers Classification</h3> 
+  
+<div> 
+  <form action="/result" method="POST"> 
+    <label for="Sepal Length">Sepal Length</label> 
+    <input type="text" id="Sepal Length" name="Sepal Length"> 
+    <br>
+
+    <label for="Sepal Width">Sepal Width</label> 
+    <input type="text" id="Sepal Width" name="Sepal Width"> 
+    <br> 
+    
+    <label for="Petal Length">Petal Length</label> 
+    <input type="text" id="Petal Length" name="Petal Length"> 
+    <br>
+
+    <label for="Petal Width">Petal Width</label> 
+    <input type="text" id="Petal Width" name="Petal Width"> 
+    <br>
+
+    <input type="submit" value="Submit"> 
+  </form> 
+</div> 
+</body> 
+</html>
+```
+
+ which is used to input features for prediction.
+
+The **result.html** page is written as:
+
+```html
+<!doctype html>
+<html>
+<body>
+<h3> Prediction: {{prediction}}</h3>
+</body>
+</html>
+```
+
+
+
+More importantly, the **app.py** is the Flask python file to deploy the model. The above section gives the simplest application file. And here the **app.py** is modified to a more complicated version as follows:
+
+```python
+import joblib
+
+#create an instance of Flask
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/index')
+
+def home():
+    return render_template('index.html')
+
+@app.route('/result', methods = ['GET','POST'])
+def result():
+    if request.method == 'POST':
+       input_list = request.form.values()
+       input_list = list(map(float, input_list))
+       print(input_list) # test the input
+
+       model_load = joblib.load('model.pkl') # load the model
+       prediction = model_load.predict([input_list])[0] # do the prediction
+
+       return render_template('result.html', prediction = prediction)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+
+
+To run the application, one needs to first run
+
+```
+$ python3 train.py
+```
+
+to generate the model pickle file **model.pkl**. Then to run the Flask file
+
+```
+$ python3 app.py
+```
+
+![flask_ml_app.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_app.png?raw=true)
+
+Open the local server http://127.0.0.1:5000/: 
+
+![flask_ml_input.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_input.png?raw=true)
+
+Let us input values: 
+
+(Sepal Length) 5.8
+
+(Sepal Width) 2.8
+
+(Petal Length) 5.1
+
+(Petal Width) 2.4
+
+Click the "Submit" button, the output prediction is
+
+![flask_ml_output.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_output.png?raw=true)So the basic Flask application is running successfully. Note that in the terminal you can see something like:
+
+![flask_ml_terminal.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_terminal.png?raw=true)
+
+
+
+## Deploy ML model using Flask in Docker
+
+Now I would like to deploy the ML model with Flask and Docker. 
+
+Here is the all files one needs for model deployment:
+
+![flask_Docker_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_1.png?raw=true)
+
+The **requirements.txt** list the libraries should be installed (I do not specify the package versions):
+
+```
+pandas
+joblib
+scikit-learn
+Flask
+```
+
+
+
+Note that the **app.py** file for the Docker version is slightly different from the local version. The last line is changed from 
+
+```python
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+to
+
+```python
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+```
+
+ 
+
+The **Dockerfile** is:
+
+```dockerfile
+FROM python:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+RUN python train.py
+
+CMD ["python", "app.py"]
+```
+
+Now launch a Docker image by
+
+```
+$ docker build -t flask_ml .
+```
+
+Once the image is built, run the application by
+
+```
+$ docker run -p 5000:5000 flask_ml
+```
+
+Note that it is different from the local version. The server link to open the app is
+
+http://0.0.0.0:5000/: 
+
+![flask_Docker_input.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_input.png?raw=true)
+
+Then it will be perfect to run the application. Here is the terminal screenshot:
+
+![flask_Docker_terminal.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_terminal.png?raw=true)
+
+
+
+The relevant code can be found here:
+
+https://github.com/dongzhang84/Docker_tutorial
+
+
+

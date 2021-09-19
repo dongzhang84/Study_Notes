@@ -22,7 +22,13 @@ Commit the files that you have staged in your local repository:
 git commmit -m "First commit"
 ```
 
-Next, add the URL for the remote repository where your local repostory will be pushed:
+Next, add
+
+```
+git branch -M main
+```
+
+add the URL for the remote repository where your local repostory will be pushed:
 
 ```
 git remote add origin <remote repository URL>
@@ -31,7 +37,7 @@ git remote add origin <remote repository URL>
 The step of pushing files (changes) in your local reposityr to GitHub by:
 
 ```
-git push origin main
+git push -u origin main
 ```
 
 or
@@ -81,7 +87,7 @@ git add .
 Then do commit:
 
 ```
-git commmit -m "updated"
+git commit -m "updated"
 ```
 
 Check if the repo is connected to the directory:

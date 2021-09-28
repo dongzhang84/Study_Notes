@@ -252,7 +252,7 @@ So each saved encoders work on the corresponding column.
 
 
 
-**(4) ** Selected features:
+**(4)** Selected features:
 
 ```python
 test_fe = X_test[selected_features]

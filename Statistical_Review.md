@@ -48,7 +48,7 @@ In standard cases this will be a well-known result. For example,
 
 ----
 
-### 2.3.1. Z-test
+#### 2.3.1. Z-test
 
 A Z-test is any statistical test for which the distribution of the test statistic under the null hypothesis can be approximated by a **normal distribution**.
 
@@ -66,7 +66,7 @@ Two normally distributed but independent populations, $\sigma$ is known.
 
 ------
 
-### 2.3.2. T-test
+#### 2.3.2. T-test
 
 The t-test is any statistical hypothesis test in which the test statistic follows a **Student's t-distribution** under the null hypothesis.
 
@@ -100,7 +100,7 @@ Demonstration
 
 ----
 
-### 2.3.3. Chi-Squared Tests
+#### 2.3.3. Chi-Squared Tests
 
 3.a **Chi-Squared Test of Association/Goodness-of-Fit Test** 
 
@@ -118,38 +118,85 @@ Under the null hypothesis $X^2$ Will have an approximate chi-square sampling dis
 
 3.b **Chi-Squared Test of Variance**
 
+A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898/handbook/eda/section4/eda43.htm#Snedecor)) can be used to test if the variance of a population is equal to a specified value. This test can be either a two-sided test or a one-sided test. 
 
+[Reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda358.htm)
+
+----
+
+#### 2.3.4. Regression T-test
+
+Some references to read
+
+https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLSResults.t_test.html
+
+https://stackoverflow.com/questions/27928275/find-p-value-significance-in-scikit-learn-linearregression
 
 
 
 -----
 
-### 2.4) Errors and Estimate
+#### 2.4) Errors and Estimate
 
-Two errors:
+**P-value**
 
-- Type I error
-- Type II error
-
-Significant level
-
-Statistical power
+In null hypothesis significance testing, the p-value is the probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.
 
 
 
+**Two errors**
 
+- **Type I error**: a type I error is the mistaken rejection of the null hypothesis (probability: $\alpha$).
+- **Type II error**: a type II error is the mistaken acceptance of the null hypothesis (probability: $\beta$).
 
-## ANOVA (Analysis of Variance)
+**Significant level**: $\alpha$
 
- 
-
-
-
-## Central Limited Theorem
-
-
-
-## A/B Testing
+**Statistical power**: 1- $\beta$
 
 
 
+
+
+## 3. ANOVA (Analysis of Variance)
+
+### One-way ANOVA
+
+The one-way analysis of variance (ANOVA) is used to determine whether there are any statistically significant differences between the means of three or more independent (unrelated) groups. 
+
+![One-way ANOVA Null Hypothesis](https://statistics.laerd.com/statistical-guides/img/one-way-anova-null-hypothesis.png)
+
+See example here:
+
+https://en.wikipedia.org/wiki/One-way_analysis_of_variance
+
+
+
+### Two-way ANOVA
+
+A two-way ANOVA is used to estimate how the mean of a quantitative variable changes according to the levels of two different categorical independent variables. 
+
+
+
+## 4. Central Limited Theorem
+
+If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
+
+ ![{\textstyle Z=\lim _{n\to \infty }{\sqrt {n}}{\left({\frac {{\bar {X}}_{n}-\mu }{\sigma }}\right)}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/d269e67503670688dba6d8c25481f5e63c0b1d5b), 
+
+is a standard normal distribution.
+
+
+
+## 5. A/B Testing
+
+A/B testing (also known as bucket testing or split-run testing) is a user experience research methodology. 
+
+A/B tests consist of a randomized experiment with two variants, A and B. It includes application of statistical hypothesis testing or "two-sample hypothesis testing" as used in the field of statistics. A/B testing is a way to compare two versions of a single variable, typically by testing a subject's response to variant A against variant B, and determining which of the two variants is more effective.
+
+![img](https://upload.wikimedia.org/wikipedia/commons/2/2e/A-B_testing_example.png)
+
+
+
+## Bayesian Inference
+
+Bayesian inference is a method of statistical inference in which Bayes' theorem is used to update the probability for a hypothesis as more evidence or information becomes available.

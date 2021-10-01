@@ -7,7 +7,7 @@
 
 ## Tooling
 
-- [Featuretools](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md): for automatic feature engineering
+- [Featuretools](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md): Automatic feature engineering
 - [Docker for DS](https://github.com/dongzhang84/Study_Notes/blob/main/Docker_Notes.md)'
 
 ## Others

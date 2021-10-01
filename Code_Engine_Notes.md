@@ -1,12 +1,20 @@
 # Code Engine Notes
 
-
+- Installation
+- Create hello world project
+- Deploy hello world app (using public registry)
+- Create and run hello world job (including how to create myregistry)
+- How to push Container image from local to IBM Container Registery 
+- Summary (steps)
+- Case Study: Text analysis with Code Engine
 
 
 
 ## 1. Installation
 
 First of all, this is the Code Engine console
+
+https://cloud.ibm.com/codeengine/overview
 
 ![console.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/console.png?raw=true)
 
@@ -72,13 +80,11 @@ $ ibmcloud plugin show code-engine
 
 
 
-## 2. Create Hello World Project with App and Jobs
+## 2. Create Hello World Project
 
 Follow [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-manage-project).
 
 
-
-### 2. 1 Create A Project
 
 There are two ways to create project. 
 
@@ -140,7 +146,11 @@ $ ibmcloud ce project delete --name myproject1 --hard -f
 
 
 
-### 2.2 Deploy an application from the console
+## 3. Deploy an Application
+
+
+
+### 3.1 Deploy an application from the console
 
 From the console:
 
@@ -176,7 +186,7 @@ Click the **"Open applicaiton URL"** on the top right of the above screenshot, y
 
 ![deploy_app_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_5.png?raw=true)
 
-### 2.3 Deploy an application from the CLI terminal
+### 3.2 Deploy an application from the CLI terminal
 
 Follow [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-deploy-app-tutorial):
 
@@ -242,11 +252,385 @@ z=Set env var 'SHOW' to see all variables
 
 
 
-### 2.4 Run an app from images in Container Registry
+### 3.3 Deploy an app from images in Container Registry
 
 Follow [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-deploy-app-crimage):
 
 
+
+
+
+## 4. Run a Job
+
+### 4.1 Run a job from public container
+
+**Create and Submit a job from the console**
+
+![run_job_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/run_job_1.png?raw=true)
+
+- Job name: firstjob
+
+- Select project: for this one select **hello_world** (the project just create)
+- Container image from a public registry: docker.io/ibmcom/codeengine
+
+Once you done, click **Create** and then you can **submit the job**. 
+
+
+
+**Create and Submit a job from the CLI terminal**
+
+See [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-create-job)
+
+```
+$ ibmcloud ce job create --name firstjob --image docker.io/ibmcom/codeengine
+```
+
+Example output
+
+```
+Creating job 'myjob'...
+OK
+```
+
+Check all jobs you have in the selected project:
+
+```
+$ ibmcloud ce job list
+```
+
+
+
+Run job from the CLI terminal:
+
+```
+$ ibmcloud ce jobrun submit --job firstjob
+```
+
+You can also add:
+
+```
+$ ibmcloud ce jobrun submit --job firstjob --array-indices "1 - 5" 
+```
+
+to specify array-indices (see details [here](https://cloud.ibm.com/docs/codeengine?topic=codeengine-run-job)).
+
+You will have output like this:
+
+```
+Getting job 'firstjob'...
+Submitting job run 'firstjob-jobrun-ni9xj'...
+Run 'ibmcloud ce jobrun get -n firstjob-jobrun-ni9xj' to check the job run status.
+OK
+```
+
+and you can check the job run status. The "wrong job" (for example, wrong image) will show:
+
+```
+Instances:    
+  Name                        Running  Status   Restarts  Age  
+  secondjob-jobrun-hu7bs-0-0  0/0      Pending  0  
+```
+
+and not able to be run. Otherwise it will show:
+
+```
+Instances:    
+  Name                       Running  Status     Restarts  Age  
+  firstjob-jobrun-ni9xj-0-0  0/1      Succeeded  0         4m16s  
+```
+
+on the bottom of the job status. 
+
+
+
+**Accessing job details with the CLI**
+
+```
+$ ibmcloud ce job get --name firstjob
+```
+
+will show something like this:
+
+```
+Getting job 'firstjob'...
+OK
+
+Name:          firstjob
+ID:            abcdefgh-abcd-abcd-abcd-1a2b3c4d5e6f
+Project Name:  myproject
+Project ID:    01234567-abcd-abcd-abcd-abcdabcd1111
+Age:           2m4s
+Created:       2021-02-17T15:41:12-05:00
+
+Image:                ibmcom/firstjob
+Resource Allocation:
+    CPU:     1
+    Memory:  4G
+
+Runtime:
+    Array Indices:       0
+    Max Execution Time:  7200
+    Retry Limit:         3
+```
+
+
+
+**Obviously, the console is easier than the CLI terminal to submit jobs and check job status.**
+
+
+
+### 4.2 Run a job from images in Container Registry
+
+- The first step is to **create an IAM API key** from here:
+
+https://cloud.ibm.com/iam/apikeys
+
+![API_key.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/API_key.png?raw=true)
+
+Save your API key. 
+
+
+
+- The next step is to **add registry access to Code Engine**.
+
+```
+$ ibmcloud ce registry create --name myregistry --server us.icr.io --username iamapikey --password API_KEY
+```
+
+where API_KEY is the key you just created. 
+
+The example output:
+
+```
+Creating image registry access secret 'myregistry'...
+OK
+```
+
+
+
+And you can check you have the registry access:
+
+![myregistry.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/myregistry.png?raw=true)
+
+
+
+- The third step is to **create your job configuration**. 
+
+```
+$ ibmcloud ce job create --name myhellojob --image us.icr.io/mynamespace/hello_repo --registry-secret myregistry
+```
+
+Note that here **us.icr.io/mynamespace/hello_repo** is just a demonstartion. You need to use a right image reference. The next session shows how to **push container images to IBM Cloud Container Registry**. 
+
+
+
+Of course the console is better to select image and create job, like this:
+
+![create_job_image.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/create_job_image.png?raw=true)
+
+Note that to configure image, you need to select:
+
+- the right Registry server (e.g., us.icr.io)
+
+- Registry access (e.g, myregistry, as just created)
+
+- Namespace (for public it is ibmcom, next session shows how to select others)
+
+- Repository image name (next session show you how to set up it so you can select for nex time)
+
+- Tag: image tag, do not forget to select, the default is lattest
+
+  
+
+You can update a job change name and image follow [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-update-job). But it is easier to update in the console. 
+
+More details for create and running jobs see [this link and the following tutorials](https://cloud.ibm.com/docs/codeengine?topic=codeengine-create-job-crimage). 
+
+
+
+
+
+
+
+## 5. How to use IBM Cloud Container Registry
+
+See [this link for more details](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started#getting-started). 
+
+- Step 1: **Set up a namespace**
+
+```
+$ ibmcloud login --sso
+```
+
+add namespace, you can check namespace by:
+
+```
+$ ibmcloud cr namespace-list -v
+```
+
+and add one namespace:
+
+```
+ibmcloud cr namespace-add <your_namespace>
+```
+
+
+
+- Step 2: Pull images from another registry to your local computer
+
+For example, pull a docker image to your local:
+
+```
+$ docker pull hello-world:latest
+```
+
+and tage it:
+
+```
+$ docker tag hello-world:latest us.icr.io/<your_namespace>/hw_repo:1
+```
+
+The more general way to pull docker images and tag it:
+
+```
+$ docker pull <source_image>:<tag>
+```
+
+```
+$ docker tag <source_image>:<tag> <region>.icr.io/<your_namespace>/<new_image_repo>:<new_tag>
+```
+
+
+
+- Step 3: Push Docker image to your namaspace
+
+First login to IBM Cloud Container Registry:
+
+```
+$ ibmcloud cr login
+```
+
+
+
+For the above example, do 
+
+```
+$ docker push hello-world:latest us.icr.io/<your_namespace>/hw_repo:1
+```
+
+A more general command:
+
+```
+$ docker push <region>.icr.io/<your_namespace>/<image_repo>:<tag>
+```
+
+Now the image is pushed into IBM Container Registry. 
+
+Go back to create a job:
+
+```
+$ ibmcloud ce job create --name myhellojob --image us.icr.io/<your_namespace>/hw_repo:1 --registry-secret myregistry
+```
+
+or more general
+
+```
+$ ibmcloud ce job create --name myhellojob --image <region>.icr.io/<your_namespace>/<image_repo>:<tag> --registry-secret myregistry
+```
+
+to use your own registry. 
+
+
+
+
+
+
+
+
+
+
+
+## 5. Summarize Steps
+
+1. **Login in ibmcloud**
+
+   ```
+   ibmcloud login --sso
+   ```
+
+2. **Select resource group**
+
+   ```
+   ibmcloud resource groups
+   ```
+
+   ```
+   ibmcloud target -g RESOURCE_GROUP
+   ```
+
+3. **Select project (or create project)**
+
+   ```
+   ibmcloud ce project select --name PROJECT_NAME
+   ```
+
+4. **push the container image to Docker/IBM registry**
+
+   Note that for the first time you need to create your own registry access, follow the details in Session **4.2**. 
+
+   ```
+   docker tag <source_image>:<tag> <region>.icr.io/<your_namespace>/<new_image_repo>:<new_tag>
+   ```
+
+   The source image is in your local computer. Usually US people use **us.icr.io** as the location, check what namespace you have, and name a new image repo with a tag. 
+
+   Then push it to the IBM Container registry:
+
+   ```
+   docker push <region>.icr.io/<your_namespace>/<image_repo>:<tag>
+   ```
+
+
+
+Then:
+
+5. **Create a job**
+
+   ```
+   ibmcloud ce job create --name myhellojob --image us.icr.io/<your_namespace>/hw_repo:1 --registry-secret myregistry
+   ```
+
+   The "hello world" way (use public image):
+
+   ```
+   ibmcloud ce job create --name firstjob --image docker.io/ibmcom/codeengine
+   ```
+
+   
+
+6. **Submit the job**
+
+   ```
+   ibmcloud ce jobrun submit --job firstjob
+   ```
+
+   Of course you can use the console, will be easier than the CLI terminal.
+
+
+
+Or 
+
+5. **Deploy an app**
+
+   Similar to create/run job.
+
+ 
+
+
+
+## 6. Case Study: Text analysis with Code Engine
+
+https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-text-analysis-code-engine
 
 
 

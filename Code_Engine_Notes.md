@@ -576,6 +576,12 @@ to use your own registry.
 
 4. **push the container image to Docker/IBM registry**
 
+    login to IBM Cloud Container Registry:
+
+   ```
+   ibmcloud cr login
+   ```
+
    Note that for the first time you need to create your own registry access, follow the details in Session **4.2**. 
 
    ```
@@ -628,9 +634,71 @@ Or
 
 
 
-## 6. Case Study: Text analysis with Code Engine
+## 6. Case Study: First ML application
 
-https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-text-analysis-code-engine
+Remember the example here:
+
+![img](https://raw.githubusercontent.com/dongzhang84/Study_Notes/main/figures/Docker/first_ml_1.png)
+
+where the code is here:
+
+https://github.com/dongzhang84/Docker_tutorial/tree/main/first_ML/test1
+
+
+
+In order to push this ML job to Code Engine, you can do locally:
+
+```
+$ docker tag first_ml:1 us.icr.io/<your_namespace>/iris:1
+```
+
+where **us.icr.io/<your_namespace>/iris:1** gives the tag for later Code Engine Push. 
+
+Then login to Code Engine by the following steps:
+
+```
+ibmcloud login --sso
+```
+
+select resource group:
+
+```
+ibmcloud target -g RESOURCE_GROUP
+```
+
+select project:
+
+```
+ibmcloud ce project select --name hello_world
+```
+
+login to IBM container registry:
+
+```
+ibmcloud cr login
+```
+
+Push the local image to IBM container registry:
+
+```
+docker push us.icr.io/<your_namespace>/iris:1
+```
+
+
+
+Now you can run the job by CLI terminal:
+
+```
+ibmcloud ce job create --name iris --image us.icr.io/<your_namespace>/iris:1 --registry-secret myregistry
+```
+
+```
+ibmcloud ce jobrun submit --job iris
+```
+
+Or do it from the console. 
+
+
 
 
 

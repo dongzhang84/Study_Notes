@@ -220,6 +220,90 @@ A/B tests consist of a randomized experiment with two variants, A and B. It incl
 
 
 
+### Types of Metrics
+
+- Click through rate = # clicks / # visits
+
+- Click through probability = # unique visitors who click / # unique visitors
+
+- Retention rate = # users remained at the end of evaluation period / # users at the beginning of the evaluation period
+
+- Churn rate = # users acquired / # users lost
+
+- ROI = (current value – investment) / investment
+
+
+
+
+
+**Marginal Error**
+
+Marginal error (M) = Z score of the confidence interval * Standard Error (SE)
+
+Marginal error is function of proportion of success and sample size – means need to consider the proportion of success when deciding the sample size.
+
+![001.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/001.jpg?raw=true)
+
+### Binomial As an Example
+
+Some basic equations/definitions:
+
+![002.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/002.jpg?raw=true)
+
+#### How to Carry out Hypothesis Testing
+
+Pooled sample:
+
+![003.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/003.jpg?raw=true)
+
+![004.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/004.jpg?raw=true)
+
+One example: 
+
+![005.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/005.png?raw=true)
+
+**Do we want to launch new features? ** 
+
+![006.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/006.png?raw=true)
+
+
+
+#### Given alpha and beta, decide Sample Size for testing
+
+- **Significant level**: alpha
+
+- **Statistical Power**: beta
+
+![007.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/007.jpg?raw=true)
+
+![n equation](https://ceblog.s3.amazonaws.com/wp-content/uploads/2016/05/03115330/n-equation.png)
+
+#### Common test statistics
+
+![008.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/008.png?raw=true)
+
+
+
+#### Metrics
+
+![009.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/009.jpg?raw=true)
+
+Examples:
+
+- Def #1 (Cookie probability): For each time interval, number of cookies that click divided by number of cookies
+
+- Def #2 (Pageview probability): Number of pageviews with a click within time interval divided by number of pageviews
+
+- Def #3 (Rate): Number of clicks divided by number of pageviews
+
+![010.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/010.jpg?raw=true)
+
+![011.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/011.jpg?raw=true)
+
+
+
+
+
 ## Bayesian Inference
 
 Bayesian inference is a method of statistical inference in which Bayes' theorem is used to update the probability for a hypothesis as more evidence or information becomes available.

@@ -6,7 +6,8 @@
 - Create and run hello world job (including how to create myregistry)
 - How to push Container image from local to IBM Container Registery 
 - Summary (steps)
-- Case Study: Text analysis with Code Engine
+- Case Study: First ML Job
+- Case Study: First ML app
 
 
 
@@ -699,6 +700,55 @@ ibmcloud ce jobrun submit --job iris
 Or do it from the console. 
 
 
+
+
+
+
+
+## 7. Case Study: First ML App (underway)
+
+Recall the Iris Flask application with Docker:
+
+https://github.com/dongzhang84/Docker_tutorial/tree/main/first_flask_ML/flask_ML_Docker
+
+![flask_Docker_terminal.png](https://github.com/dongzhang84/Study_Notes/raw/main/figures/Docker/flask_Docker_terminal.png?raw=true)
+
+The local command:
+
+```
+docker build -t flask_ml:1 .
+docker run -p 5000:5000 flask_ml:1 
+```
+
+and re-tag the image as:
+
+```
+docker tag flask_ml:1 us.icr.io/<your_namespace>/iris_app:1
+```
+
+
+
+Now login to IBM cloud, select Resource Group, select Project. 
+
+```
+ibmcloud cr login
+```
+
+```
+docker push us.icr.io/<your_namespace>/iris_app:1
+```
+
+Try to deploy the app by:
+
+```
+ibmcloud ce application create --name irisapp --image us.icr.io/<your_namespace>/iris_app:1 --registry-secret myregistry
+```
+
+or by the console UI. 
+
+
+
+But neither are succesful. 
 
 
 

@@ -2,9 +2,9 @@
 
 
 
-## Fast ML 
+## 1. Fast ML 
 
-### Classification
+### 1.1 Classification Quick Start
 
 If there is no missing data, and all features are number and ready, deploy the following steps:
 
@@ -110,3 +110,81 @@ print(classification_report(y_test, y_pred))
 More algorithms please see the [Titantic templete](https://github.com/dongzhang84/data_challenges/blob/master/Titanic.ipynb).
 
 These algorithms can help you build a baseline model very fast. 
+
+
+
+### 1.2 Some better methods
+
+#### GridSeachCV
+
+templete code based on Random Forest:
+
+```python
+from sklearn.model_selection import GridSearchCV
+
+param_grid = { 
+    'bootstrap': [True],
+    'n_estimators': [100, 200, 300],
+    'max_features': ['auto', 'sqrt', 'log2'],
+    'max_depth': [3, 5, 10],
+    'criterion' :['gini', 'entropy']
+}
+
+# Create a based model
+rf = ensemble.RandomForestClassifier()
+
+# Instantiate the grid search model
+clf  = GridSearchCV(estimator = rf, 
+                    cv=5, 
+                    param_grid = param_grid)
+
+clf.fit(X_train, y_train)
+```
+
+Evaluation:
+
+```python
+y_pred = clf.predict(X_test)
+print(classification_report(y_test, y_pred))
+```
+
+
+
+#### Class Weight for Imbalanced Classes
+
+Consider binary classification, introduction see [this blog](https://towardsdatascience.com/practical-tips-for-class-imbalance-in-binary-classification-6ee29bcdb8a7):
+
+```python
+weight = 10
+
+class_weights = {
+0:1
+1:weight
+}
+
+model = linear_model.LogisticRegression(random_state=None, max_iter=400, 
+                                        solver='newton-cg', class_weight=class_weights)
+
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+```
+
+You can also apply **class_weight** to other algorithms, for example: **RandomForestClassifier**. 
+
+
+
+#### Cross Valdiation
+
+https://scikit-learn.org/stable/modules/cross_validation.html
+
+![../_images/grid_search_cross_validation.png](https://scikit-learn.org/stable/_images/grid_search_cross_validation.png)
+
+
+
+**Simple Way**
+
+
+
+**K-Fold**
+

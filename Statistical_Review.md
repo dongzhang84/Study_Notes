@@ -147,7 +147,15 @@ A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898
 
 ----
 
-#### 2.3.4. Regression T-test
+#### 2.3.4. Regression test
+
+**T-Test**
+
+![regress_t.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/regress_t.png?raw=true)
+
+**F-Test**
+
+![regress_f.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/regress_f.png?raw=true)
 
 Some references to read
 

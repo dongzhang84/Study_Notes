@@ -26,10 +26,10 @@
 
 3. Hypothesis Testing 
 
-   - Steps, Errors and Estimate (p-value), Test Statistic Distributions
-   - Z-Test
-   - T-Test
-   - Chi-Squared Test
+   - Steps, Errors and Estimate (p-value), Two Errors, Significant Level and Statistical Power, Test Statistic Distributions
+   - **Z-Test**: Confidence Interval, One-sample and Two-sample Z-tests, Pooled and Un-pooled two-sample Z-tests
+   - **T-Test**: One-sample and two-sample T-tests, Pooled and Un-pooled T-tests
+   - **Chi-Squared Test**: Chi-squared test of association/Goodness-of-fit, test for categorical data, Test of variance
 
    
 
@@ -426,11 +426,47 @@ https://stackoverflow.com/questions/27928275/find-p-value-significance-in-scikit
 
 ## 6. ANOVA (Analysis of Variance)
 
-### One-way ANOVA
+### 6.1) One-way ANOVA
 
 The one-way analysis of variance (ANOVA) is used to determine whether there are any statistically significant differences between the means of three or more independent (unrelated) groups. 
 
 ![One-way ANOVA Null Hypothesis](https://statistics.laerd.com/statistical-guides/img/one-way-anova-null-hypothesis.png)
+
+https://libguides.library.kent.edu/spss/onewayanova
+
+The test statistic for a One-Way ANOVA is denoted as *F*. For an independent variable with *k* groups, the *F* statistic evaluates whether the group means are significantly different. Because the computation of the F statistic is slightly more involved than computing the paired or independent samples t test statistics, it's extremely common for all of the *F* statistic components to be depicted in a table like the following:
+
+|           | Sum of Squares |   df | Mean Square |       F |
+| :-------- | -------------: | ---: | ----------: | ------: |
+| Treatment |            SSR |  dfr |         MSR | MSR/MSE |
+| Error     |            SSE |  dfe |         MSE |         |
+| Total     |            SST |  dfT |             |         |
+
+where
+
+SSR = the regression sum of squares
+
+SSE = the error sum of squares
+
+SST = the total sum of squares (SST = SSR + SSE)
+
+dfr = the model degrees of freedom (equal to dfr = *k* - 1)
+
+dfe = the error degrees of freedom (equal to dfe = *n* - *k* - 1)
+
+*k* = the total number of groups (levels of the independent variable)
+
+*n* = the total number of valid observations
+
+dfT = the total degrees of freedom (equal to dfT = dfr + dfe = *n* - 1)
+
+MSR = SSR/dfr = the regression mean square
+
+MSE = SSE/dfe = the mean square error
+
+Then the F statistic itself is computed as
+
+F=MSR/MSE
 
 See example here:
 
@@ -438,7 +474,7 @@ https://en.wikipedia.org/wiki/One-way_analysis_of_variance
 
 
 
-### Two-way ANOVA
+### 6.2) Two-way ANOVA
 
 A two-way ANOVA is used to estimate how the mean of a quantitative variable changes according to the levels of two different categorical independent variables. 
 

@@ -1,5 +1,50 @@
 # Statistical Review
 
+1. Probability Distributions
+
+   - Discrete Distributions
+
+     - Binomial Distribution, Bernoulli Distribution, Poisson Distribution
+
+   - Continuous Distributions
+
+     - Uniform Distribution, Exponential Distribution, Normal Distribution
+
+   - Multivariate Normal
+
+     
+
+2. Sampling and Basic EDA
+
+   - Some Definitions
+     - Mean, Median
+     - Standard Deviation, Standard Error
+   - Basic EDA
+     - Q-Q Plot
+
+   
+
+3. Hypothesis Testing 
+
+   - Steps, Errors and Estimate (p-value), Test Statistic Distributions
+   - Z-Test
+   - T-Test
+   - Chi-Squared Test
+
+   
+
+4. Central Limit Theorem
+
+5. Linear Regression
+
+6. ANOVA
+
+7. A/B Testing
+
+8. Bayesian Inference
+
+
+
 ## 1. Probability Distributions
 
 1.1 **Discrete Distributions**
@@ -42,11 +87,53 @@
 
 ![Normal Distribution PDF.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/2880px-Normal_Distribution_PDF.svg.png)
 
-## 2. Hypothesis Tests
+1.3 **Multivariate Normal**
+
+![{\displaystyle f_{\mathbf {X} }(x_{1},\ldots ,x_{k})={\frac {\exp \left(-{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm {T} }{\boldsymbol {\Sigma }}^{-1}({\mathbf {x} }-{\boldsymbol {\mu }})\right)}{\sqrt {(2\pi )^{k}|{\boldsymbol {\Sigma }}|}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c66e6f6abd66698181e114a4b00da97446efd3c4)
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Multivariate_Gaussian.png/300px-Multivariate_Gaussian.png)
+
+Bivariate Case:
+
+![{\displaystyle f(x,y)={\frac {1}{2\pi \sigma _{X}\sigma _{Y}{\sqrt {1-\rho ^{2}}}}}\exp \left(-{\frac {1}{2(1-\rho ^{2})}}\left[\left({\frac {x-\mu _{X}}{\sigma _{X}}}\right)^{2}-2\rho \left({\frac {x-\mu _{X}}{\sigma _{X}}}\right)\left({\frac {y-\mu _{Y}}{\sigma _{Y}}}\right)+\left({\frac {y-\mu _{Y}}{\sigma _{Y}}}\right)^{2}\right]\right)}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c616921276f29c0c0cd5383fd81045939f8f6e82)
+
+![{\boldsymbol  \mu }={\begin{pmatrix}\mu _{X}\\\mu _{Y}\end{pmatrix}},\quad {\boldsymbol  \Sigma }={\begin{pmatrix}\sigma _{X}^{2}&\rho \sigma _{X}\sigma _{Y}\\\rho \sigma _{X}\sigma _{Y}&\sigma _{Y}^{2}\end{pmatrix}}.](https://wikimedia.org/api/rest_v1/media/math/render/svg/1d6238c86bf561c952e0560e6f6ad3591278fb82)
+
+
+
+## 2. Sampling
+
+### 2.1 Some Definitions
+
+**Sample Mean**
+
+![mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/mean.png?raw=true)
+
+**Standard Error**
+
+![SE.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/SE.png?raw=true)
+
+
+
+### 2.2 Basic EDA
+
+#### 2.2.1 Q-Q Plot
+
+A Q–Q (quantile-quantile) plot is a probability plot, which is a graphical method for comparing two probability distributions by plotting their quantiles against each other.
+
+For example:
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Normal_normal_qq.svg/300px-Normal_normal_qq.svg.png)
+
+
+
+
+
+## 3. Hypothesis Tests
 
 A statistical hypothesis is a hypothesis that is testable on the basis of observed data modeled as the realized values taken by a collection of random variables. 
 
-### 2.1) Steps
+### 3.1) Steps
 
 (From David Spiegelhalter's "The Art of Statistics")
 
@@ -58,7 +145,32 @@ A statistical hypothesis is a hypothesis that is testable on the basis of observ
 
 
 
-### 2.2) Test Statistic Distribution
+
+
+### 3.2) Errors and Estimate
+
+**P-value**
+
+In null hypothesis significance testing, the p-value is the probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.
+
+- ![{\displaystyle p=\Pr(T\geq t\mid H_{0})}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ea300b1ffc1728f5a10bc4ef20749c559d2802ba) for a one-sided right-tail test,
+- ![{\displaystyle p=\Pr(T\leq t\mid H_{0})}](https://wikimedia.org/api/rest_v1/media/math/render/svg/c21b6377a769dd29cac292258b5a1d54bd4cc240) for a one-sided left-tail test,
+- ![{\displaystyle p=2\min\{\Pr(T\geq t\mid H_{0}),\Pr(T\leq t\mid H_{0})\}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50ddf05b387d4b2456864cea94cd592e69ac3fd7) for a two-sided test. If distribution T is symmetric about zero, then ![{\displaystyle p=\Pr(|T|\geq |t|\mid H_{0})}](https://wikimedia.org/api/rest_v1/media/math/render/svg/711243ba83abe721ec22fadb229af1445a21bd92)
+
+![P-value in statistical significance testing.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/P-value_in_statistical_significance_testing.svg/370px-P-value_in_statistical_significance_testing.svg.png)
+
+**Two Errors**
+
+- **Type I error**: a type I error is the mistaken rejection of the null hypothesis (probability: $\alpha$).
+- **Type II error**: a type II error is the mistaken acceptance of the null hypothesis (probability: $\beta$).
+
+**Significant Level**: $\alpha$
+
+**Statistical Power**: 1- $\beta$
+
+
+
+#### 3.2.1) Test Statistic Distribution
 
 In standard cases this will be a well-known result. For example,
 
@@ -67,29 +179,86 @@ In standard cases this will be a well-known result. For example,
 
 
 
-### 2.3) Various Tests
+### 3.3) Various Tests
 
 ----
 
-#### 2.3.1. Z-test
+#### 3.3.1. Z-test
 
 A Z-test is any statistical test for which the distribution of the test statistic under the null hypothesis can be approximated by a **normal distribution**.
 
 
 
-1.a **One Sample Z-test**
+##### 1.a) **Confidence Interval**
 
-1.b **Two Sample Z-test**
+![CI = \bar{x} \pm z \frac{s}{\sqrt{n}}](https://www.gstatic.com/education/formulas2/397133473/en/confidence_interval_formula.svg) 
 
-Two normally distributed but independent populations, $\sigma$ is known. 
+- | C    | z*    |
+  | ---- | ----- |
+  | 99%  | 2.576 |
+  | 98%  | 2.326 |
+  | 95%  | 1.96  |
+  | 90%  | 1.645 |
+
+![img](https://upload.wikimedia.org/wikipedia/commons/b/bb/Normal_distribution_and_scales.gif)
 
 
+
+1.b **One Sample Z-test**
+
+![z_test1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/z_test1.png?raw=true)
+
+- **Step 1**: State the Null Hypothesis. 
+
+- **Step 2**: Use the z-formula to find a z-score.
+  ![One Sample Z Test](https://www.statisticshowto.com/wp-content/uploads/2014/02/z-score-formula.jpg)
+
+- **Step 3**: Compute P-value.
+  For example, Tabled value for *z* ≤ 1.28 is 0.8997
+
+  P-value is 1 – 0.8997 = 0.1003
+
+- **Step 4**: Evaluate null hypothesis. 
+
+![Two Sample Z Test of Proportions](https://sixsigmastudyguide.com/wp-content/uploads/2021/01/zp7-1.png)
+
+
+
+##### 1.c) **Two Sample Z-test** [reference](https://sixsigmastudyguide.com/two-sample-test-of-proportions/)
+
+**Requirements**: Two normally distributed but independent populations, σ is known.
+
+![Two Sample Z Test of Proportions](https://sixsigmastudyguide.com/wp-content/uploads/2021/01/zp1.png)
+
+**Binomial Example**
+
+- **Pooled Z test of proportions formula**
+
+![img](https://sixsigmastudyguide.com/wp-content/uploads/2021/01/zp2-1.png)
+
+where ![The one and two sample proportion hypothesis ](https://sixsigmastudyguide.com/wp-content/uploads/2019/10/on7.png)
+
+- **Un-pooled Z test of proportions formula**
+
+![Two Sample Z Test of Proportions](https://sixsigmastudyguide.com/wp-content/uploads/2021/01/zp3-1.png)
+
+**Z** – ![img](https://www.analystsoft.com/en/products/statplus/content/help/analysis_basic_statistics_two_sample_z-test_files/image004.png) critical value for z.
+
+**P(Z<=z)  p-level** – probability of observing the sample statistic as extreme as the test statistic. 
+
+
+
+**Unpair Z-test**
+
+The unpaired Z-test statistic is
+
+![{\frac  {{\bar  {Y}}_{2}-{\bar  {Y}}_{1}}{{\sqrt  {\sigma _{1}^{2}/n+\sigma _{2}^{2}/n}}}},](https://wikimedia.org/api/rest_v1/media/math/render/svg/7f01b62a7c57f1bf513343ed62b856aa0663dfe8)
 
 
 
 ------
 
-#### 2.3.2. T-test
+#### 3.3.2. T-test
 
 The t-test is any statistical hypothesis test in which the test statistic follows a **Student's t-distribution** under the null hypothesis.
 
@@ -97,9 +266,33 @@ The t-test is any statistical hypothesis test in which the test statistic follow
 
 2.a **One Sample and Two Sample T-tests**:
 
-- A **one-sample**  location test of whether the mean of a population has a value specified in a null hypothesis.
+- A **one-sample**  location test of whether the mean of a population has a value specified in a null hypothesis. 
+  Determines whether the sample mean is statistically different from a known or hypothesized population mean. The One Sample T-test is a parametric test.
+
+  ![formula to calculate t for a 1-sample t-test](https://blog.minitab.com/hubfs/Imported_Blog_Media/formula_1t.png)
+
+  By the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), if the observations are independent and the second moment exists, then t will be approximately normal N(0;1).
+
+  Code:
+
+  ```python
+  scipy.stats.ttest_1samp
+  from scipy import stats
+  
+  np.random.seed(7654567)  # fix seed to get the same result
+  rvs = stats.norm.rvs(loc=5, scale=10, size=(50,2))
+  
+  stats.ttest_1samp(rvs,5.0)
+  (array([-0.68014479, -0.04323899]), array([ 0.49961383,  0.96568674]))
+  stats.ttest_1samp(rvs,0.0)
+  (array([ 2.77025808,  4.11038784]), array([ 0.00789095,  0.00014999]))
+  ```
+
+  
 
 - A **two-sample** location test of the **null hypothesis** such that **the means of two populations are equal**.
+
+  See two-sample T-test [example](https://www.jmp.com/en_us/statistics-knowledge-portal/t-test/two-sample-t-test.html).
 
   
 
@@ -109,9 +302,37 @@ Two-sample *t*-tests for a difference in mean involve **independent samples (unp
 
 2.c **Correlated (or Paired) T-Test**
 
+![t_test_2sample_paired.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/t_test_2sample_paired.png?raw=true)
+
+
+
 2.d **Equal Variance (or Pooled) T-Test**
 
+![{\displaystyle t={\frac {{\bar {X}}_{1}-{\bar {X}}_{2}}{s_{p}\cdot {\sqrt {{\frac {1}{n_{1}}}+{\frac {1}{n_{2}}}}}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/faf70034d0a3a686080b98b32f64f2cc62a5dbad)
+
+where 
+
+![{\displaystyle s_{p}={\sqrt {\frac {\left(n_{1}-1\right)s_{X_{1}}^{2}+\left(n_{2}-1\right)s_{X_{2}}^{2}}{n_{1}+n_{2}-2}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/451cd1fdd5cb308af96957c3cb28131035b07e97)
+
+is an estimator of the pooled standard deviation of the two samples.
+
+Degree of freedom: n1+n2-2
+
+
+
 2.e **Unequal Variance T-Test**
+
+See [Welch's t-test](https://en.wikipedia.org/wiki/Welch%27s_t-test)
+
+![{\displaystyle t={\frac {{\bar {X}}_{1}-{\bar {X}}_{2}}{s_{\bar {\Delta }}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/eeecf40c622f1fa6b0fb9462c7c4b7030cbb47eb)
+
+where
+
+![{\displaystyle s_{\bar {\Delta }}={\sqrt {{\frac {s_{1}^{2}}{n_{1}}}+{\frac {s_{2}^{2}}{n_{2}}}}}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/5024dd38e905d60353a324af2a05058fdd4ac3e7)
+
+and the degree of freedom (d.f.) can be calculated by
+
+![{\displaystyle \mathrm {d.f.} ={\frac {\left({\frac {s_{1}^{2}}{n_{1}}}+{\frac {s_{2}^{2}}{n_{2}}}\right)^{2}}{{\frac {\left(s_{1}^{2}/n_{1}\right)^{2}}{n_{1}-1}}+{\frac {\left(s_{2}^{2}/n_{2}\right)^{2}}{n_{2}-1}}}}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/bf9929fa7098ff7e57a5c421c0fdcb3eea20435f)
 
 
 
@@ -123,7 +344,7 @@ Demonstration
 
 ----
 
-#### 2.3.3. Chi-Squared Tests
+#### 3.3.3. Chi-Squared Tests
 
 3.a **Chi-Squared Test of Association/Goodness-of-Fit Test** 
 
@@ -139,15 +360,53 @@ Under the null hypothesis $X^2$ Will have an approximate chi-square sampling dis
 
 
 
+**Example: Compare Number of Real data to Expected Numbers**
+
+![chi_squred_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_2.png?raw=true)
+
+![img](https://www.jmp.com/en_ch/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test/_jcr_content/par/styledcontainer_2069/par/image_523413870.img.png/1623884285244.png)
+
+
+
+
+
+**Example chi-squared test for categorical data**
+
+![chi_squred_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_3.png?raw=true)
+
+
+
 3.b **Chi-Squared Test of Variance**
 
 A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898/handbook/eda/section4/eda43.htm#Snedecor)) can be used to test if the variance of a population is equal to a specified value. This test can be either a two-sided test or a one-sided test. 
 
 [Reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda358.htm)
 
-----
+![chi_squred_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_4.png?raw=true)
 
-#### 2.3.4. Regression test
+![chi_squred_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_5.png?raw=true)
+
+
+
+
+
+## 4. Central Limited Theorem
+
+If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
+
+ ![{\textstyle Z=\lim _{n\to \infty }{\sqrt {n}}{\left({\frac {{\bar {X}}_{n}-\mu }{\sigma }}\right)}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/d269e67503670688dba6d8c25481f5e63c0b1d5b), 
+
+is a standard normal distribution.
+
+
+
+## 5. Linear Regression
+
+
+
+
+
+#### Regression test
 
 **T-Test**
 
@@ -165,30 +424,7 @@ https://stackoverflow.com/questions/27928275/find-p-value-significance-in-scikit
 
 
 
------
-
-#### 2.4) Errors and Estimate
-
-**P-value**
-
-In null hypothesis significance testing, the p-value is the probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.
-
-
-
-**Two errors**
-
-- **Type I error**: a type I error is the mistaken rejection of the null hypothesis (probability: $\alpha$).
-- **Type II error**: a type II error is the mistaken acceptance of the null hypothesis (probability: $\beta$).
-
-**Significant level**: $\alpha$
-
-**Statistical power**: 1- $\beta$
-
-
-
-
-
-## 3. ANOVA (Analysis of Variance)
+## 6. ANOVA (Analysis of Variance)
 
 ### One-way ANOVA
 
@@ -208,17 +444,7 @@ A two-way ANOVA is used to estimate how the mean of a quantitative variable chan
 
 
 
-## 4. Central Limited Theorem
-
-If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
-
- ![{\textstyle Z=\lim _{n\to \infty }{\sqrt {n}}{\left({\frac {{\bar {X}}_{n}-\mu }{\sigma }}\right)}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/d269e67503670688dba6d8c25481f5e63c0b1d5b), 
-
-is a standard normal distribution.
-
-
-
-## 5. A/B Testing
+## 7. A/B Testing
 
 A/B testing (also known as bucket testing or split-run testing) is a user experience research methodology. 
 
@@ -312,6 +538,23 @@ Examples:
 
 
 
-## Bayesian Inference
+## 8. Bayesian Inference
 
 Bayesian inference is a method of statistical inference in which Bayes' theorem is used to update the probability for a hypothesis as more evidence or information becomes available.
+
+### 8.1 Baye's Theorem
+
+**Bayesian Probability**
+
+![{\displaystyle P(A\mid B)={\frac {P(A\cap B)}{P(B)}},{\text{ if }}P(B)\neq 0,}](https://wikimedia.org/api/rest_v1/media/math/render/svg/7b424233f9f41ed1e6e96deecab00e0e158029ec)
+
+So we have
+
+![{\displaystyle P(A\mid B)={\frac {P(B\mid A)P(A)}{P(B)}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/87c061fe1c7430a5201eef3fa50f9d00eac78810)
+
+For continuous random variables: 
+
+![{\displaystyle f_{X\mid Y=y}(x)={\frac {f_{Y\mid X=x}(y)f_{X}(x)}{f_{Y}(y)}}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e94271d4d6e4727af54969fbedecccd5456b34e0)
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Bayes_theorem_simple_example_tree.svg/2560px-Bayes_theorem_simple_example_tree.svg.png)
+

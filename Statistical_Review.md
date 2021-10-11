@@ -402,11 +402,81 @@ is a standard normal distribution.
 
 ## 5. Linear Regression
 
+### 5.1) Assumptions of Linear Regression
+
+Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable.  The regression has five key assumptions:
+
+- Linear relationship
+- Multivariate normality
+- No or little multicollinearity
+- No auto-correlation
+- Homoscedasticity
+
+
+
+**Linear relationship:** There exists a linear relationship between the independent variable, x, and the 
+
+**Independence:** The residuals are independent. In particular, there is no correlation between consecutive residuals in time series data.
+
+**Normality**：The residuals of the model are normally distributed.
+
+**Homoscedasticity:** The residuals have constant variance at every level of x.
+
+
+
+### 5.2) Simple Linear Regression
+
+
+
+Consider a model function: 
+
+![y=\alpha +\beta x,](https://wikimedia.org/api/rest_v1/media/math/render/svg/bf2c1cac7c1e6c9a426d92e9adad6ff4d8b4152e)
+
+We can describe the underlying relationship between $y_i$ and $x_i$  as
+
+![ y_i = \alpha + \beta x_i + \varepsilon_i.](https://wikimedia.org/api/rest_v1/media/math/render/svg/968be557dd22b1a2e536b8d22369cfdb37f58703)
+
+And the solution of the parameters are
+
+![{\textstyle {\begin{aligned}{\widehat {\alpha }}&={\bar {y}}-({\widehat {\beta }}\,{\bar {x}}),\\[5pt]{\widehat {\beta }}&={\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}\\[6pt]&={\frac {s_{x,y}}{s_{x}^{2}}}\\[5pt]&=r_{xy}{\frac {s_{y}}{s_{x}}}.\\[6pt]\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/9caed0f59417a425c988764032e5892130e97fa4)
+
+Note that 
+
+![{\displaystyle {\begin{aligned}{\widehat {\beta }}&={\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}={\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}*{\frac {(y_{i}-{\bar {y}})}{(x_{i}-{\bar {x}})}}}{\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}\\[6pt]\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e1ac1b7ef40d1c91a192327f20ae7ca88f4c4d37)
+
+
+
+### 5.3) Metrics of model evaluation
+
+See [reference here](https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/).
+
+**Mean Squared Error (MSE)**
+
+<img src="https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-30-at-2.58.15-PM.png" alt="Mean squared error" style="zoom: 33%;" />
+
+![Mean Squared Error Representation](https://vitalflux.com/wp-content/uploads/2020/09/Regression-terminologies-Page-2-1024x619.png)
+
+
+
+**R-squared**
+
+![Digrammatic representation for understanding R-Squared](https://vitalflux.com/wp-content/uploads/2020/09/Regression-terminologies-Page-3.png)
+
+![R-Squared as ration of SSR and SST](https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-30-at-3.57.00-PM.png)
+
+![R-Squared as a function of MSE](https://vitalflux.com/wp-content/uploads/2020/09/Screenshot-2020-09-30-at-6.07.51-PM.png)
+
+R-squared and Adjust R-squared
+
+![R_squared.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/R_squared.png?raw=true)
 
 
 
 
-#### Regression test
+
+
+
+### 5.4) Regression test
 
 **T-Test**
 
@@ -477,6 +547,22 @@ https://en.wikipedia.org/wiki/One-way_analysis_of_variance
 ### 6.2) Two-way ANOVA
 
 A two-way ANOVA is used to estimate how the mean of a quantitative variable changes according to the levels of two different categorical independent variables. 
+
+A two-way ANOVA with interaction tests three null hypotheses at the same time:
+
+- There is no difference in group means at any level of the first independent variable.
+- There is no difference in group means at any level of the second independent variable.
+- The effect of one independent variable does not depend on the effect of the other independent variable (a.k.a. no interaction effect).
+
+https://www.itl.nist.gov/div898/handbook/prc/section4/prc437.htm
+
+![anova_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_1.png?raw=true)
+
+![anova_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_2.png?raw=true)
+
+
+
+See this example: https://www.statology.org/two-way-anova/
 
 
 

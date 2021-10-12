@@ -29,6 +29,7 @@
    - **Z-Test**: Confidence Interval, One-sample and Two-sample Z-tests, Pooled and Un-pooled two-sample Z-tests
    - **T-Test**: One-sample and two-sample T-tests, Pooled and Un-pooled T-tests
    - **Chi-Squared Tests**: Chi-squared test of association/Goodness-of-fit, test for categorical data, Test of variance
+   - Kolmogorov-Smirnov test
 
    
 
@@ -36,6 +37,8 @@
    
 
 5. Linear Regression
+
+   - Maximum Likelihood Estimation (MLE)
 
    - Assumptions of Linear Regression: four assumption. 
 
@@ -63,6 +66,8 @@
 8. Bayesian Inference
 
    - Baye's Theorem
+
+   - Prior and Posterior Distribution
    - 
 
 
@@ -424,9 +429,35 @@ A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898
 
 
 
+### 3.4) Kolmogorov-Smirnov test
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/KS_Example.png/300px-KS_Example.png)
+
+**Goodness-of-fit**: Illustration of the Kolmogorov–Smirnov statistic. The red line is a model CDF, the blue line is an empirical CDF, and the black arrow is the K–S statistic.
+
+https://www.tutorialspoint.com/statistics/kolmogorov_smirnov_test.htm
+
+
+
 
 
 ## 4. Central Limited Theorem
+
+#### 4.1) The Law of Large Numbers
+
+It is a theorem that describes the result of performing the same experiment a large number of times. According to the law, the **average** of the results obtained from a large number of trials should be close to the expected value and will tend to become closer to the **expected value** as more trials are performed. 
+
+
+
+**Weak Law**
+
+![\lim _{n\to \infty }\Pr \!\left(\,|{\overline {X}}_{n}-\mu |>\varepsilon \,\right)=0.](https://wikimedia.org/api/rest_v1/media/math/render/svg/e3848a0ff097c73716a0bfc4df59c18691b2a323)
+
+**Strong Law** 
+
+![\Pr \!\left(\lim _{n\to \infty }{\overline {X}}_{n}=\mu \right)=1.](https://wikimedia.org/api/rest_v1/media/math/render/svg/befeda3c4b77efb2cf7835a9569edaadebd978e9)
+
+
 
 If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
 
@@ -438,9 +469,29 @@ is a standard normal distribution.
 
 
 
-## 5. Linear Regression
+## 5. Linear Regression and other Regressions
 
-### 5.1) Assumptions of Linear Regression
+### 5.1) Maximum Likelihood Estimation
+
+Maximum likelihood estimation (MLE) is a method of estimating the parameters of an assumed probability distribution. 
+
+Evaluating the joint density at the observed data sample:
+
+![{\displaystyle L_{n}(\theta )=L_{n}(\theta ;\mathbf {y} )=f_{n}(\mathbf {y} ;\theta )}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fa485e7acf98b3a0ce236ce7293f63dd89f84b96)
+
+The goal of maximum likelihood estimation is to find the values of the model parameters that maximize the likelihood function over the parameter space, that is
+
+![{\displaystyle {\hat {\theta }}={\underset {\theta \in \Theta }{\operatorname {arg\;max} }}\,{\widehat {L}}_{n}(\theta \,;\mathbf {y} )}](https://wikimedia.org/api/rest_v1/media/math/render/svg/266fa29a1e5c9905225936633538f30e3db04529)
+
+In practice, it is often convenient to work with the natural logarithm of the likelihood function, called the log-likelihood:
+
+![{\displaystyle \ell (\theta \,;\mathbf {y} )=\ln L_{n}(\theta \,;\mathbf {y} ).}](https://wikimedia.org/api/rest_v1/media/math/render/svg/70323a65c0f24cb9b3e9bb0e1a8cf30442c350a7)
+
+![{\displaystyle {\frac {\partial \ell }{\partial \theta _{1}}}=0,\quad {\frac {\partial \ell }{\partial \theta _{2}}}=0,\quad \ldots ,\quad {\frac {\partial \ell }{\partial \theta _{k}}}=0,}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ee2c70f8b76d0ba39fa9fa7a319027851566147e)
+
+
+
+### 5.2) Assumptions of Linear Regression
 
 Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable.  The regression has five key assumptions:
 
@@ -468,7 +519,7 @@ Plot with random data showing homoscedasticity: at each value of x, the y-value 
 
 
 
-### 5.2) Simple Linear Regression
+### 5.3) Simple Linear Regression
 
 
 
@@ -490,7 +541,7 @@ Note that
 
 
 
-### 5.3) Metrics of model evaluation
+### 5.4) Metrics of model evaluation
 
 See [reference here](https://vitalflux.com/mean-square-error-r-squared-which-one-to-use/).
 
@@ -520,7 +571,7 @@ R-squared and Adjust R-squared
 
 
 
-### 5.4) Regression test
+### 5.5) Regression test
 
 **T-Test**
 
@@ -538,9 +589,21 @@ https://stackoverflow.com/questions/27928275/find-p-value-significance-in-scikit
 
 
 
-### 5.5) Other Regression: Poisson Regression
+### 5.6) Other Regression: Poisson Regression
 
-Poisson regression is a generalized linear model form of regression analysis used to model count data and contingency tables.
+Poisson regression is a generalized linear model form of regression analysis used to model **count data** and **contingency tables**.
+
+![{\displaystyle \lambda :=\operatorname {E} (Y\mid x)=e^{\theta 'x},\,}](https://wikimedia.org/api/rest_v1/media/math/render/svg/a0da7d4c02f2f34dfd6c08455f770437672d2b38)
+
+![{\displaystyle p(y\mid x;\theta )={\frac {\lambda ^{y}}{y!}}e^{-\lambda }={\frac {e^{y\theta 'x}e^{-e^{\theta 'x}}}{y!}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/3698dbb249c32c1f555f620f6277ddf4d3bd4de1)
+
+![p(y_{1},\ldots ,y_{m}\mid x_{1},\ldots ,x_{m};\theta )=\prod _{i=1}^{m}{\frac {e^{y_{i}\theta 'x_{i}}e^{-e^{\theta 'x_{i}}}}{y_{i}!}}.](https://wikimedia.org/api/rest_v1/media/math/render/svg/8df9dcc9459e1dfb07dfa3c781b301b60b60285e)
+
+Likelihood function:
+
+![{\displaystyle L(\theta \mid X,Y)=\prod _{i=1}^{m}{\frac {e^{y_{i}\theta 'x_{i}}e^{-e^{\theta 'x_{i}}}}{y_{i}!}}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/83bd2e605da72a452e7f3aad926ab6ccb255f269)
+
+
 
 
 
@@ -714,7 +777,9 @@ Examples:
 
 Bayesian inference is a method of statistical inference in which Bayes' theorem is used to update the probability for a hypothesis as more evidence or information becomes available.
 
-### 8.1 Baye's Theorem
+
+
+### 8.1) Baye's Theorem
 
 **Bayesian Probability**
 
@@ -729,4 +794,14 @@ For continuous random variables:
 ![{\displaystyle f_{X\mid Y=y}(x)={\frac {f_{Y\mid X=x}(y)f_{X}(x)}{f_{Y}(y)}}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e94271d4d6e4727af54969fbedecccd5456b34e0)
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Bayes_theorem_simple_example_tree.svg/2560px-Bayes_theorem_simple_example_tree.svg.png)
+
+
+
+### Prior and Posterior Distribution
+
+The posterior probability is the probability of the parameters ![\theta ](https://wikimedia.org/api/rest_v1/media/math/render/svg/6e5ab2664b422d53eb0c7df3b87e1360d75ad9af) given the evidence ![X](https://wikimedia.org/api/rest_v1/media/math/render/svg/68baa052181f707c662844a465bfeeb135e82bab): ![{\displaystyle p(\theta |X)}](https://wikimedia.org/api/rest_v1/media/math/render/svg/2594603c1c2b622471d9a19d1ea54daa152026b4).
+
+It contrasts with the [likelihood function](https://en.wikipedia.org/wiki/Likelihood_function), which is the probability of the evidence given the parameters: ![p(X|\theta )](https://wikimedia.org/api/rest_v1/media/math/render/svg/0f1665d485e91e5a3e953a937574c78389668777).
+
+
 

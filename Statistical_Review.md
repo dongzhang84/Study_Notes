@@ -538,6 +538,12 @@ https://stackoverflow.com/questions/27928275/find-p-value-significance-in-scikit
 
 
 
+### 5.5) Other Regression: Poisson Regression
+
+Poisson regression is a generalized linear model form of regression analysis used to model count data and contingency tables.
+
+
+
 ## 6. ANOVA (Analysis of Variance)
 
 ### 6.1) One-way ANOVA

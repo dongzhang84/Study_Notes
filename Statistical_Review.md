@@ -17,8 +17,7 @@
 2. Sampling and Basic EDA
 
    - Some Definitions
-     - Mean, Median
-     - Standard Deviation, Standard Error
+     - Mean, Median, Standard Deviation, Standard Deviation, Standard Error
    - Basic EDA
      - Q-Q Plot
 
@@ -29,19 +28,42 @@
    - Steps, Errors and Estimate (p-value), Two Errors, Significant Level and Statistical Power, Test Statistic Distributions
    - **Z-Test**: Confidence Interval, One-sample and Two-sample Z-tests, Pooled and Un-pooled two-sample Z-tests
    - **T-Test**: One-sample and two-sample T-tests, Pooled and Un-pooled T-tests
-   - **Chi-Squared Test**: Chi-squared test of association/Goodness-of-fit, test for categorical data, Test of variance
+   - **Chi-Squared Tests**: Chi-squared test of association/Goodness-of-fit, test for categorical data, Test of variance
 
    
 
 4. Central Limit Theorem
+   
 
 5. Linear Regression
 
+   - Assumptions of Linear Regression: four assumption. 
+
+   - Similar Linear Regression, MSE, R squared
+
+   - Regression test: t-test, F-test
+
+   - Other regression: Poisson regression
+
+     
+
 6. ANOVA
+
+   - One-way ANOVA
+   - Two-way ANOVA
+
+   
 
 7. A/B Testing
 
+   - Types of Metrics (CTR, etc), Marginal Error
+   - Binomial as a case study, determine the size of test
+     
+
 8. Bayesian Inference
+
+   - Baye's Theorem
+   - 
 
 
 
@@ -109,7 +131,21 @@ Bivariate Case:
 
 ![mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/mean.png?raw=true)
 
+**Standard Deviation**
+
+Discrete: 
+
+![{\displaystyle \sigma ={\sqrt {{\frac {1}{N}}\sum _{i=1}^{N}(x_{i}-\mu )^{2}}},{\text{ where }}\mu ={\frac {1}{N}}\sum _{i=1}^{N}x_{i}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/98f02417b7c2830d941364f6b40e22ea63a9dd1f)
+
+Continuous: 
+
+![{\displaystyle {\begin{aligned}\sigma &\equiv {\sqrt {\operatorname {E} \left[(X-\mu )^{2}\right]}}={\sqrt {\int _{-\infty }^{+\infty }(x-\mu )^{2}f(x)dx}},\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50fc45dec3e6e45e6b06bb50ea4d218269049d94)
+
+
+
 **Standard Error**
+
+![{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/f9dac77577c2717cbb973388e4d6563915705742)
 
 ![SE.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/SE.png?raw=true)
 
@@ -398,6 +434,8 @@ If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with
 
 is a standard normal distribution.
 
+(Need to expand more)
+
 
 
 ## 5. Linear Regression
@@ -421,6 +459,12 @@ Linear regression is an analysis that assesses whether one or more predictor var
 **Normality**：The residuals of the model are normally distributed.
 
 **Homoscedasticity:** The residuals have constant variance at every level of x.
+
+For example: 
+
+![img](https://upload.wikimedia.org/wikipedia/commons/9/93/Homoscedasticity.png)
+
+Plot with random data showing homoscedasticity: at each value of x, the y-value of the dots has about the same variance.
 
 
 

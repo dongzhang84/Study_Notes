@@ -8,9 +8,9 @@
 
    - Continuous Distributions
 
-     - Uniform Distribution, Exponential Distribution, Normal Distribution
+     - Uniform Distribution, Exponential Distribution, Normal Distribution, Multivariate Normal
 
-   - Multivariate Normal
+   - Inverse CFD method
 
      
 
@@ -21,7 +21,8 @@
    - Basic EDA
      - Q-Q Plot
 
-   
+
+   Note that Statistical Inference has two parts: Estimation (point estimation, interval estimation, eta), and Hypothesis Tests. 
 
 3. Hypothesis Testing 
 
@@ -74,7 +75,7 @@
 
 ## 1. Probability Distributions
 
-1.1 **Discrete Distributions**
+### 1.1 **Discrete Distributions**
 
 - Binomial Distribution
 
@@ -96,7 +97,7 @@
 
 
 
-1.2 **Continuous Distributions**
+### 1.2 **Continuous Distributions**
 
 - Uniform Distribution
 
@@ -128,15 +129,69 @@ Bivariate Case:
 
 
 
+### 1.3 Inverse CDF Method
+
+CDF: cumulative distribution function
+
+Question: [Why is the CDF of a sample uniformly distributed](https://stats.stackexchange.com/questions/161635/why-is-the-cdf-of-a-sample-uniformly-distributed)
+
+![img](https://miro.medium.com/max/1364/1*WlFqo-hHs-pwDQa2_of0Xw.png)
+
+Above picture see [this link](https://towardsdatascience.com/generate-random-variable-using-inverse-transform-method-in-python-8e5392f170a3)
+
+For example, for exponential distribution: 
+
+![img](https://miro.medium.com/max/1198/1*sUnvH5FPm-HL9dAHibrYBA@2x.png)
+
+
+
+![img](https://miro.medium.com/max/654/1*HnHuldiEJ5UulWu2XZ-Lgw@2x.png)
+
+![img](https://miro.medium.com/max/1002/1*0uEtsn-53sfIVqSXECv_xw@2x.png)
+
+The code is:
+
+```python
+def exponential_inverse_trans(n=1,mean=1):
+    U=np.random.uniform(0,1, size=n)
+    X=-mean*np.log(1-U)
+    actual=np.random.exponential(scale = mean, size=n)
+    
+    plt.figure(figsize=(12,9))
+    plt.hist(X, bins=50, alpha=0.5, label="Generated r.v.")
+    plt.hist(actual, bins=50, alpha=0.5, label="Actual r.v.")
+    plt.title("Generated vs Actual %i Exponential Random Variables" %n)
+    plt.legend()
+    plt.show()
+    return X
+```
+
+
+
+```python
+cont_example2=exponential_inverse_trans(n=500,mean=3)
+cont_example3=exponential_inverse_trans(n=10000,mean=3)
+```
+
+gives
+
+![inverse_CDF_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/inverse_CDF_1.png?raw=true)
+
+![inverse_CDF_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/inverse_CDF_2.png?raw=true)
+
+
+
+
+
 ## 2. Sampling
 
 ### 2.1 Some Definitions
 
-**Sample Mean**
+#### Sample Mean
 
 ![mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/mean.png?raw=true)
 
-**Standard Deviation**
+#### Standard Deviation
 
 Discrete: 
 
@@ -146,13 +201,69 @@ Continuous:
 
 ![{\displaystyle {\begin{aligned}\sigma &\equiv {\sqrt {\operatorname {E} \left[(X-\mu )^{2}\right]}}={\sqrt {\int _{-\infty }^{+\infty }(x-\mu )^{2}f(x)dx}},\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50fc45dec3e6e45e6b06bb50ea4d218269049d94)
 
+```python
+import numpy as np
+a = np.array([[1, 2], [3, 4], [5,6], [7,8]])
+np.std(a)
+```
+
+Return 
+
+```
+2.29128784747792
+```
+
+```python
+>>> np.std(a, axis=0)
+>>> array([2.23606798, 2.23606798])
+
+>>> np.std(a, axis=1)
+>>> array([0.5, 0.5, 0.5, 0.5])
+```
+
+where **axis = 0** means SD along the column and **axis = 1** means SD along the row.
+
+Note that **Variance = std square**.
 
 
-**Standard Error**
+
+#### Sample Variance
+
+The biased sample variance is then written:
+
+![s_n^2 = \frac {1}{n} \sum_{i=1}^n  \left(x_i - \overline{x} \right)^ 2 = \frac{\sum_{i=1}^n \left(x_i^2\right)}{n} - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n^2}](https://wikimedia.org/api/rest_v1/media/math/render/svg/1725a59716f931fd8dedf2c2bfc7d1cc6f02b566)
+
+and the unbiased sample variance is written:
+
+![s^2 = \frac {1}{n-1} \sum_{i=1}^n  \left(x_i - \overline{x} \right)^ 2 = \frac{\sum_{i=1}^n \left(x_i^2\right)}{n-1} - \frac{\left(\sum_{i=1}^n x_i\right)^2}{(n-1)n} = \left(\frac{n}{n-1}\right)\,s_n^2.](https://wikimedia.org/api/rest_v1/media/math/render/svg/6c61f055ff76396f4b98c926f2e3b2c47e7f64f0)
+
+This is called [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction). The reason is 
+
+![{\displaystyle {\begin{aligned}\operatorname {E} [S^{2}]&=\operatorname {E} {\bigg [}{\frac {1}{n}}\sum _{i=1}^{n}(X_{i}-\mu )^{2}-{\frac {2}{n}}({\overline {X}}-\mu )\sum _{i=1}^{n}(X_{i}-\mu )+({\overline {X}}-\mu )^{2}{\bigg ]}\\[8pt]&=\operatorname {E} {\bigg [}{\frac {1}{n}}\sum _{i=1}^{n}(X_{i}-\mu )^{2}-{\frac {2}{n}}({\overline {X}}-\mu )\cdot n\cdot ({\overline {X}}-\mu )+({\overline {X}}-\mu )^{2}{\bigg ]}\\[8pt]&=\operatorname {E} {\bigg [}{\frac {1}{n}}\sum _{i=1}^{n}(X_{i}-\mu )^{2}-2({\overline {X}}-\mu )^{2}+({\overline {X}}-\mu )^{2}{\bigg ]}\\[8pt]&=\operatorname {E} {\bigg [}{\frac {1}{n}}\sum _{i=1}^{n}(X_{i}-\mu )^{2}-({\overline {X}}-\mu )^{2}{\bigg ]}\\[8pt]&=\operatorname {E} {\bigg [}{\frac {1}{n}}\sum _{i=1}^{n}(X_{i}-\mu )^{2}{\bigg ]}-\operatorname {E} {\bigg [}({\overline {X}}-\mu )^{2}{\bigg ]}\\[8pt]&=\sigma ^{2}-\operatorname {E} {\bigg [}({\overline {X}}-\mu )^{2}{\bigg ]}=\left(1-{\frac {1}{n}}\right)\sigma ^{2}<\sigma ^{2}.\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/3f77971bd3f08e0c66f208221059b6978ab507e6)
+
+
+
+
+
+#### Standard Error
 
 ![{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/f9dac77577c2717cbb973388e4d6563915705742)
 
 ![SE.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/SE.png?raw=true)
+
+
+
+#### Standard Error of Mean and Median
+
+**SE (median) = 1.2533 × SE( )**, [reference](https://influentialpoints.com/Training/standard_error_of_median)
+
+```python
+sigma=np.std(data)
+n=len(data)
+sigma_median=1.253*sigma/np.sqrt(n)
+```
+
+
 
 
 
@@ -165,6 +276,14 @@ A Q–Q (quantile-quantile) plot is a probability plot, which is a graphical met
 For example:
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Normal_normal_qq.svg/300px-Normal_normal_qq.svg.png)
+
+
+
+#### 2.2.2 Bootstrapping
+
+Regarding Boostrapping resampling size: https://tools4dev.org/resources/how-to-choose-a-sample-size/
+
+
 
 
 
@@ -436,6 +555,16 @@ A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898
 **Goodness-of-fit**: Illustration of the Kolmogorov–Smirnov statistic. The red line is a model CDF, the blue line is an empirical CDF, and the black arrow is the K–S statistic.
 
 https://www.tutorialspoint.com/statistics/kolmogorov_smirnov_test.htm
+
+
+
+
+
+### 3.5）Bonferroni correction
+
+The Bonferroni correction is a method to counteract the problem of multiple comparisons.
+
+The [familywise error rate](https://en.wikipedia.org/wiki/Familywise_error_rate) (FWER): ![{\displaystyle {\text{FWER}}=P\left\{\bigcup _{i=1}^{m_{0}}\left(p_{i}\leq {\frac {\alpha }{m}}\right)\right\}\leq \sum _{i=1}^{m_{0}}\left\{P\left(p_{i}\leq {\frac {\alpha }{m}}\right)\right\}=m_{0}{\frac {\alpha }{m}}\leq \alpha .}](https://wikimedia.org/api/rest_v1/media/math/render/svg/f5a25e29ec5478b06b9856a892469c72ac50b285)
 
 
 

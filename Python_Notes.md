@@ -236,6 +236,12 @@ for n in range(5000):
   y_list.append(y)
 ```
 
+A better way:
+
+```python
+np.random.uniform(0,1,size=5000)
+```
+
 
 
 Linear regression and Plot
@@ -256,7 +262,76 @@ plt.show()
 
 ![random_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/random_1.png?raw=true)
 
-Note that we can use random.randint(a,b) to generate random integers between a and b. 
+Note that we can use random.randint(a,b) to generate random integers between a and b.
+
+-----
+
+#### How to Simulate Pi? 
+
+Consider a 2D box $[-1,1]\times [-1,1]$, data points uniformly distributed in the box:
+
+```python
+data = np.random.uniform(-1,1,size=[10000,2])
+```
+
+One can visualize it by:
+
+```python
+fig, ax = plt.subplots(figsize=(6, 6))
+plt.scatter(data[:,0], data[:,1], c='b', s=2)
+plt.xlim(-1,1)
+plt.ylim(-1,1)
+plt.show()
+```
+
+![pi_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/pi_1.png?raw=true)
+
+One can calculate Pi by
+
+```python
+cycle_count = 0
+outside_count = 0
+data_cycle = []
+
+for point in data:
+  if point[0]**2 + point[1]**2 <=1:
+    cycle_count += 1
+    data_cycle.append(list(point))
+  else:
+    outside_count += 1
+
+print("Pi: ", 4 * cycle_count/len(data))
+```
+
+The result:
+
+```
+3.1468
+```
+
+One can plot Pi as a function of number of points and averages.
+
+Visaulized the cycle:
+
+```python
+data_cycle = np.array(data_cycle)
+
+fig, ax = plt.subplots(figsize=(6, 6))
+plt.scatter(data_cycle[:,0], data_cycle[:,1], c='b', s=2)
+plt.xlim(-1,1)
+plt.ylim(-1,1)
+plt.show()
+```
+
+![pi_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/pi_2.png?raw=true)
+
+
+
+
+
+
+
+
 
 
 ---------

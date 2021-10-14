@@ -588,6 +588,8 @@ It is a theorem that describes the result of performing the same experiment a la
 
 
 
+#### 4.2) Central Limited Theorem
+
 If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
 
  ![{\textstyle Z=\lim _{n\to \infty }{\sqrt {n}}{\left({\frac {{\bar {X}}_{n}-\mu }{\sigma }}\right)}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/d269e67503670688dba6d8c25481f5e63c0b1d5b), 
@@ -842,6 +844,18 @@ Marginal error is function of proportion of success and sample size – means ne
 
 ![001.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/001.jpg?raw=true)
 
+
+
+**Ideal A/B Testing Result**
+
+
+
+See this [reference](https://towardsdatascience.com/bootstrapping-confidence-intervals-the-basics-b4f28156a8da):
+
+![img](https://miro.medium.com/max/1400/0*5UBGh1SVV7ujYMjk.png)
+
+
+
 ### Binomial As an Example
 
 Some basic equations/definitions:
@@ -868,9 +882,15 @@ One example:
 
 #### Given alpha and beta, decide Sample Size for testing
 
-- **Significant level**: alpha
+- **Significant level**: 
+  alpha. **False Postive**.
 
-- **Statistical Power**: beta
+- **Statistical Power**: 
+  1- beta (beta is **False Negative**). The statistical **power** of a binary [hypothesis test](https://en.wikipedia.org/wiki/Hypothesis_test) is the probability that the test correctly rejects the [null hypothesis](https://en.wikipedia.org/wiki/Null_hypothesis) H0 when a specific [alternative hypothesis](https://en.wikipedia.org/wiki/Alternative_hypothesis) H_1 is true. It is commonly denoted by ![1-\beta ](https://wikimedia.org/api/rest_v1/media/math/render/svg/50cbf597b2f73a22464f1fee6d541574cb044c55)
+
+
+
+
 
 ![007.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/007.jpg?raw=true)
 

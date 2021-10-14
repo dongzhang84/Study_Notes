@@ -18,10 +18,12 @@
 
 **Random Number Generator**
 
+- Generate Integers
 - Uniform Distribution
 - Gaussian Distribution
 - Exponential Distribution
 - Binomial Distribution
+- Monte Carlo simulations
 
 
 
@@ -220,6 +222,30 @@ df
 ----
 
 ## Random Number Generator
+
+#### Generate Integers
+
+Generate integers from 1 to 100
+
+```python
+list(range(1,100))
+```
+
+Do calculations, for example, square root:
+
+```python
+s = np.sqrt(list(range(1,100)))
+```
+
+Collect even:
+
+```python
+s[1::2]
+```
+
+
+
+
 
 #### Uniform Distribution
 

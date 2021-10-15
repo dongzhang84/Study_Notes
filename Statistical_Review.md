@@ -1,5 +1,15 @@
 # Statistical Review
 
+References: 
+
+[Applied Statistics and Probability for Engineers](https://www.goodreads.com/book/show/856620)
+
+
+
+
+
+
+
 1. Probability Distributions
 
    - Discrete Distributions
@@ -462,6 +472,8 @@ Two-sample *t*-tests for a difference in mean involve **independent samples (unp
 
 2.c **Correlated (or Paired) T-Test**
 
+This sort-of-paired observation happens when there is no presumption that all of the measurements are from the same population, and when *n* is the same for both samples.
+
 ![t_test_2sample_paired.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/t_test_2sample_paired.png?raw=true)
 
 
@@ -522,6 +534,8 @@ Under the null hypothesis $X^2$ Will have an approximate chi-square sampling dis
 
 **Example: Compare Number of Real data to Expected Numbers**
 
+The following [example](https://www.jmp.com/en_ch/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test.html):
+
 ![chi_squred_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_2.png?raw=true)
 
 ![img](https://www.jmp.com/en_ch/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test/_jcr_content/par/styledcontainer_2069/par/image_523413870.img.png/1623884285244.png)
@@ -529,6 +543,8 @@ Under the null hypothesis $X^2$ Will have an approximate chi-square sampling dis
 
 
 
+
+The following [example](https://en.wikipedia.org/wiki/Chi-squared_test#Chi-squared_test_for_variance_in_a_normal_population):
 
 **Example chi-squared test for categorical data**
 

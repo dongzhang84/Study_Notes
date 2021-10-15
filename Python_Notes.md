@@ -18,7 +18,7 @@
 
 **Random Number Generator**
 
-- Generate Integers
+- Generate Integers, Use numpy random generate numbers
 - Uniform Distribution
 - Gaussian Distribution
 - Exponential Distribution
@@ -242,6 +242,79 @@ Collect even:
 ```python
 s[1::2]
 ```
+
+
+
+#### **Use Numpy Generate Numbers**
+
+See [this link](https://www.pythonpool.com/numpy-random/) for more details. 
+
+**rand()**
+
+```python
+import numpy as np
+
+# generate float in (0,1) 
+
+np.random.rand()
+```
+
+Output: 0.932363400469842.
+
+```python
+# generate matrix with random float in (0,1)
+
+np.random.rand(3,4)
+```
+
+Output:
+
+```python
+array([[0.02135779, 0.2600529 , 0.16343362, 0.98262916],
+       [0.66636053, 0.41795053, 0.67725239, 0.36299883],
+       [0.99189299, 0.40188   , 0.04807422, 0.03638429]])
+```
+
+
+
+**Choice()**
+
+```python
+# choice from a list
+
+list1 = [1,2,5,12,43,99]
+#It will select any number of its choice from above list
+np.random.choice(list1)
+```
+
+
+
+**randint()**
+
+It also returns an integer value between a range like randrange()
+
+```python
+# between 1-100 it can chose any value
+np.random.randint(1,100)
+```
+
+Or do a matrix:
+
+```python
+np.random.randint(20,90,(5,4))
+```
+
+Output:
+
+```python
+array([[25, 75, 71, 48],
+       [55, 57, 33, 38],
+       [32, 80, 49, 38],
+       [41, 26, 74, 40],
+       [47, 47, 39, 75]])
+```
+
+
 
 
 

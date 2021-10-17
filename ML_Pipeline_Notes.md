@@ -1,5 +1,27 @@
 # Machine Leanring Pipeline Notes
 
+Content
+
+1. Classification Quick Start
+   - Split the data (non-cv treatment)
+   - Scale the data
+   - Encode Categorical Data
+   - Some baseline Models (Logistic Regression, Random Forest, XGBoost, LightGBM)
+   - Some advanced methods (GridSearchCV, Imbalanced Data)
+2. Regression Quick Start
+   - Metrics
+   - Baseline Models (Lasso Regression, Elastic Net, LightGBM, XGBoost regressor)
+3. Feature Engineering
+   - Encode, One-hot, Featuretools
+
+
+
+
+
+
+
+
+
 
 
 ## 1. Classification Quick Start
@@ -188,7 +210,7 @@ These algorithms can help you build a baseline model very fast.
 
 
 
-### 1.5. Some better methods
+### 1.5. Some advanced methods
 
 #### GridSeachCV
 
@@ -260,7 +282,7 @@ You can also apply **class_weight** to other algorithms, for example: **RandomFo
 
 ## 2. Regression Quick Start
 
-
+A  good reference can be found [here](https://www.kaggle.com/serigne/stacked-regressions-top-4-on-leaderboard). 
 
 ### 2.1 Metrics
 
@@ -371,13 +393,21 @@ np.sqrt(-cross_val_score(model_xgb, X_train, y_train,
 
 ### 3. Feature Engineering
 
-How to encode Categorical Variables see **Section 1.3**. 
+How to encode Categorical Variables see **Section 1.3**. Another way to do encode is to use **One-Hot**. 
+
+```python
+import pandas as pd
+
+df_dummy = pd.get_dummies(df)
+```
 
 
 
 #### 3.1. Automatic Feature Engineering
 
-See [this note](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md). 
+See [this note](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md). Featuretools give a good way to do feature engineering automatically. 
+
+
 
 
 

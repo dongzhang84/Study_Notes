@@ -5,7 +5,9 @@ Content
 1. Classification Quick Start
    - Split the data (non-cv treatment)
    - Scale the data
-   - Encode Categorical Data
+   - Encode Categorical Data (more feature engineering see Section 3)
+   - Fill null/missing values
+   - Feature Engineering (see below)
    - Some baseline Models (Logistic Regression, Random Forest, XGBoost, LightGBM)
    - Some advanced methods (GridSearchCV, Imbalanced Data)
 2. Regression Quick Start
@@ -13,6 +15,8 @@ Content
    - Baseline Models (Lasso Regression, Elastic Net, LightGBM, XGBoost regressor)
 3. Feature Engineering
    - Encode, One-hot, Featuretools
+   - Feature selection (remove collinear features, Lasso feature selection, etc.)
+   - Rank Feature Importance
 
 
 
@@ -94,6 +98,14 @@ df_scaled[feature_list] = scaler.fit_transform(df[feature_list])
 
 ### 1.3. Encode Categorical Variables
 
+Convert a variable to categorical data:
+
+```python
+df.feature.astype(str)
+```
+
+Use **Label Encoder**:
+
 ```python
 from sklearn.preprocessing import LabelEncoder
 
@@ -102,9 +114,47 @@ encoder.fit(df[feature])
 df['feature_encode'] = encoder.transform(df['feature'])
 ```
 
+More feature engineering see Section 3. 
 
 
-### 1.4. Some Baseline Models
+
+### 1.4. Fill Null Values
+
+Check missing data:
+
+```
+df.isnull.sum()
+```
+
+ Some methods to drop null values:
+
+```python
+# drop any null values:
+
+df.dropna()
+
+# drop null values for a particular feature/column
+
+df[df.feature.notull()]
+```
+
+Fill null with median value:
+
+```python
+df[feature]fillna(df[feature]median(), inplace=True)
+```
+
+Do it using  **apply function**:
+
+```python
+df.apply(lambda x: x.fillna(x.median()), axis=0)
+```
+
+
+
+
+
+### 1.5. Some Baseline Models
 
 **Logistic Regression**
 
@@ -210,7 +260,7 @@ These algorithms can help you build a baseline model very fast.
 
 
 
-### 1.5. Some advanced methods
+### 1.6. Some advanced methods
 
 #### GridSeachCV
 
@@ -393,6 +443,10 @@ np.sqrt(-cross_val_score(model_xgb, X_train, y_train,
 
 ### 3. Feature Engineering
 
+
+
+#### 3.1. Encode Categorical Variable
+
 How to encode Categorical Variables see **Section 1.3**. Another way to do encode is to use **One-Hot**. 
 
 ```python
@@ -409,7 +463,99 @@ See [this note](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTool
 
 
 
+#### 3.2 Feature Selection
 
 
 
+**Remove Collinearity**
+
+Check correlation matrix:
+
+```python
+#correlation matrix
+import seaborn as sns
+
+corrmat = df.corr()
+f, ax = plt.subplots(figsize=(12, 9))
+sns.heatmap(corrmat, vmax=.9, square=True);
+```
+
+Remove collinear features template:
+
+```python
+# Threshold for removing correlated variables, I set threshold to 0.9.
+
+threshold = 0.9
+
+# Absolute value correlation matrix
+corr_matrix = df.corr().abs()
+upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
+
+# correlation function visualization, not necessary
+upper.style.applymap(highlight)
+
+# Select collinear features above threshold
+collinear_features = [column for column in upper.columns if any(upper[column] > threshold)]
+df_filtered = df.drop(columns = collinear_features)
+
+print('The number of features that passed the collinearity threshold: ', df_filtered.shape[1])
+```
+
+
+
+**Feature Selection by Lasso**
+
+```python
+from sklearn.feature_selection import SelectFromModel
+
+lasso = LassoCV(alphas=[1.e-5, 0.001, 0.1], cv=5).fit(X_train, y_train)
+model = SelectFromModel(lasso, prefit=True)
+X_new = model.transform(X_train)
+X_selected_df = pd.DataFrame(X_new, columns=[X_train.columns[i] for i in range(len(X_train.columns)) 
+                                             if model.get_support()[i]])
+```
+
+
+
+
+
+Some other feature selection methods see [this link](https://github.com/dongzhang84/Featuretools/blob/main/Titanic_Featuretools.ipynb). 
+
+- By LinearSVC
+- by the SelectKBest with Chi-2
+- by the Recursive Feature Elimination (RFE) with Logistic Regression
+- by the Recursive Feature Elimination (RFE) with Random Forest
+
+
+
+#### 3.3 Check Feature Importance rankings
+
+For LightGBM:
+
+```python
+# check feature importance, top 20 importance
+
+fig, ax = plt.subplots(figsize=(10, 6))
+lgb.plot_importance(model_lgb, max_num_features=20, ax=ax)
+plt.show()
+```
+
+For XGBoost:
+
+```python
+# check feature importance, top 20 importance
+
+fig, ax = plt.subplots(figsize=(10, 6))
+xgb.plot_importance(model_xgb, max_num_features=20, ax=ax)
+plt.show()
+```
+
+
+
+For Lasso:
+
+```python
+model_lasso = LassoCV(alphas = [1, 0.1, 0.001, 0.0005]).fit(X_train, y_train)
+coef = pd.Series(model_lasso.coef_, index = X_train.columns)
+```
 

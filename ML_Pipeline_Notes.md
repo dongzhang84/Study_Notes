@@ -2,9 +2,7 @@
 
 
 
-## 1. Fast ML 
-
-### 1.1 Classification Quick Start
+## 1. Classification Quick Start
 
 If there is no missing data, and all features are number and ready, deploy the following steps:
 
@@ -16,7 +14,7 @@ from sklearn.metrics import classification_report
 from sklearn.preprocessing import MinMaxScaler
 ```
 
-**Split the data**
+### 1.1. Split the data
 
 ```python
 train, test = train_test_split(df, test_size=0.2, random_state=42, stratify=df.Class)
@@ -32,7 +30,7 @@ X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=
 
 
 
-**Scale the data**
+### 1.2. Scale the data
 
 This is not necessary, but you may want to do it:
 
@@ -45,7 +43,46 @@ X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 ```
 
+Another better way to do it:
 
+```python
+df_scaled = df.copy()
+scaler = MinMaxScaler()
+df_scaled[feature_list] = scaler.fit_transform(df[feature_list])
+df_scaled.head()
+```
+
+And there are also other scalers, for example **StandardScaler**:
+
+```python
+df_scaled = df.copy()
+scaler = StandardScaler()
+df_scaled[feature_list] = scaler.fit_transform(df[feature_list])
+```
+
+or **RobustScaler**:
+
+```python
+df_scaled = df.copy()
+scaler = RobustScaler()
+df_scaled[feature_list] = scaler.fit_transform(df[feature_list])
+```
+
+
+
+### 1.3. Encode Categorical Variables
+
+```python
+from sklearn.preprocessing import LabelEncoder
+
+encoder = LabelEncoder()
+encoder.fit(df[feature])
+df['feature_encode'] = encoder.transform(df['feature'])
+```
+
+
+
+### 1.4. Some Baseline Models
 
 **Logistic Regression**
 
@@ -60,17 +97,44 @@ y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 ```
 
+However, sometimes you do not know y_test. So you should use **Cross Validation** for validation dataset. 
+
+Here is the demonstration of **k-fold cross validation**:
+
+![img](https://scikit-learn.org/stable/_images/grid_search_cross_validation.png)
+
+
+
+Example code (see [this link](from sklearn.model_selection import cross_val_score)):
+
+```python
+from sklearn.model_selection import cross_val_score
+
+model = linear_model.LogisticRegression()
+scores = cross_val_score(model, X_train, y_train, scoring = 'f1', cv=5)
+scores.mean(), scores.std()
+```
+
+All cross_val_score see [this link](https://scikit-learn.org/stable/modules/model_evaluation.html). 
+
 
 
 **Random Forest**
 
 ```python
 from sklearn import ensemble
+from sklearn.model_selection import cross_val_score
 
 model = ensemble.RandomForestClassifier()
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
+```
+
+```
+model = ensemble.RandomForestClassifier()
+scores = cross_val_score(model, X_train, y_train, scoring = 'f1', cv=5)
+scores.mean(), scores.std()
 ```
 
 
@@ -81,12 +145,18 @@ print(classification_report(y_test, y_pred))
 # XGBoost looks good
 
 import xgboost
+from sklearn.model_selection import cross_val_score
 
 model = xgboost.XGBClassifier()  
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
+
+# or 
+
+scores = cross_val_score(model, X_train, y_train, scoring = 'f1', cv=5)
+scores.mean(), scores.std()
 ```
 
 
@@ -103,6 +173,11 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
+
+# or 
+
+scores = cross_val_score(model, X_train, y_train, scoring = 'f1', cv=5)
+scores.mean(), scores.std()
 ```
 
 
@@ -113,7 +188,7 @@ These algorithms can help you build a baseline model very fast.
 
 
 
-### 1.2 Some better methods
+### 1.5. Some better methods
 
 #### GridSeachCV
 
@@ -139,6 +214,13 @@ clf  = GridSearchCV(estimator = rf,
                     param_grid = param_grid)
 
 clf.fit(X_train, y_train)
+```
+
+Find the best parameters:
+
+```python
+print(grid.best_estimator_)
+print(grid.best_params_)
 ```
 
 Evaluation:
@@ -174,17 +256,130 @@ You can also apply **class_weight** to other algorithms, for example: **RandomFo
 
 
 
-#### Cross Valdiation
 
-https://scikit-learn.org/stable/modules/cross_validation.html
 
-![../_images/grid_search_cross_validation.png](https://scikit-learn.org/stable/_images/grid_search_cross_validation.png)
+## 2. Regression Quick Start
 
 
 
-**Simple Way**
+### 2.1 Metrics
+
+Here is a good metric template for Root Mean Square Deviation: 
+
+```python
+#Validation function: RMSE
+
+n_folds = 5
+
+def rmsle_cv(model):
+    kf = KFold(n_folds, shuffle=True, random_state=42).get_n_splits(X_train.values)
+    rmse= np.sqrt(-cross_val_score(model, X_train.values, y_train, scoring="neg_mean_squared_error", cv = kf))
+    return(rmse)
+```
 
 
 
-**K-Fold**
+### 2.2. Baseline Models
+
+**Lasso Regression**
+
+```python
+from sklearn.linear_model import Lasso
+from sklearn.metrics import mean_squared_error
+
+lasso = make_pipeline(RobustScaler(), Lasso(alpha = alpha_test, random_state=1))
+lasso.fit(X_train, y_train)
+y_pred = lasso.predict(X_test)
+print(np.sqrt(mean_squared_error(y_test, y_pred))
+```
+
+or one can do:
+
+```python
+from sklearn.model_selection import cross_val_score
+
+model = lasso
+np.sqrt(-cross_val_score(model, X_train, y_train, scoring="neg_mean_squared_error", cv = 5))
+```
+
+
+
+**Elastic Net**
+
+```python
+from sklearn.linear_model import ElasticNet
+from sklearn.metrics import mean_squared_error
+
+ENet = make_pipeline(RobustScaler(), ElasticNet(alpha=alpha_test, l1_ratio=.8, random_state=3))
+ENet.fit(X_train, y_train)
+y_pred = ENet.predict(X_test)
+print(np.sqrt(mean_squared_error(y_test, y_pred))
+```
+
+or
+
+```python
+from sklearn.model_selection import cross_val_score
+
+model = ENet
+np.sqrt(-cross_val_score(model, X_train, y_train, scoring="neg_mean_squared_error", cv = 5))
+```
+
+
+
+**LightGBM Regressor**
+
+```python
+import lightgbm as lgb
+
+model_lgb = lgb.LGBMRegressor(learning_rate = 0.1, n_estimators = 300, objective='regression')
+
+model_lgb.fit(X_train, y_train)
+y_pred = model_lgb.predict(X_test)
+print(np.sqrt(mean_squared_error(y_test, y_pred))
+      
+# or
+
+np.sqrt(-cross_val_score(model_lgb, X_train, y_train, 
+                         scoring="neg_mean_squared_error", cv = 5))
+```
+
+
+
+**XGBoost Regressor**
+
+```python
+import xgboos as xgb
+
+model_xgb = xgb.XGBRegressor()
+
+model_xgb.fit(X_train, y_train)
+y_pred = model_xgb.predict(X_test)
+print(np.sqrt(mean_squared_error(y_test, y_pred))
+      
+# or
+
+np.sqrt(-cross_val_score(model_xgb, X_train, y_train, 
+                         scoring="neg_mean_squared_error", cv = 5))
+```
+
+
+
+
+
+
+
+### 3. Feature Engineering
+
+How to encode Categorical Variables see **Section 1.3**. 
+
+
+
+#### 3.1. Automatic Feature Engineering
+
+See [this note](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md). 
+
+
+
+
 

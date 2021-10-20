@@ -24,7 +24,7 @@ References:
 
      
 
-2. Sampling and Basic EDA
+2. Descriptive Statistics and Basic EDA
 
    - Some Definitions
      - Mean, Median, Standard Deviation, Standard Deviation, Standard Error
@@ -193,7 +193,7 @@ gives
 
 
 
-## 2. Sampling
+## 2. Descriptive Statistics
 
 ### 2.1 Some Definitions
 

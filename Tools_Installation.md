@@ -62,7 +62,36 @@
   conda activate
   ```
 
-  
 
-  
+
+
+### Facebook Prophet
+
+You may have issue if you directly install:
+
+```
+pip3 install fbprophet
+```
+
+and
+
+```python
+from fbprophet import Prophet
+```
+
+Do the following instead:
+
+```
+pip3 uninstall fbprophet
+pip3 install pystan==2.19.1.1
+pip3 install prophet
+```
+
+Then do
+
+```python
+from prophet import Prophet
+```
+
+[reference](https://stackoverflow.com/questions/67820844/stanmodel-object-has-no-attribute-fit-class-while-using-prophet)
 

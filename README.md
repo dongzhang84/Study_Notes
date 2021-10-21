@@ -2,9 +2,10 @@
 
 ## Data Science Review
 
-- [Statistics](https://github.com/dongzhang84/Study_Notes/blob/main/Statistical_Review.md)
+- [Statistics Review](https://github.com/dongzhang84/Study_Notes/blob/main/Statistical_Review.md)
 - [Python for DS](https://github.com/dongzhang84/Study_Notes/blob/main/Python_Notes.md)
 - [ML Pipeline for DS](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Pipeline_Notes.md)
+- [SQL Reivew](https://github.com/dongzhang84/Study_Notes/blob/main/SQL_Review.md)
 
 ## Tooling
 

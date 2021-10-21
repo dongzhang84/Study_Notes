@@ -300,3 +300,66 @@ CASE
 END;
 ```
 
+
+
+
+
+## Advanced SQL
+
+### Window Function
+
+[Reference1](https://medium.com/geekculture/window-functions-in-sql-b630b0c11a57), [Reference2](https://www.analyticsvidhya.com/blog/2020/12/window-function-a-must-know-sql-concept/)
+
+
+
+General formula:
+
+```sql
+WINDOW_FUNCTION() OVER (
+[PARTITION BY <COLUMN>]
+[ORDER BY <COLUMN>]
+[ ROWS BETWEEN N PRECEDING AND CURRENT ROW] OR [ROWS BETWEEN CURRENT AND N FOLLOWING])
+AS
+<ALIAS>
+```
+
+Short version:
+
+```sql
+WINDOW_FUNCTION() OVER (PARTITION BY <COLUMN>)
+AS
+<ALIAS>
+```
+
+
+
+![img](https://miro.medium.com/max/2000/1*7ApZu3fLL3zOo_2Cddd4lQ.png)
+
+- DENSE_RANK(): Computes the rank of a certain element in a given list of elements or column where this would be consecutive to the previous rank.
+
+- RANK(): Computes the rank of a certain element in a given list of elements or column where the current rank need not be of a consecutive rank to the previous rank.
+
+- ROW_NUMBER(): returns the sequential number of a row within a partition of a result set, starting at 1 for the first row in each partition.
+
+
+
+For example: 
+
+![img](https://miro.medium.com/max/1400/1*GpI10pfTPUS-e49EfjDuZQ.png)
+
+The result is:
+
+![img](https://miro.medium.com/max/2000/1*l4tqXewI2tuKZigVmpYmFw.png)
+
+
+
+**Lead and Lag**:
+
+![LEAD window functions](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/11/lead-function-sql.png)
+
+![LAG window functions](https://cdn.analyticsvidhya.com/wp-content/uploads/2020/11/lag-function-sql.png)
+
+
+
+
+

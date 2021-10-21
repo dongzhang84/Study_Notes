@@ -6,10 +6,6 @@ References:
 
 
 
-
-
-
-
 1. Probability Distributions
 
    - Discrete Distributions
@@ -30,9 +26,11 @@ References:
      - Mean, Median, Standard Deviation, Standard Deviation, Standard Error
    - Basic EDA
      - Q-Q Plot
-
+   - Statistical Intervals (Confident Intervals)
 
    Note that Statistical Inference has two parts: Estimation (point estimation, interval estimation, eta), and Hypothesis Tests. 
+
+   
 
 3. Hypothesis Testing 
 
@@ -292,6 +290,70 @@ For example:
 #### 2.2.2 Bootstrapping
 
 Regarding Boostrapping resampling size: https://tools4dev.org/resources/how-to-choose-a-sample-size/
+
+
+
+
+
+### 2.3 Confidence Intervals
+
+The confidence interval (CI) is a range of values that’s likely to include a population value with a certain degree of confidence. It is often expressed as a % whereby a population mean lies between an upper and lower interval. 
+
+
+
+#### 2.3.1 Normal Distribution, Variance Known
+
+![CI_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_1.png?raw=true)
+
+
+
+**Choice of Sample Size**
+
+![CI_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_2.png?raw=true)
+
+
+
+**One-Sided Confidence Bounds**
+
+![CI_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_3.png?raw=true)
+
+
+
+**Large-Sample Confidence Interval for μ**
+
+![CI_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_4.png?raw=true)
+
+
+
+#### 2.3.2. Normal Distribution, Variance Unknown
+
+
+
+***t* Confidence Interval **
+
+![CI_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_5.png?raw=true)
+
+
+
+#### 2.3.3. Variance and Standard Deviation of a Normal Distribution
+
+**chi-squared distribution**
+
+![CI_6.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_6.png?raw=true)
+
+
+
+![CI_7.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_7.png?raw=true)
+
+
+
+#### 2.3.4 Confidence Interval for a Population Proportion
+
+![CI_8.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_8.png?raw=true)
+
+![CI_9.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_9.png?raw=true)
+
+![CI_10.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_10.png?raw=true)
 
 
 
@@ -605,6 +667,10 @@ It is a theorem that describes the result of performing the same experiment a la
 
 
 #### 4.2) Central Limited Theorem
+
+![image-20211020210955369](/Users/dong/Library/Application Support/typora-user-images/image-20211020210955369.png)
+
+
 
 If $X_1, X_2, X_3, ..., X_n$ are $n$ random samples drawn from a population with overall mean $\mu$ And finite variance $\sigma^2$, and if $\bar{X}_n$ Is the sample mean, then the limiting form of the distribution,
 

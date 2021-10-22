@@ -65,6 +65,32 @@ ORDER BY column1, column2, ... ASC|DESC;
 
 
 
+### Limit, offset
+
+```sql
+SELECT 
+    column_list
+FROM
+    table1
+ORDER BY column_list
+LIMIT row_count OFFSET offset;
+```
+
+For example:
+
+```sql
+SELECT 
+    employee_id, first_name, last_name
+FROM
+    employees
+ORDER BY first_name
+LIMIT 5 OFFSET 3;
+```
+
+![SQL LIMIT OFFSET example](https://www.sqltutorial.org/wp-content/uploads/2016/04/SQL-LIMIT-OFFSET-example.png)
+
+
+
 ### Null Values
 
 ```sql

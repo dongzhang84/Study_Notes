@@ -16,11 +16,9 @@ Content
 3. Feature Engineering
    - Encode, One-hot, Featuretools
    - Feature selection (remove collinear features, Lasso feature selection, etc.)
-   - Rank Feature Importance
-
-
-
-
+   - Rank Feature Importance (LightGBM and Lasso template)
+4. Deep Learning Basic and Quick Start
+   - Keras Quick Start
 
 
 
@@ -312,7 +310,7 @@ Consider binary classification, introduction see [this blog](https://towardsdata
 weight = 10
 
 class_weights = {
-0:1
+0:1,
 1:weight
 }
 
@@ -557,5 +555,56 @@ For Lasso:
 ```python
 model_lasso = LassoCV(alphas = [1, 0.1, 0.001, 0.0005]).fit(X_train, y_train)
 coef = pd.Series(model_lasso.coef_, index = X_train.columns)
+```
+
+
+
+
+
+### 4. Deep Learning Basic and Quick Start
+
+Use Keras, [reference](https://www.kaggle.com/hugosjoberg/house-prices-prediction-using-keras):
+
+```python
+def create_model():
+    # create model
+    model = Sequential()
+    model.add(Dense(10, input_dim=X_train.shape[1], activation='relu'))
+    model.add(Dense(30, activation='relu'))
+    model.add(Dense(40, activation='relu'))
+    model.add(Dense(1))
+    # Compile model
+    model.compile(optimizer ='adam', loss = 'mean_squared_error', 
+              metrics =[metrics.mae])
+    return model
+```
+
+```python
+model = create_model()
+model.summary()
+```
+
+One can see: 
+
+```python
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense (Dense)                (None, 10)                1150      
+_________________________________________________________________
+dense_1 (Dense)              (None, 30)                330       
+_________________________________________________________________
+dense_2 (Dense)              (None, 40)                1240      
+_________________________________________________________________
+dense_3 (Dense)              (None, 1)                 41        
+=================================================================
+Total params: 2,761
+Trainable params: 2,761
+Non-trainable params: 0
+```
+
+```python
+history = model.fit(X_train, y_train, epochs=50, batch_size=100)
 ```
 

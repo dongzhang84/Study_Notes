@@ -44,7 +44,6 @@ References:
 
 4. Central Limit Theorem
    
-
 5. Linear Regression
 
    - Maximum Likelihood Estimation (MLE)
@@ -354,6 +353,10 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 ![CI_9.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_9.png?raw=true)
 
 ![CI_10.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_10.png?raw=true)
+
+
+
+#### 2.3.5 Bootstrap Confidence Interval
 
 
 
@@ -818,6 +821,16 @@ Likelihood function:
 
 
 
+- Example 1. The number of persons killed by mule or horse kicks in the Prussian army per year. von Bortkiewicz collected data from 20 volumes of Preussischen Statistik. These data were collected on 10 corps of the Prussian army in the late 1800s over the course of 20 years.
+
+- Example 2. A health-related researcher is studying the number of hospital visits in past 12 months by senior citizens in a community based on the characteristics of the individuals and the types of health plans under which each one is covered.
+  
+- Example 3. A researcher in education is interested in the association between the number of awards earned by students at one high school and the students’ performance in math and the type of program (e.g., vocational, general or academic) in which students were enrolled.
+
+
+
+
+
 
 
 ## 6. ANOVA (Analysis of Variance)
@@ -838,35 +851,19 @@ The test statistic for a One-Way ANOVA is denoted as *F*. For an independent var
 | Error     |            SSE |  dfe |         MSE |         |
 | Total     |            SST |  dfT |             |         |
 
-where
-
-SSR = the regression sum of squares
-
-SSE = the error sum of squares
-
-SST = the total sum of squares (SST = SSR + SSE)
-
-dfr = the model degrees of freedom (equal to dfr = *k* - 1)
-
-dfe = the error degrees of freedom (equal to dfe = *n* - *k* - 1)
-
-*k* = the total number of groups (levels of the independent variable)
-
-*n* = the total number of valid observations
-
-dfT = the total degrees of freedom (equal to dfT = dfr + dfe = *n* - 1)
-
-MSR = SSR/dfr = the regression mean square
-
-MSE = SSE/dfe = the mean square error
-
-Then the F statistic itself is computed as
-
-F=MSR/MSE
-
 See example here:
 
 https://en.wikipedia.org/wiki/One-way_analysis_of_variance
+
+Or from the textbook:
+
+![anova_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_1.png?raw=true)
+
+
+
+![anova_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_2.png?raw=true)
+
+![anova_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_3.png?raw=true)
 
 
 
@@ -882,9 +879,9 @@ A two-way ANOVA with interaction tests three null hypotheses at the same time:
 
 https://www.itl.nist.gov/div898/handbook/prc/section4/prc437.htm
 
-![anova_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_1.png?raw=true)
+![anova_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_4.png?raw=true)
 
-![anova_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_2.png?raw=true)
+![anova_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_5.png?raw=true)
 
 
 

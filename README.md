@@ -7,6 +7,7 @@
 - [ML Review](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Review.md)
 - [Python for DS](https://github.com/dongzhang84/Study_Notes/blob/main/Python_Notes.md)
 - [ML Pipeline for DS](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Pipeline_Notes.md)
+- [Product Sense](https://github.com/dongzhang84/Study_Notes/blob/main/Product_Sense.md)
 
 ## Tooling
 

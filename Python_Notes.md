@@ -341,6 +341,10 @@ A better way:
 np.random.uniform(0,1,size=5000)
 ```
 
+**Space Complexity**: size
+
+**Time Complexity**: O(1)
+
 
 
 Linear regression and Plot

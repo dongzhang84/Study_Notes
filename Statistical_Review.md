@@ -889,6 +889,14 @@ See this example: https://www.statology.org/two-way-anova/
 
 
 
+![anova_6.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_6.png?raw=true)
+
+https://www.youtube.com/watch?v=cNIIn9bConY
+
+
+
+
+
 ## 7. A/B Testing
 
 A/B testing (also known as bucket testing or split-run testing) is a user experience research methodology. 

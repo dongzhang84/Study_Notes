@@ -1,8 +1,6 @@
 # Machine Learning Review
 
-
-
-
+## Traditional Machine Learning
 
 ### Logistic Regression
 
@@ -313,7 +311,7 @@ Depending on the last step:
 
 
 
-
+## Deep Learning
 
 ### Deep Learning Conceptions/Parameters 
 
@@ -345,4 +343,49 @@ An epoch is a term used in machine learning that refers to the number of passes 
 The term “dropout” refers to dropping out units (both hidden and visible) in a neural network.
 
 ![img](https://miro.medium.com/max/1400/0*YCofAkhSErYvlpRT.png)
+
+
+
+
+
+## Recommendation System
+
+### Matrix Factorization
+
+Matrix factorization is a simple embedding model. Given the feedback matrix A ∈Rm×n, where m is the number of users (or queries) and n is the number of items, the model learns:
+
+- A user embedding matrix U∈Rm×d, where row i is the embedding for user i.
+- An item embedding matrix V∈Rn×d, where row j is the embedding for item j.
+
+![Illustration of matrix factorization using the recurring movie example.](https://developers.google.com/machine-learning/recommendation/images/Matrixfactor.svg)
+
+
+
+[reference](https://medium.datadriveninvestor.com/how-to-built-a-recommender-system-rs-616c988d64b2)
+
+![img](https://miro.medium.com/max/1400/1*bhsECuKCTSHOGapubG33JA.png)
+
+Optimization: 
+
+![img](https://miro.medium.com/max/594/1*vZ5PAfak7r7tT26acWSU4A.png)
+
+
+
+
+
+### Singular Value Decomposition
+
+Enter Singular Value Decomposition (SVD). SVD is a fancy way to factorizing a matrix into three other matrices (*A = UΣVᵀ*). The way SVD is done guarantees those 3 matrices carry some nice mathematical properties.
+
+
+
+![img](https://miro.medium.com/max/736/1*nTRaEa_ZlXcFKXT-rxQHIg.png)
+
+![img](https://miro.medium.com/max/1400/0*arP2ZshqOKgXss-h.png)
+
+
+
+
+
+
 

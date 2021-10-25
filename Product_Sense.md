@@ -113,8 +113,10 @@ Go back to **Define Metrics** and **Test new features**.
 | Acquisition | generate attention through a variety of means, both or- ganic and inorganic | traffic, mentions, cost per click, search results, cost of acquisition, open rate |
 | Activation  | turn the resulting drive-by visitors into users who are somehow enrolled | enrollments, signups, com- pleted onboarding process, used the service at least once, subscriptions |
 | retention   | Convince users to come back repeatedly, exhibiting sticky behavior | engagement, time since last visit, daily and monthly active use, churns |
-| revenue     | <br />Business outcomes (which vary by your business model: purchases, ad clicks, content creation, subscriptions, etc.) | <br />Customer lifetime value, con- version rate, shopping cart size, click-through revenue |
+| revenue     | Business outcomes (which vary by your business model: purchases, ad clicks, content creation, subscriptions, etc.) | Customer lifetime value, con- version rate, shopping cart size, click-through revenue |
 | referral    | Viral and word-of-mouth invitations to other potential users | Invites sent, viral coefficient, viral cycle time            |
+
+
 
 
 

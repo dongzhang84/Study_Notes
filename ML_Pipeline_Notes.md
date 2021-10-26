@@ -15,7 +15,7 @@ Content
    - Baseline Models (Lasso Regression, Elastic Net, LightGBM, XGBoost regressor)
 3. Feature Engineering
    - Encode, One-hot, Featuretools
-   - Feature selection (remove collinear features, Lasso feature selection, etc.)
+   - Feature Selection (remove collinear features, Lasso feature selection, etc.)
    - Rank Feature Importance (LightGBM and Lasso template)
 4. Deep Learning Basic and Quick Start
    - Keras Quick Start
@@ -455,15 +455,15 @@ df_dummy = pd.get_dummies(df)
 
 
 
-#### 3.1. Automatic Feature Engineering
+#### 3.2. Automatic Feature Engineering
 
 See [this note](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md). Featuretools give a good way to do feature engineering automatically. 
 
 
 
-#### 3.2 Feature Selection
+#### 3.3 Feature Selection
 
-
+[code templete](https://github.com/dongzhang84/Featuretools/blob/main/Titanic_Featuretools.ipynb)
 
 **Remove Collinearity**
 
@@ -511,6 +511,33 @@ model = SelectFromModel(lasso, prefit=True)
 X_new = model.transform(X_train)
 X_selected_df = pd.DataFrame(X_new, columns=[X_train.columns[i] for i in range(len(X_train.columns)) 
                                              if model.get_support()[i]])
+```
+
+
+
+**Feature Selection by the Recursive Feature Elimination (RFE) with Logistic Regression**
+
+```python
+rfe_selector = RFE(estimator=LogisticRegression(), n_features_to_select=50, step=10, verbose=5)
+rfe_selector.fit(X_norm, target)
+
+rfe_selector.get_support()
+rfe_support = rfe_selector.get_support()
+rfe_feature = train.loc[:,rfe_support].columns.tolist()
+print(str(len(rfe_feature)), 'selected features')
+```
+
+
+
+**Feature Selection by the Recursive Feature Elimination (RFE) with Random Forest**
+
+```python
+embeded_rf_selector = SelectFromModel(RandomForestClassifier(n_estimators=200), threshold='1.25*median')
+embeded_rf_selector.fit(train, target)
+
+embeded_rf_support = embeded_rf_selector.get_support()
+embeded_rf_feature = train.loc[:,embeded_rf_support].columns.tolist()
+print(str(len(embeded_rf_feature)), 'selected features')
 ```
 
 

@@ -309,6 +309,38 @@ Depending on the last step:
 
 
 
+### Unsupervised Learning
+
+#### Metrics for Clustering
+
+[reference1](https://towardsdatascience.com/performance-metrics-in-machine-learning-part-3-clustering-d69550662dc6), [reference2](https://towardsdatascience.com/how-to-evaluate-unsupervised-learning-models-3aa85bd98aa2). 
+
+**1. Silhouette Score**
+
+The Silhouette Score and Silhouette Plot are used to measure the separation distance between clusters. 
+
+**2. Rand Index**
+
+Another commonly used metric is the Rand Index. It computes a similarity measure between two clusters by considering all pairs of samples and counting pairs that are assigned in the same or different clusters in the predicted and true clusterings.
+
+The formula of the Rand Index is:
+
+![img](https://miro.medium.com/max/1378/0*6i-kV9SM-IHKgrxm)
+
+
+
+**3. Adjusted Rand Index**
+
+The raw RI score is then “adjusted for chance” into the ARI score using the following scheme:
+
+![img](https://miro.medium.com/max/1346/0*o_4xLVQEl5H--ZAR)
+
+**4. Calinski-Harabasz Index**
+
+
+
+
+
 
 
 ## Deep Learning

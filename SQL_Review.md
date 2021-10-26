@@ -389,3 +389,18 @@ The result is:
 
 
 
+### Find Median
+
+[reference](https://stackoverflow.com/questions/1342898/function-to-calculate-median-in-sql-server)
+
+```sql
+SELECT
+(
+ (SELECT MAX(Score) FROM
+   (SELECT TOP 50 PERCENT Score FROM Posts ORDER BY Score) AS BottomHalf)
+ +
+ (SELECT MIN(Score) FROM
+   (SELECT TOP 50 PERCENT Score FROM Posts ORDER BY Score DESC) AS TopHalf)
+) / 2 AS Median
+```
+

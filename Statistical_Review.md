@@ -366,6 +366,8 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 ## 3. Hypothesis Tests
 
+
+
 A statistical hypothesis is a hypothesis that is testable on the basis of observed data modeled as the realized values taken by a collection of random variables. 
 
 ### 3.1) Steps
@@ -379,6 +381,8 @@ A statistical hypothesis is a hypothesis that is testable on the basis of observ
 5. Declare the result statistically significant if the **P-value** is below some critical threshold.  
 
 
+
+![img](https://miro.medium.com/max/1400/1*8pSgz0bAlIQ3wlGNJAc-6g.png)
 
 
 
@@ -709,14 +713,6 @@ In practice, it is often convenient to work with the natural logarithm of the li
 
 ### 5.2) Assumptions of Linear Regression
 
-Linear regression is an analysis that assesses whether one or more predictor variables explain the dependent (criterion) variable.  The regression has five key assumptions:
-
-- Linear relationship
-- Multivariate normality
-- No or little multicollinearity
-- No auto-correlation
-- Homoscedasticity
-
 
 
 **Linear relationship:** There exists a linear relationship between the independent variable, x, and the 
@@ -726,6 +722,30 @@ Linear regression is an analysis that assesses whether one or more predictor var
 **Normality**：The residuals of the model are normally distributed.
 
 **Homoscedasticity:** The residuals have constant variance at every level of x.
+
+
+
+Another version: 
+
+
+
+**1. Linearity:** The relationship between  X and  Y must be linear.
+
+Check this assumption by examining a scatterplot of x and y.
+
+**2. Independence of errors:** There is not a relationship between the residuals and the Y  variable; in other words,  Y is independent of errors.
+
+Check this assumption by examining a scatterplot of “residuals versus fits”; the correlation should be approximately 0. In other words, there should not look like there is a relationship.
+
+**3. Normality of errors:** The residuals must be approximately normally distributed.
+
+Check this assumption by examining a normal probability plot; the observations should be near the line. You can also examine a histogram of the residuals; it should be approximately normally distributed.
+
+**4. Equal variances:** The variance of the residuals is the same for all values of X.
+
+Check this assumption by examining the scatterplot of “residuals versus fits”; the variance of the residuals should be the same across all values of the x-axis. If the plot shows a pattern (e.g., bowtie or megaphone shape), then variances are not consistent, and this assumption has not been met.
+
+
 
 For example: 
 
@@ -788,6 +808,8 @@ R-squared and Adjust R-squared
 
 
 ### 5.5) Regression test
+
+Here is a very good reference on regression test: [Linear Regression: Test and Confidence Intervals](https://www2.isye.gatech.edu/~yxie77/isye2028/lecture12.pdf)
 
 **T-Test**
 

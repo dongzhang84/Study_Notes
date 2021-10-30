@@ -445,6 +445,8 @@ A Z-test is any statistical test for which the distribution of the test statisti
 
 1.b **One Sample Z-test**
 
+Samples come from a same population
+
 ![z_test1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/z_test1.png?raw=true)
 
 - **Step 1**: State the Null Hypothesis. 
@@ -588,6 +590,8 @@ Demonstration
 #### 3.3.3. Chi-Squared Tests
 
 3.a **Chi-Squared Test of Association/Goodness-of-Fit Test** 
+
+The Chi-square goodness of fit test is **a statistical hypothesis test used to determine whether a variable is likely to come from a specified distribution or not**.
 
 Non-normal, and non-t distribution. But an assumed model distribution. 
 
@@ -926,6 +930,24 @@ A/B testing (also known as bucket testing or split-run testing) is a user experi
 A/B tests consist of a randomized experiment with two variants, A and B. It includes application of statistical hypothesis testing or "two-sample hypothesis testing" as used in the field of statistics. A/B testing is a way to compare two versions of a single variable, typically by testing a subject's response to variant A against variant B, and determining which of the two variants is more effective.
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/2/2e/A-B_testing_example.png)
+
+
+
+AB test 一般的套路就是 [reference](https://www.moonbbs.com/thread-3748725-1-1.html)
+
+- understand business goal
+- define metrics
+- hypo
+- design test plans, sample size? Duration? Regions for AB testing? 
+- launch experiment 
+- sanity check and analyze result 
+- conclusion/suggestion
+
+
+
+**About Sanity Check**
+
+http://napitupulu-jon.appspot.com/posts/sanity-check-abtesting-udacity.html
 
 
 

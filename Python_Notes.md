@@ -23,6 +23,7 @@
 - Gaussian Distribution
 - Exponential Distribution
 - Binomial Distribution
+- Poisson Distribution
 - Monte Carlo simulations
 
 
@@ -560,6 +561,14 @@ plt.show()
 ![binomial_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/binomial_1.png?raw=true)
 
 
+
+#### Poisson Distribution
+
+```python
+s = np.random.poisson(lam = 5, 10000)
+count, bins, ignored = plt.hist(s, 14, density=True)
+plt.show()
+```
 
 
 

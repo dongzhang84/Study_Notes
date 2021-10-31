@@ -807,11 +807,37 @@ R-squared and Adjust R-squared
 
 
 
+### 5.5) More general formula
+
+[reference](https://www.cnblogs.com/itboys/p/8409590.html)
+
+
+
+![{\displaystyle {\vec {\hat {\beta }}}={\underset {\vec {\beta }}{\mbox{arg min}}}\,L\left(D,{\vec {\beta }}\right)={\underset {\vec {\beta }}{\mbox{arg min}}}\sum _{i=1}^{n}\left({\vec {\beta }}\cdot {\vec {x_{i}}}-y_{i}\right)^{2}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/e286875158615d5647351c312f4609a125a5d943)
+
+
+
+![{\displaystyle {\begin{aligned}-2X^{\textsf {T}}Y+2X^{\textsf {T}}X{\vec {\beta }}&=0\\\Rightarrow X^{\textsf {T}}Y&=X^{\textsf {T}}X{\vec {\beta }}\\\Rightarrow {\vec {\hat {\beta }}}&=\left(X^{\textsf {T}}X\right)^{-1}X^{\textsf {T}}Y\end{aligned}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/fb161a08d2371663a73aae304a7ba910b7e9776a)
+
+
+
+**Ridge:**
+
+![img](https://images2017.cnblogs.com/blog/906988/201802/906988-20180203151204000-1881679862.png)
+
+ 
+
+**Lasso**
+
+![img](https://images2017.cnblogs.com/blog/906988/201802/906988-20180203151240781-770033962.png)
 
 
 
 
-### 5.5) Regression test
+
+
+
+### 5.6) Regression test
 
 Here is a very good reference on regression test: [Linear Regression: Test and Confidence Intervals](https://www2.isye.gatech.edu/~yxie77/isye2028/lecture12.pdf)
 

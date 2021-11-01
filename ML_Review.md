@@ -1,3 +1,5 @@
+
+
 # Machine Learning Review
 
 ## Traditional Machine Learning
@@ -53,6 +55,58 @@ See this [reference](https://medium.com/@lachlanmiller_52885/machine-learning-we
 ![img](https://miro.medium.com/max/1400/1*WGHn1L4NveQ85nn3o7Dd2g.png)
 
 ![img](https://miro.medium.com/max/1020/1*QKHtyn4Rr-0R-s0an1eSsA.png)
+
+
+
+#### Stochastic Gradient Descent
+
+Mini-batch gradient descent 
+
+Mock code [reference1](https://www.zhihu.com/question/264189719):
+
+[reference2](https://ruder.io/optimizing-gradient-descent/):
+
+**Gradient Descent**
+
+```python
+repeat until convergence:
+  
+  theta_j -= theta_j - alpha * dL_dtheta_j
+```
+
+![img](https://pic1.zhimg.com/80/v2-5809743fd06c4ff804753d29e4b83935_1440w.jpg?source=1940ef5c)
+
+
+
+```python
+for i in range(nb_epochs):
+  params_grad = evaluate_gradient(loss_function, data, params)
+  params = params - learning_rate * params_grad
+```
+
+
+
+
+
+**Stochastic Gradient Descent**
+
+```python
+repeat until convergence or for i in range(epoch):
+  
+  theta_j -= theta_j - alpha * dL_dtheta_j(i in sample_i)
+```
+
+![img](https://pica.zhimg.com/80/v2-b3f14a09ad27df9c66a3af208060f5d7_1440w.jpg?source=1940ef5c)
+
+```python
+for i in range(nb_epochs):
+  np.random.shuffle(data)
+  for example in data:
+    params_grad = evaluate_gradient(loss_function, example, params)
+    params = params - learning_rate * params_grad
+```
+
+
 
 
 
@@ -236,6 +290,30 @@ A decision tree is a map of the possible outcomes of a series of related choices
 
 
 
+#### Advantages of Random Forest
+
+**1.** Random Forest is based on the **bagging** algorithm and uses **Ensemble Learning** technique. It creates as many trees on the subset of the data and combines the output of all the trees. In this way it **reduces overfitting** problem in decision trees and also **reduces the variance** and therefore **improves the accuracy**.
+
+**2.** Random Forest can be used to **solve both classification as well as regression problems**.
+
+**3.** Random Forest works well with both **categorical and continuous variables**.
+
+**4.** Random Forest can automatically **handle missing values**.
+
+**5. No feature scaling required:** No feature scaling (standardization and normalization) required in case of Random Forest as it uses rule based approach instead of distance calculation.
+
+**6. Handles non-linear parameters efficiently:** Non linear parameters don't affect the performance of a Random Forest unlike curve based algorithms. So, if there is high non-linearity between the independent variables, Random Forest may outperform as compared to other curve based algorithms.
+
+**7.** Random Forest can automatically **handle missing values**.
+
+**8.** Random Forest is usually **robust to outliers** and can handle them automatically.
+
+**9.** Random Forest algorithm is very **stable**. Even if a new data point is introduced in the dataset, the overall algorithm is not affected much since the new data may impact one tree, but it is very hard for it to impact all the trees.
+
+**10.** Random Forest is comparatively **less impacted by noise**.
+
+
+
 
 
 ### Bootstrapping, Bagging and Boosting
@@ -307,6 +385,39 @@ Depending on the last step:
 
 ### Support Vector Machine
 
+The objective of the support vector machine algorithm is to find a hyperplane in an N-dimensional space(N — the number of features) that distinctly classifies the data points.
+
+Loss function of SVM:
+
+![img](https://miro.medium.com/max/1400/1*GQAd28bK8LKOL2kOOFY-tg.png)
+
+#### Maximal Margin Classifier
+
+- Choosing the hyperplane that is farthest from the training observations. 
+- This margin can be achieve using support vectors
+
+
+
+#### SVM with a Hard Margin:
+
+![img](https://www.baeldung.com/wp-content/uploads/sites/4/2021/07/fig1-300x232.png)
+
+#### SVM with a Soft Margin:
+
+![img](https://www.baeldung.com/wp-content/uploads/sites/4/2021/07/fig2-300x234.png)
+
+
+
+#### Kernel
+
+![kernel_svm.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/kernel_svm.png?raw=true)
+
+
+
+
+
+
+
 
 
 ### Unsupervised Learning
@@ -336,6 +447,16 @@ The raw RI score is then “adjusted for chance” into the ARI score using the 
 ![img](https://miro.medium.com/max/1346/0*o_4xLVQEl5H--ZAR)
 
 **4. Calinski-Harabasz Index**
+
+
+
+
+
+#### K-Mean Clustering
+
+
+
+![K_mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/K_mean.png?raw=true)
 
 
 
@@ -375,6 +496,20 @@ An epoch is a term used in machine learning that refers to the number of passes 
 The term “dropout” refers to dropping out units (both hidden and visible) in a neural network.
 
 ![img](https://miro.medium.com/max/1400/0*YCofAkhSErYvlpRT.png)
+
+
+
+### Back Propagation
+
+[reference](https://neptune.ai/blog/backpropagation-algorithm-in-neural-networks-guide):
+
+The forward and backward phases are repeated from some epochs. In each epoch, the following occurs:
+
+1. The inputs are propagated from the input to the output layer.
+2. The network error is calculated.
+3. The error is propagated from the output layer to the input layer.
+
+![Backpropagation passes architecture](https://i1.wp.com/neptune.ai/wp-content/uploads/Backpropagation-passes-architecture.png?resize=434%2C414&ssl=1)
 
 
 

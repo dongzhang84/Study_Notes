@@ -122,3 +122,19 @@ Go back to **Define Metrics** and **Test new features**.
 
 
 
+### User Retention Rate
+
+![Retention Rate | Definition and Overview](https://www.productplan.com/uploads/customer-retention-rate-1024x536.jpg)
+
+
+
+### User Churn Rate
+
+![Churn Rate example](https://blog.hubspot.com/hs-fs/hubfs/Churn%20Rate.png?width=500&name=Churn%20Rate.png)
+
+
+
+Let's say our company started September with 10K customers. At the end of the month, we found that 500 left our business. This would mean our churn rate is five percent ((10,000 customers - 9,500 customers ) / 10,000 customer = 5%).
+
+Now, let's say we gained 275 customers during September and lost 500 more during October. Our churn rate for October would then be 5.11% ((9,775 customers - 9,225 customers) / 9,755 customers = 5.11%).
+

@@ -232,6 +232,12 @@ Generate integers from 1 to 100
 list(range(1,100))
 ```
 
+or 
+
+```python
+[i for i in range(1,100)]
+```
+
 Do calculations, for example, square root:
 
 ```python
@@ -243,6 +249,8 @@ Collect even:
 ```python
 s[1::2]
 ```
+
+
 
 
 
@@ -275,6 +283,10 @@ array([[0.02135779, 0.2600529 , 0.16343362, 0.98262916],
        [0.66636053, 0.41795053, 0.67725239, 0.36299883],
        [0.99189299, 0.40188   , 0.04807422, 0.03638429]])
 ```
+
+Note that for matrix ([refernece](https://stackoverflow.com/questions/40200070/what-does-axis-0-do-in-numpys-sum-function)):
+
+![numpy axis 0 and axis 1](https://i.stack.imgur.com/Z29Nn.jpg)
 
 
 
@@ -323,7 +335,7 @@ array([[25, 75, 71, 48],
 
 #### Uniform Distribution
 
-```
+```python
 from random import *
 
 x_list = []

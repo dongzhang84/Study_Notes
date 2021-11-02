@@ -27,6 +27,8 @@ References:
    - Basic EDA
      - Q-Q Plot
    - Statistical Intervals (Confident Intervals)
+     - Normal distribution, variance known and unknown
+     - chi-squared distribution, and promotion distribution, and bootstrap.
 
    Note that Statistical Inference has two parts: Estimation (point estimation, interval estimation, eta), and Hypothesis Tests. 
 
@@ -44,6 +46,7 @@ References:
 
 4. Central Limit Theorem
    
+
 5. Linear Regression
 
    - Maximum Likelihood Estimation (MLE)
@@ -300,6 +303,31 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 
 
+![CI = \bar{x} \pm z \frac{s}{\sqrt{n}}](https://www.gstatic.com/education/formulas2/397133473/en/confidence_interval_formula.svg)
+
+
+
+
+
+
+
+
+
+![img](https://upload.wikimedia.org/wikipedia/commons/b/bb/Normal_distribution_and_scales.gif)
+
+
+
+- | C    | z*    |
+  | ---- | ----- |
+  | 99%  | 2.576 |
+  | 98%  | 2.326 |
+  | 95%  | 1.96  |
+  | 90%  | 1.645 |
+
+
+
+
+
 #### 2.3.1 Normal Distribution, Variance Known
 
 ![CI_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_1.png?raw=true)
@@ -325,6 +353,8 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 
 #### 2.3.2. Normal Distribution, Variance Unknown
+
+
 
 
 
@@ -428,22 +458,7 @@ A Z-test is any statistical test for which the distribution of the test statisti
 
 
 
-##### 1.a) **Confidence Interval**
-
-![CI = \bar{x} \pm z \frac{s}{\sqrt{n}}](https://www.gstatic.com/education/formulas2/397133473/en/confidence_interval_formula.svg) 
-
-- | C    | z*    |
-  | ---- | ----- |
-  | 99%  | 2.576 |
-  | 98%  | 2.326 |
-  | 95%  | 1.96  |
-  | 90%  | 1.645 |
-
-![img](https://upload.wikimedia.org/wikipedia/commons/b/bb/Normal_distribution_and_scales.gif)
-
-
-
-1.b **One Sample Z-test**
+**1.a) One Sample Z-test**
 
 Samples come from a same population
 
@@ -465,13 +480,15 @@ Samples come from a same population
 
 
 
-##### 1.c) **Two Sample Z-test** [reference](https://sixsigmastudyguide.com/two-sample-test-of-proportions/)
+##### 1.b) **Two Sample Z-test** [reference](https://sixsigmastudyguide.com/two-sample-test-of-proportions/)
 
 **Requirements**: Two normally distributed but independent populations, σ is known.
 
 ![Two Sample Z Test of Proportions](https://sixsigmastudyguide.com/wp-content/uploads/2021/01/zp1.png)
 
-**Binomial Example**
+**1.c) Binomial Example**
+
+For np > 10, binomial can be considered as normal distribution. 
 
 - **Pooled Z test of proportions formula**
 
@@ -489,7 +506,7 @@ where ![The one and two sample proportion hypothesis ](https://sixsigmastudyguid
 
 
 
-**Unpair Z-test**
+**1.4) Unpair Z-test**
 
 The unpaired Z-test statistic is
 
@@ -980,16 +997,65 @@ http://napitupulu-jon.appspot.com/posts/sanity-check-abtesting-udacity.html
 ### Types of Metrics
 
 - Click through rate = # clicks / # visits
-
 - Click through probability = # unique visitors who click / # unique visitors
-
 - Retention rate = # users remained at the end of evaluation period / # users at the beginning of the evaluation period
-
 - Churn rate = # users acquired / # users lost
-
 - ROI = (current value – investment) / investment
 
 
+
+### Another Article to summarize Udacity A/B Testing course
+
+https://towardsdatascience.com/a-summary-of-udacity-a-b-testing-course-9ecc32dedbb1
+
+#### Step 1: Choose and characterize metrics \*for both sanity check and evaluation
+
+**How to measure the sensitivity and robustness?**
+
+- Run experiments
+- Use A/A test to see if metrics pick up difference (if yes, then the metric is not robust)
+- Retrospective analysis
+- 
+
+#### Step 2: Choose significance level, statistical power and practical significance level
+
+Usually the significance level is 0.05 and power is set as 0.8. 
+
+
+
+#### Step 3: Calculate required sample size
+
+- **Subject**: What is the subject (**unit of diversion**) of the test? I.e. what are the units you are going to run the test on and comparing. Unit of diversion can be event based (e.g. pageview) or anonymous ID(e.g. cookie id) or user ID. These are commonly used unit of diversion. For user visible changes, you want to use user_id or cookie to measure the change. If measuring latency change, other metrics like event level diversion might be enough.
+
+  
+
+- **Population**: What subjects are eligible for the test? Everyone? Only people in the US? Only people in certain industry?
+
+- **How to reduce the size of an experiment to get it done faster?** You can increase significance level alpha, or reduce power (1-beta) which means increase beta, or change the unit of diversion if originally it is not the same with unit of analysis (unit of analysis: denominator of your evaluation metric) .
+
+
+
+#### Step 4: Take sample for control/treatment groups and run the test
+
+Several things to keep in mind:
+
+- **Duration**: What’s the best time to run it? Students going back to college? Holidays? Weekend vs. weekdays?
+- **Exposure**: What fraction of traffic you want to expose the experiment to? Suggestion is take a small fraction, run multiple tests at the same time (different days: weekend, weekday, holiday).
+- **Learning effect**: When there’s a new change, in the beginning users may against the change or use the change a lot. But overtime, user behavior becomes stable, which is called plateau stage. The key thing to measure learning effect is time, but in reality you don’t have that much luxury of taking that much time to make a decision. Suggestion: run on a smaller group of users, for a longer period of time.
+
+
+
+#### Step 5: Analyze the results and draw conclusions
+
+First step, sanity check.
+
+Second step, analyze the results.
+
+Last step, draw conclusions.
+
+
+
+-------
 
 
 

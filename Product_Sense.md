@@ -138,3 +138,11 @@ Let's say our company started September with 10K customers. At the end of the mo
 
 Now, let's say we gained 275 customers during September and lost 500 more during October. Our churn rate for October would then be 5.11% ((9,775 customers - 9,225 customers) / 9,755 customers = 5.11%).
 
+
+
+## A/B Testing
+
+https://towardsdatascience.com/a-summary-of-udacity-a-b-testing-course-9ecc32dedbb1
+
+
+

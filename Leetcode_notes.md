@@ -22,6 +22,14 @@
 
 
 
+#### Quick Sort
+
+[reference](https://www.techiedelight.com/quicksort/)
+
+![Quicksort Algorithm – C++, Java, and Python Implementation – Techie Delight](https://www.techiedelight.com/wp-content/uploads/Quicksort.png)
+
+
+
 ## Binary Search
 
 Templete I

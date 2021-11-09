@@ -271,6 +271,59 @@ list(dict.values())
 
 
 
+##### 79. Word Search
+
+
+
+![img](https://assets.leetcode.com/uploads/2020/11/04/word2.jpg)
+
+
+
+```
+Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+Output: true
+```
+
+Sample code:
+
+```python
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        
+        m = len(board)
+        n = len(board[0])
+        
+        path = []
+        
+        def dfs(i,j,l):
+            if l == len(word): return True
+            if (i<0 or i>=m or j<0 or j>=n
+               or word[l] != board[i][j] or (i,j) in path):
+                return False
+            
+            path.append((i,j))
+            res = (dfs(i+1,j,l+1) or
+                   dfs(i-1,j,l+1) or
+                   dfs(i,j+1,l+1) or
+                   dfs(i,j-1,l+1)
+                  )
+            path.remove((i,j))
+            
+            return res
+        
+        for i in range(m):
+            for j in range(n):
+                if dfs(i,j,0): 
+                    print(i,j)
+                    return True
+                
+        return False
+```
+
+
+
+
+
 
 
 ## Listed Notes
@@ -333,4 +386,130 @@ class Solution:
                 return headA
             headA = headA.next
 ```
+
+
+
+##### 206. Reverse Linked List
+
+![img](https://assets.leetcode.com/uploads/2021/02/19/rev1ex1.jpg)
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        prev = None
+        
+        while head:
+            temp = head
+            head = head.next
+            temp.next = prev
+            prev = temp
+            
+        return prev
+```
+
+
+
+## Binary Tree
+
+![Example Tree](https://media.geeksforgeeks.org/wp-content/cdn-uploads/2009/06/tree12.gif)
+
+Depth First Traversals: 
+
+(a) **Inorder** (Left, Root, Right) : 4 2 5 1 3 
+(b) **Preorder** (Root, Left, Right) : 1 2 4 5 3 
+(c) **Postorder** (Left, Right, Root) : 4 5 2 3 1
+
+
+
+##### 144. Binary Tree Preorder Traversal
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        
+        if root is None:
+            return []
+        
+        stack, output = [root, ], []
+        
+        while stack:
+            root = stack.pop()
+            if root is not None:
+                output.append(root.val)
+                
+                if root.right is not None:
+                    stack.append(root.right)
+                if root.left is not None:
+                    stack.append(root.left)
+                        
+        return output
+```
+
+
+
+
+
+##### 94. Binary Tree Inorder Traversal
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        
+        # recursively
+        res = []
+        self.helper(root, res)
+        return res
+    
+    def helper(self, root, res):
+        if root:
+            self.helper(root.left, res)
+            res.append(root.val)
+            self.helper(root.right, res)
+```
+
+
+
+##### 145. Binary Tree Postorder Traversal
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        
+        # recursively
+        res = []
+        self.helper(root, res)
+        return res
+    
+    def helper(self, root, res):
+        if root:
+            self.helper(root.left, res)
+            self.helper(root.right, res)
+            res.append(root.val)
+```
+
+
 

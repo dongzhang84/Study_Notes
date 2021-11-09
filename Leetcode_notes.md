@@ -230,7 +230,7 @@ def backtrack(candidate):
 
 
 
-#### Example: 77. Combination
+##### 77. Combination
 
 https://leetcode.com/problems/combinations/
 
@@ -321,6 +321,106 @@ class Solution:
 ```
 
 
+
+
+
+## Dynamic Programming
+
+##### 300. Longest Increasing Subsequence
+
+```
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+```
+
+
+
+Code:
+
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        
+        DP = [1] * len(nums)
+        
+        for i in range(len(nums)-2,-1,-1):
+            for j in range(i+1, len(nums)):
+                if nums[i] < nums[j]:
+                    DP[i] = max(DP[i], 1+DP[j]) 
+                    
+        print(DP)
+        
+        return max(DP)
+```
+
+
+
+
+
+## Breadth First Search
+
+##### 127. Word Ladder
+
+```
+Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+Output: 5
+Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
+```
+
+![BFS_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Leetcode/BFS_1.png?raw=true)
+
+
+
+Code:
+
+```python
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        
+        if endWord not in wordList: return 0
+        
+        nei = collections.defaultdict(list)
+        wordList.append(beginWord)
+        
+        for word in wordList:
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j+1:]
+                nei[pattern].append(word)
+                
+        #print(nei)
+        
+        visit = set([beginWord])
+        q = deque([beginWord])
+        res = 1
+        
+        while q:
+            print(q,visit) # the printer
+            for i in range(len(q)):
+                word = q.popleft()
+                if word == endWord:
+                    return res
+                for j in range(len(word)):
+                    pattern = word[:j] + "*" + word[j+1:]
+                    
+                    for neiWord in nei[pattern]:
+                        if neiWord not in visit:
+                            visit.add(neiWord)
+                            q.append(neiWord)
+            res +=1
+            
+        return 0
+```
+
+Look at the printer, each layer gives q and visit:
+
+```
+deque(['hit']) {'hit'}
+deque(['hot']) {'hot', 'hit'}
+deque(['dot', 'lot']) {'dot', 'lot', 'hot', 'hit'}
+deque(['dog', 'log']) {'lot', 'dog', 'hot', 'dot', 'hit', 'log'}
+deque(['cog']) {'lot', 'dog', 'hot', 'dot', 'cog', 'hit', 'log'}
+```
 
 
 

@@ -113,6 +113,10 @@ procedure merge( var a as array, var b as array )
 end procedure
 ```
 
+
+
+
+
 ## Binary Search
 
 Templete I
@@ -358,7 +362,15 @@ class Solution:
 
 
 
-## Breadth First Search
+## Depth First Search & Breadth First Search
+
+DFS pseudocode: 
+
+![DFS_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Leetcode/DFS_1.png?raw=true)
+
+
+
+
 
 ##### 127. Word Ladder
 
@@ -421,6 +433,132 @@ deque(['dot', 'lot']) {'dot', 'lot', 'hot', 'hit'}
 deque(['dog', 'log']) {'lot', 'dog', 'hot', 'dot', 'hit', 'log'}
 deque(['cog']) {'lot', 'dog', 'hot', 'dot', 'cog', 'hit', 'log'}
 ```
+
+
+
+##### 207. Course Schedule (DFS)
+
+https://leetcode.com/problems/course-schedule/
+
+**Example 1:**
+
+```
+Input: numCourses = 2, prerequisites = [[1,0]]
+Output: true
+Explanation: There are a total of 2 courses to take. 
+To take course 1 you should have finished course 0. So it is possible.
+```
+
+**Example 2:**
+
+```
+Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
+Output: false
+Explanation: There are a total of 2 courses to take. 
+To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
+```
+
+```python
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
+        preMap = {i:[] for i in range(numCourses)}
+        
+        for crs, pre in prerequisites:
+            preMap[crs].append(pre)
+            
+        
+        # visited is all course along the DFS path
+        visited = set()
+        
+        def dfs(crs):
+            if crs in visited: return False
+            if preMap[crs] == []: return True
+            
+            visited.add(crs)
+            for pre in preMap[crs]:
+                if dfs(pre) == False: return False
+                
+            visited.remove(crs)
+            
+            preMap[crs] = []
+            return True
+        
+        for crs in range(numCourses):
+            
+            if dfs(crs) == False: return False
+        
+        return True
+```
+
+
+
+##### 200. Number of Islands
+
+https://leetcode.com/problems/number-of-islands/
+
+**Example 1:**
+
+```
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+```
+
+**Example 2:**
+
+```
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+```
+
+Code
+
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        m = len(grid)
+        if m == 0: return 0
+        n = len(grid[0])
+        if n == 0: return 0
+        
+        
+        def dfs(grid, i, j):
+
+            grid[i][j] = "0"
+
+            dirts = [[-1,0],[1,0],[0,1],[0,-1]]
+
+            for direction in dirts:
+                i1, j1 = i+direction[0], j+direction[1]
+                if (i1>=0 and i1< m and j1>=0 and j1< n and grid[i1][j1] == '1'):
+                    dfs(grid,i1,j1)
+    
+    
+        
+        res = 0
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "1":
+                    dfs(grid,i,j)                    
+                    res +=1
+                  
+        print(grid)    
+        return res  
+```
+
+
 
 
 
@@ -612,4 +750,57 @@ class Solution:
 ```
 
 
+
+##### 101. Symmetric Tree
+
+**Example 1:**
+
+![img](https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg)
+
+```
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+```
+
+**Example 2:**
+
+![img](https://assets.leetcode.com/uploads/2021/02/19/symtree2.jpg)
+
+```
+Input: root = [1,2,2,null,3,null,3]
+Output: false
+```
+
+
+
+Code:
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        
+        if root is None:
+            return True
+        else:
+            return self.isMirror(root.left, root.right)
+        
+        
+    def isMirror(self, left, right):
+        if left is None and right is None: return True
+        if left is None or right is None: return False
+        
+        if left.val == right.val:
+            outPair = self.isMirror(left.left, right.right)
+            inPair = self.isMirror(left.right, right.left)
+            
+            return outPair and inPair
+        
+        return False
+```
 

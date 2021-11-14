@@ -4,9 +4,17 @@
 
 ## Traditional Machine Learning
 
-- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](###overfitting-vs-underfitting), [Classification Metrics](###Classification-Metrics), [Cross Validation](###Cross-Validation), [Decision Tree](#Decision-Tree)
+- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Cross Validation](#cross-validation)
 
--  
+- [Decision Tree](#Decision-Tree), [Random Forest](#random-forest), [Bagging and Boosting](#bootstrapping-bagging-and-boosting)
+
+- [Support Vector Machine](#support-vector-machine), [kNN](#knn-code)
+
+- [Unsupervised Learning](#unsupervised-learning), [k-Mean](#k-mean-clustering)
+
+- [Deep Learning](#deep-learning): [Basic Parameters](#deep-learning-conceptionsparameters), [Back Propagation](#back-propagation)
+
+- [Recommendation System](#recommendation-system), [Matrix Factorization](#matrix-factorization), [Singular Value Decomposition](#singular-value-decomposition)
 
   
 

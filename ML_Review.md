@@ -4,11 +4,9 @@
 
 ## Traditional Machine Learning
 
-- [Logistic regression](#Logistic Regression)
+- [Logistic regression](###logistic-regression)
 
 
-
-<a id='Logistic Regression'></a>
 
 ### Logistic Regression
 

@@ -4,6 +4,8 @@
 
 ## Traditional Machine Learning
 
+- [Logistic regression](#Logistic Regression)
+
 ### Logistic Regression
 
 See this [reference](https://towardsdatascience.com/optimization-loss-function-under-the-hood-part-ii-d20a239cde11): 
@@ -414,6 +416,41 @@ Loss function of SVM:
 
 
 
+### KNN Code
+
+[reference](https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/)
+
+```python
+# Example of making predictions
+from math import sqrt
+ 
+# calculate the Euclidean distance between two vectors
+def euclidean_distance(row1, row2):
+	distance = 0.0
+	for i in range(len(row1)-1):
+		distance += (row1[i] - row2[i])**2
+	return sqrt(distance)
+ 
+# Locate the most similar neighbors
+def get_neighbors(train, test_row, num_neighbors):
+	distances = list()
+	for train_row in train:
+		dist = euclidean_distance(test_row, train_row)
+		distances.append((train_row, dist))
+	distances.sort(key=lambda tup: tup[1])
+	neighbors = list()
+	for i in range(num_neighbors):
+		neighbors.append(distances[i][0])
+	return neighbors
+ 
+# Make a classification prediction with neighbors
+def predict_classification(train, test_row, num_neighbors):
+	neighbors = get_neighbors(train, test_row, num_neighbors)
+	output_values = [row[-1] for row in neighbors]
+	prediction = max(set(output_values), key=output_values.count)
+	return prediction
+```
+
 
 
 
@@ -457,6 +494,12 @@ The raw RI score is then “adjusted for chance” into the ARI score using the 
 
 
 ![K_mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/K_mean.png?raw=true)
+
+
+
+Algorithm [reference](https://realpython.com/k-means-clustering-python/)
+
+![k means algorithm](https://files.realpython.com/media/kmeans-algorithm.a94498a7ecd2.png)
 
 
 

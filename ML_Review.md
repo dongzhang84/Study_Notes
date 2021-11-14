@@ -4,7 +4,7 @@
 
 ## Traditional Machine Learning
 
-- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](###Overfitting-vs-Underfitting), [Classification Metrics](###Classification Metrics)
+- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](###overfitting-vs-underfitting), [Classification Metrics](###Classification-Metrics)
 
 -  
 

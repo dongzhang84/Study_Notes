@@ -2,21 +2,37 @@
 
 # Machine Learning Review
 
-## Traditional Machine Learning
+Traditional Machine Learning
 
-- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Cross Validation](#cross-validation)
-
+- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Cross Validation](#cross-validation), [Generative VS Discriminative Models], [Classification Metrics], [Imbalanced Data]
 - [Decision Tree](#Decision-Tree), [Random Forest](#random-forest), [Bagging and Boosting](#bootstrapping-bagging-and-boosting)
-
 - [Support Vector Machine](#support-vector-machine), [kNN](#knn-code)
+- [Compare Difference Models](): [outliers]
 
 - [Unsupervised Learning](#unsupervised-learning), [k-Mean](#k-mean-clustering)
 
+
+
+Deep Learning 
+
 - [Deep Learning](#deep-learning): [Basic Parameters](#deep-learning-conceptionsparameters), [Back Propagation](#back-propagation)
+- [RNN], [LSTM]
+
+
+
+Natural Language Processing
+
+
+
+Recommendation System
 
 - [Recommendation System](#recommendation-system), [Matrix Factorization](#matrix-factorization), [Singular Value Decomposition](#singular-value-decomposition)
 
-  
+
+
+
+
+## Traditional Machine Learning
 
 ### Logistic Regression
 
@@ -46,6 +62,18 @@ Or written as:
 
 ![img](https://miro.medium.com/max/1400/1*dEZxrHeNGlhfNt-JyRLpig.png)
 
+
+
+
+
+**Why MSE doesn’t work with logistic regression?**
+
+When MSE loss function is plotted with respect to weights of the logistic regression model, the obtained curve is not convex, which makes it difficult to find the global minimum. This non-convex nature is caused because non-linearity is introduced in the form of sigmoid function.
+
+Instead, using MLE in logistic regression as the cost function is convex.
+
+
+
 **L1 and L2 Regularization**
 
 ![img](https://miro.medium.com/max/1400/1*vwhvjVQiEgLcssUPX6vxig.png)
@@ -59,6 +87,22 @@ Or written as:
 **Gradient Descent**
 
 ![img](https://i.stack.imgur.com/zgdnk.png)
+
+
+
+### Multiple Classes
+
+Metrics: **Softmax**
+
+The standard (unit) softmax function {\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}![{\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50f02bd665042635a9aabb2485a4e2d0cfa6458e)is defined by the formula
+
+![{\displaystyle \sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}}\ \ \ \ {\text{ for }}i=1,\dotsc ,K{\text{ and }}\mathbf {z} =(z_{1},\dotsc ,z_{K})\in \mathbb {R} ^{K}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ab3ef6ba51afd36c1d2baf06540022053b2dca73)
+
+![PyTorch Lecture 09: Softmax Classifier - YouTube](https://i.ytimg.com/vi/lvNdl7yg4Pg/maxresdefault.jpg)
+
+
+
+
 
 
 
@@ -122,7 +166,39 @@ for i in range(nb_epochs):
 
 
 
+#### Vanishing Gradient and Exploding Gradient
 
+- The gradient will be vanishingly small, effectively preventing the weight from changing its value. In worst case, this may completely stop the neural network from further training.
+
+Common solutions:
+
+1. Use other activation functions such as ReLU.
+2. Use residual networks.
+3. Use batch normalization.
+
+- The large error gradients accumulate and result in very large updates to neural network model weights during training. This may make the model unstable and unable to learn from the data.
+
+A common solution is to change the error derivative before back propagating it.
+
+
+
+#### Adagrad Gradient Descent
+
+**gᵢ = ∇J(θᵢ),** where g is the gradient wrt to each parameter θᵢ.
+
+![img](https://miro.medium.com/max/1400/0*vc6jz6eb2qLSz5jw.png)
+
+
+
+#### Adam (Adaptive Moment Estimation)
+
+![img](https://miro.medium.com/max/1400/0*xSBhhUgJuxAbu_PQ.png)
+
+![img](https://miro.medium.com/max/1400/0*d4z6F204ady2leqB.png)
+
+
+
+![img](https://miro.medium.com/max/670/0*zKIH-3pSjclDGfM5.png)
 
 
 
@@ -149,16 +225,33 @@ for i in range(nb_epochs):
 5. **L1 / L2 regularization**
    ![img](https://miro.medium.com/max/1400/0*69Jgv2gwAPtOIwNh.png)
 
+   ![L1 and L2 Regularization - YouTube](https://i.ytimg.com/vi/QNxNCgtWSaY/maxresdefault.jpg)
+   
+   
+   
+   You can see that in the left graph that the function is likely to hit the possible value space on one of the corners, on the axes. This implies that β1 is 0. On the right, where the space of allowed values is round due to the quadratic constraint, the function can hit the possible space in more arbitrary places. 
+   
+   
+   
 6. **Remove layers / number of units per layer**
 
 7. **Dropout**
    ![img](https://miro.medium.com/max/1400/0*YCofAkhSErYvlpRT.png)
 
+   **Difference between Dropout and Pruning**:
+
+   - Pruning = post-hoc removal of nodes that you don't think are important. This way, only the "good" nodes remain.
+
+   - Dropout = each training observation uses only a subset of available nodes. This prevents the model from becoming overreliant on a couple strong nodes, and hopefully results in all nodes becoming equally "good".
+     
+
 8. **Early stopping**
 
    ![img](https://miro.medium.com/max/920/0*b4lf4K0PswVYZXdI.png)
 
-#### Bias vs Variance Trade Off
+
+
+### Bias vs Variance Trade Off
 
 [reference](https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229)
 
@@ -183,6 +276,32 @@ Variance is the variability of model prediction for a given data point or a valu
 
 
 
+
+### Generative VS Discriminative Models
+
+Discriminative model learns the predictive distribution p(y|x) directly while generative model learns the joint distribution p(x, y) then obtains the predictive distribution based on Bayes' rule.
+
+![widget](https://www.educative.io/cdn-cgi/image/f=auto,fit=contain,w=600/api/edpresso/shot/5928491114037248/image/6243658817339392.png)
+
+
+
+#### Generative Models (Naive Bayes)
+
+1. A Generative Model uses an actual distribution to model each class.
+2. Generative models learn the joint probability distribution p(x,y). They use Bayes theorem to predict the conditional probability.
+3. Generative models are used in supervised learning algorithms.
+4. These models directly use the training data to predict parameters of p(y|x).
+5. Examples include Naive Bayes, Bayesian networks, Markov random fields, and Hidden Markov Models (HMM).
+
+
+
+#### Discriminative Models (Logistic Regression)
+
+1. A Discriminative Model uses a decision boundary between classes (as shown above).
+2. Discriminative models learn the conditional probability distribution p(y|x).
+3. Discriminative models are used in supervised learning algorithms.
+4. These models directly use training data to predict parameters of p(y|x).
+5. Examples include Logistic regression, Scalar Vector Machine, Traditional neural networks, Nearest neighbor, and Conditional Random Fields (CRF)s.
 
 
 
@@ -224,9 +343,29 @@ Sensitivty = TPR(True Positive Rate)= Recall = TP/(TP+FN)
 
 
 
+
+
+
+
 ### Cross Validation
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/K-fold_cross_validation_EN.svg/2880px-K-fold_cross_validation_EN.svg.png)
+
+
+
+
+
+### Imbalanced Data
+
+How to deal with Imbalanced data?
+
+-  Oversample minority class
+
+- Undersample majority class
+
+- Generate synthetic data
+
+- Use class weight
 
 
 
@@ -245,6 +384,12 @@ A decision tree is a map of the possible outcomes of a series of related choices
 **Information Gain**
 
 ![{\displaystyle \mathrm {H} (T)=\operatorname {I} _{E}\left(p_{1},p_{2},\ldots ,p_{J}\right)=-\sum _{i=1}^{J}p_{i}\log _{2}p_{i}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/52f792af48b1a164791d2c5eeb2ba10d460d82d6)
+
+
+
+#### Kullback–Leibler Divergence
+
+![{\displaystyle D_{\text{KL}}(P\parallel Q)=\sum _{x\in {\mathcal {X}}}P(x)\log \left({\frac {P(x)}{Q(x)}}\right).}](https://wikimedia.org/api/rest_v1/media/math/render/svg/4958785faae58310ca5ab69de1310e3aafd12b32)
 
 
 
@@ -401,9 +546,15 @@ Depending on the last step:
 
 The objective of the support vector machine algorithm is to find a hyperplane in an N-dimensional space(N — the number of features) that distinctly classifies the data points.
 
-Loss function of SVM:
+#### Loss function of SVM
+
+**Hinge Loss**
+
+![\ell(y) = \max(0, 1 + \max_{y \ne t} \mathbf{w}_y \mathbf{x} - \mathbf{w}_t \mathbf{x})](https://wikimedia.org/api/rest_v1/media/math/render/svg/81d2483d6d6511dc0fce3afb627f0c58c84a205d)
 
 ![img](https://miro.medium.com/max/1400/1*GQAd28bK8LKOL2kOOFY-tg.png)
+
+
 
 #### Maximal Margin Classifier
 
@@ -462,6 +613,18 @@ def predict_classification(train, test_row, num_neighbors):
 	prediction = max(set(output_values), key=output_values.count)
 	return prediction
 ```
+
+
+
+
+
+### Compare Different Models
+
+
+
+#### Outliers
+
+Tree-based Algorithms do not need normalization/scaling. 
 
 
 
@@ -565,6 +728,36 @@ The forward and backward phases are repeated from some epochs. In each epoch, th
 3. The error is propagated from the output layer to the input layer.
 
 ![Backpropagation passes architecture](https://i1.wp.com/neptune.ai/wp-content/uploads/Backpropagation-passes-architecture.png?resize=434%2C414&ssl=1)
+
+
+
+### Recurrent Neural Networks
+
+[reference](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+A recurrent neural network (RNN) is **a type of artificial neural network which uses sequential data or time series data**.
+
+
+
+**An unrolled recurrent neural network**
+
+![An unrolled recurrent neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png)
+
+
+
+RNN --> because the gradient of the loss function decays exponentially with time (called the **vanishing gradient problem** --> LSTM
+
+
+
+#### Long Short Term Memory 
+
+
+
+![img](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-SimpleRNN.png)
+
+
+
+![A gated recurrent unit neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png)
 
 
 

@@ -6,6 +6,10 @@
 
 - [Logistic regression](#Logistic Regression)
 
+
+
+<a id='Logistic Regression'></a>
+
 ### Logistic Regression
 
 See this [reference](https://towardsdatascience.com/optimization-loss-function-under-the-hood-part-ii-d20a239cde11): 

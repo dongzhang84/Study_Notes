@@ -4,7 +4,8 @@
 
 ## Traditional Machine Learning
 
-- [Logistic regression](###logistic-regression)
+- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods)
+- 
 
 
 

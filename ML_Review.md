@@ -4,7 +4,7 @@
 
 Traditional Machine Learning
 
-- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Cross Validation](#cross-validation), [Generative VS Discriminative Models], [Classification Metrics], [Imbalanced Data]
+- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Generative VS Discriminative Models](#generative-vs-discriminative-models), [Classification Metrics](#classification-metrics), [Imbalanced Data](#imbalanced-data), [Cross Validation](#cross-validation)
 - [Decision Tree](#Decision-Tree), [Random Forest](#random-forest), [Bagging and Boosting](#bootstrapping-bagging-and-boosting)
 - [Support Vector Machine](#support-vector-machine), [kNN](#knn-code)
 - [Compare Difference Models](): [outliers]
@@ -16,6 +16,7 @@ Traditional Machine Learning
 Deep Learning 
 
 - [Deep Learning](#deep-learning): [Basic Parameters](#deep-learning-conceptionsparameters), [Back Propagation](#back-propagation)
+- [CNN]
 - [RNN], [LSTM]
 
 
@@ -696,7 +697,7 @@ Batch size is **the number of samples that usually pass through the neural netwo
 
 
 
-**epoch**
+**Epoch**
 
 An epoch is a term used in machine learning that refers to the number of passes the machine learning algorithm has made over the entire training dataset.
 
@@ -728,6 +729,16 @@ The forward and backward phases are repeated from some epochs. In each epoch, th
 3. The error is propagated from the output layer to the input layer.
 
 ![Backpropagation passes architecture](https://i1.wp.com/neptune.ai/wp-content/uploads/Backpropagation-passes-architecture.png?resize=434%2C414&ssl=1)
+
+
+
+
+
+### Convolutional Neural Networks
+
+
+
+
 
 
 

@@ -564,7 +564,15 @@ class Solution:
 
 
 
-## Listed Notes
+## Listed Nodes
+
+Create a ListNode:
+
+```python
+head = current = ListNode(0)
+```
+
+
 
 ##### 141. Linked List Cycle
 

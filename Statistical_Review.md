@@ -83,6 +83,18 @@ References:
 
 
 
+## 0. Introduction
+
+
+
+![img](http://staff.ustc.edu.cn/~zwp/teach/Prob-Stat/stat-rev.jpg)
+
+![img](http://staff.ustc.edu.cn/~zwp/teach/Prob-Stat/stat-f.jpg)
+
+[picture reference](http://staff.ustc.edu.cn/~zwp/teach/Prob-Stat/probstat.htm)
+
+
+
 ## 1. Probability Distributions
 
 ### 1.1 **Discrete Distributions**
@@ -999,7 +1011,7 @@ http://napitupulu-jon.appspot.com/posts/sanity-check-abtesting-udacity.html
 - Click through rate = # clicks / # visits
 - Click through probability = # unique visitors who click / # unique visitors
 - Retention rate = # users remained at the end of evaluation period / # users at the beginning of the evaluation period
-- Churn rate = # users acquired / # users lost
+- Churn rate = # users churned / # total users at the beginning of the evaluation period
 - ROI = (current value – investment) / investment
 
 
@@ -1008,7 +1020,7 @@ http://napitupulu-jon.appspot.com/posts/sanity-check-abtesting-udacity.html
 
 https://towardsdatascience.com/a-summary-of-udacity-a-b-testing-course-9ecc32dedbb1
 
-#### Step 1: Choose and characterize metrics \*for both sanity check and evaluation
+#### Step 1: Choose and characterize metrics for both sanity check and evaluation
 
 **How to measure the sensitivity and robustness?**
 

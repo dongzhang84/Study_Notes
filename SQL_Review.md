@@ -73,7 +73,7 @@ SELECT
 FROM
     table1
 ORDER BY column_list
-LIMIT row_count OFFSET offset;
+LIMIT row_count OFFSET limit;
 ```
 
 For example:

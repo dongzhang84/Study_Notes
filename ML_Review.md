@@ -776,6 +776,33 @@ RNN --> because the gradient of the loss function decays exponentially with time
 
 ## Recommendation System
 
+### Content-Based Recommendation
+
+**(From Andrew Ng)** [reference](https://www.ritchieng.com/machine-learning-recommender-systems/)
+
+![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection25.png)
+
+
+
+- - If we minimize the following function, we get the parameters to predict ![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection26.png) ![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection27.png)
+  - We can use other minimization algorithms (other than gradient descent) ![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection28.png)
+
+
+
+###  Collaborative Filtering Algorithm
+
+(From Andrew Ng)
+
+![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection32.png)
+
+
+
+![img](https://raw.githubusercontent.com/ritchieng/machine-learning-stanford/master/w9_anomaly_recommender/anomaly_detection33.png)
+
+
+
+
+
 ### Matrix Factorization
 
 Matrix factorization is a simple embedding model. Given the feedback matrix A ∈Rm×n, where m is the number of users (or queries) and n is the number of items, the model learns:
@@ -795,6 +822,38 @@ Optimization:
 
 ![img](https://miro.medium.com/max/594/1*vZ5PAfak7r7tT26acWSU4A.png)
 
+[reference2](https://towardsdatascience.com/recommendation-system-matrix-factorization-d61978660b4b)
+
+Matrix P represents the association between a user and the features while matrix Q represents the association between an item and the features. We can get the prediction of a rating of an item by the calculation of the dot product of the two vectors corresponding to u_i and d_j.
+
+![img](https://miro.medium.com/max/1224/1*bfag_KKHukbSaGBCVpp1Rg.png)
+
+To get two entities of both P and Q, we need to initialize the two matrices and calculate the difference of the product named as matrix M. Next, we minimize the difference through the iterations. The method is called **gradient descent**, aiming at finding a local minimum of the difference.
+
+![img](https://miro.medium.com/max/60/1*VyRq_SNz7CTIPW10fCRWgg.png?q=20)
+
+![img](https://miro.medium.com/max/1400/1*VyRq_SNz7CTIPW10fCRWgg.png)
+
+To minimize the error, the gradient is able to minimize the error, and therefore we differentiate the above equation with respect to these two variables separately.
+
+![img](https://miro.medium.com/max/60/1*zQ2qL_eUdw6Y_nXPItou9A.png?q=20)
+
+![img](https://miro.medium.com/max/1400/1*zQ2qL_eUdw6Y_nXPItou9A.png)
+
+From the gradient, the mathematic formula can be updated for both p_ik and q_kj. a is the step to reach the minimum while the gradient is calculated, and a is usually set with a small value.
+
+![img](https://miro.medium.com/max/60/1*aIKCpXdgFRUec5DrFllZpQ.png?q=20)
+
+![img](https://miro.medium.com/max/1400/1*aIKCpXdgFRUec5DrFllZpQ.png)
+
+From the above equation, p’_ik and q’_kj can both be updated through iterations until the error converges to its minimum.
+
+![img](https://miro.medium.com/max/60/1*cEUZ-2rCfC2TQ_v7gReAag.png?q=20)
+
+![img](https://miro.medium.com/max/1400/1*cEUZ-2rCfC2TQ_v7gReAag.png)
+
+
+
 
 
 
@@ -808,6 +867,12 @@ Enter Singular Value Decomposition (SVD). SVD is a fancy way to factorizing a ma
 ![img](https://miro.medium.com/max/736/1*nTRaEa_ZlXcFKXT-rxQHIg.png)
 
 ![img](https://miro.medium.com/max/1400/0*arP2ZshqOKgXss-h.png)
+
+
+
+### Recommendation System Design
+
+[reference](https://www.educative.io/courses/grokking-the-machine-learning-interview/xlO33YAyVrz)
 
 
 

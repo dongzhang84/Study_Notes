@@ -17,7 +17,7 @@ Deep Learning
 
 - [Deep Learning](#deep-learning): [Basic Parameters](#deep-learning-conceptionsparameters), [Back Propagation](#back-propagation)
 - [CNN]
-- [RNN], [LSTM]
+- [RNN](#recurrent-neural-networks), [LSTM](#long-short-term-memory)
 
 
 
@@ -27,7 +27,8 @@ Natural Language Processing
 
 Recommendation System
 
-- [Recommendation System](#recommendation-system), [Matrix Factorization](#matrix-factorization), [Singular Value Decomposition](#singular-value-decomposition)
+- [Recommendation System](#recommendation-system), [Content-Based](#content-based-recommendation), [Collaborative-Filtering](#collaborative-filtering-algorithm)
+- [Matrix Factorization](#matrix-factorization), [Singular Value Decomposition](#singular-value-decomposition)
 
 
 

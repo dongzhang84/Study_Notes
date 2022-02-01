@@ -2,6 +2,12 @@
 
 ## Content
 
+**Basic Coding**
+
+- Sort dictionary
+
+
+
 **Pandas Data Manipulation**
 
 - Remove warnings
@@ -13,6 +19,7 @@
 - Outliers remover
 - Quantile rankings
 - Test running duration
+- Moving average
 
 
 
@@ -38,6 +45,32 @@
 - seaborn box plot
 
 ---
+
+## Basic Coding
+
+#### Sort dictionary
+
+```python
+x = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
+dict(sorted(x.items(), key=lambda item: item[1]))
+{0: 0, 2: 1, 1: 2, 4: 3, 3: 4}
+```
+
+
+
+#### Output dictionary keys and values as lists
+
+```python
+x = {'A': 2, 'B': 4, 'C': 3, 'D': 1, 'E': 0}
+
+list(x.keys())
+['A', 'B', 'C', 'D', 'E']
+
+list(x.values())
+[2, 4, 3, 1, 0]
+```
+
+
 
 
 
@@ -90,7 +123,7 @@ df[df.duplicated(keep=False)]
 
 
 
-#### Add  rows to pandas
+#### Add rows to pandas
 
 See [this link](https://pythonexamples.org/pandas-dataframe-add-append-row/)
 
@@ -216,6 +249,14 @@ df
 
 ```python
 %%time
+```
+
+
+
+#### Moving Average
+
+```python
+df[field].rolling(windows=N).mean()
 ```
 
 

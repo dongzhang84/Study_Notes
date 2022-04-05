@@ -328,6 +328,21 @@ END;
 
 
 
+### Change String to Numeric
+
+[reference](https://www.techonthenet.com/oracle/functions/to_number.php)
+
+```SQL
+TO_NUMBER('1210.73', '9999.99')
+Result: 1210.73
+
+TO_NUMBER('546', '999')
+Result: 546
+
+TO_NUMBER('23', '99')
+Result: 23
+```
+
 
 
 ## Advanced SQL
@@ -403,4 +418,65 @@ SELECT
    (SELECT TOP 50 PERCENT Score FROM Posts ORDER BY Score DESC) AS TopHalf)
 ) / 2 AS Median
 ```
+
+
+
+### Time Related
+
+#### Time Difference
+
+[reference](https://www.sqlservertutorial.net/sql-server-date-functions/sql-server-datediff-function/)
+
+```SQL
+DECLARE 
+    @start_dt DATETIME2= '2019-12-31 23:59:59.9999999', 
+    @end_dt DATETIME2= '2020-01-01 00:00:00.0000000';
+
+SELECT 
+    DATEDIFF(year, @start_dt, @end_dt) diff_in_year, 
+    DATEDIFF(quarter, @start_dt, @end_dt) diff_in_quarter, 
+    DATEDIFF(month, @start_dt, @end_dt) diff_in_month, 
+    DATEDIFF(dayofyear, @start_dt, @end_dt) diff_in_dayofyear, 
+    DATEDIFF(day, @start_dt, @end_dt) diff_in_day, 
+    DATEDIFF(week, @start_dt, @end_dt) diff_in_week, 
+    DATEDIFF(hour, @start_dt, @end_dt) diff_in_hour, 
+    DATEDIFF(minute, @start_dt, @end_dt) diff_in_minute, 
+    DATEDIFF(second, @start_dt, @end_dt) diff_in_second, 
+    DATEDIFF(millisecond, @start_dt, @end_dt) diff_in_millisecond;
+```
+
+
+
+#### GROUP BY with MAX(DATE)
+
+https://stackoverflow.com/questions/3491329/group-by-with-maxdate
+
+```SQL
+SELECT train, dest, time FROM ( 
+  SELECT train, dest, time, 
+    RANK() OVER (PARTITION BY train ORDER BY time DESC) dest_rank
+    FROM traintable
+  ) where dest_rank = 1
+```
+
+
+
+#### Select latest time group by another column
+
+[reference](https://stackoverflow.com/questions/48406742/delete-duplicate-rows-in-sql) (similar as the above one)
+
+```sql
+WITH Cte AS(
+    SELECT *,
+       ROW_NUMBER() OVER(PARTITION BY one_column ORDER BY Time_column DESC) Rn
+    FROM Table
+)
+DELETE FROM Cte WHERE Rn = 1;
+```
+
+
+
+
+
+
 

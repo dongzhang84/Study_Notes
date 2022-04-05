@@ -20,6 +20,7 @@
 - Quantile rankings
 - Test running duration
 - Moving average
+- Convert datetime
 
 
 
@@ -258,6 +259,53 @@ df
 ```python
 df[field].rolling(windows=N).mean()
 ```
+
+
+
+#### Timestamp <--> Datetime
+
+Convert timestamp to datetime:
+
+```python
+import datetime
+readable = datetime.datetime.fromtimestamp(1649123847).isoformat()
+print(readable)
+
+#2022-04-05T01:57:27
+```
+
+or
+
+```python
+from datetime import datetime
+
+timestamp = 1545730073
+dt_object = datetime.fromtimestamp(timestamp)
+
+print("dt_object =", dt_object)
+print("type(dt_object) =", type(dt_object))
+
+#dt_object = 2018-12-25 09:27:53
+#type(dt_object) = <class 'datetime.datetime'>
+```
+
+
+
+Convert datetime to timestamp:
+
+```python
+from datetime import datetime
+
+# current date and time
+now = datetime.now()
+
+timestamp = datetime.timestamp(now)
+print("timestamp =", timestamp)
+
+#timestamp = 1649124120.866694
+```
+
+
 
 
 
@@ -668,7 +716,9 @@ plt.yticks(fontsize=15)
 plt.show()
 ```
 
----
+![basic_plot.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/basic_plot.png?raw=true)
+
+----
 
 
 

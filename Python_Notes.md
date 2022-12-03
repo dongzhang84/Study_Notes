@@ -15,6 +15,7 @@
 - Remove duplicates
 - Add rows
 - Aggregation Function
+- sort values rename column
 - Function using multiple columns
 - Outliers remover
 - Quantile rankings
@@ -198,6 +199,14 @@ df.groupby('A').agg({'B': ['min', 'max','count'], 'C': ['sum','median']})
 |    A |      |      |       |          |          |
 |    1 |    1 |    2 |     2 | 0.590715 | 0.295357 |
 |    2 |    3 |    4 |     2 | 0.704907 | 0.352454 |
+
+
+
+### Sort Value Rename Columns and Index
+
+```python
+df['A'].value_counts().rename_axis('Id').reset_index(name='tot_CNT')
+```
 
 
 

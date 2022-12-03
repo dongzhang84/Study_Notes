@@ -15,7 +15,7 @@
 - Remove duplicates
 - Add rows
 - Aggregation Function
-- sort values rename column
+- value count and rename column
 - Function using multiple columns
 - Outliers remover
 - Quantile rankings

@@ -8,6 +8,13 @@ from datetime import datetime, timedelta
 df['orderDate']=df.orderDate.apply(lambda x: datetime.fromtimestamp(x))
 ```
 
+### Calculate Time Interval (in seconds)
+
+```python
+
+ df['time_interval'] = (df['time1'] - df['time2']).dt.total_seconds()
+
+```
 
 ### Query Time Format
 

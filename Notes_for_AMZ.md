@@ -26,3 +26,11 @@ where date_time >= '%s'
 and date_time < '%s'
 """ % (start_date, end_date)
 ```
+
+## AWS
+
+unzip file
+
+```
+tar -xf abcd.tar.gz
+```

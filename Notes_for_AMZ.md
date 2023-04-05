@@ -27,10 +27,15 @@ and date_time < '%s'
 """ % (start_date, end_date)
 ```
 
-## AWS
+## Command and AWS
 
 unzip file
 
 ```
 tar -xf abcd.tar.gz
+```
+sync directory
+
+```
+!aws s3 sync directory1 directory2
 ```

@@ -9,6 +9,7 @@
 - [ML Pipeline for DS](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Pipeline_Notes.md)
 - [Product Sense](https://github.com/dongzhang84/Study_Notes/blob/main/Product_Sense.md)
 - [Leetcode Notes](https://github.com/dongzhang84/Study_Notes/blob/main/Leetcode_notes.md)
+- [Notes_for_AMZ.md](https://github.com/dongzhang84/Study_Notes/blob/main/Notes_for_AMZ.md)
 
 ## Tooling
 

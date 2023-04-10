@@ -29,6 +29,12 @@ and date_time < '%s'
 
 ## Command and AWS
 
+compress a directory
+
+```
+tar -czvf abcd.tar.gz abcd/
+```
+
 unzip file
 
 ```

@@ -32,7 +32,7 @@ and date_time < '%s'
 compress a directory
 
 ```
-tar -czvf abcd.tar.gz abcd/
+tar -czvf abcd.tar.gz .
 ```
 
 unzip file

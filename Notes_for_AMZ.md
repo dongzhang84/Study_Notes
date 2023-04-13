@@ -38,7 +38,7 @@ tar -czvf abcd.tar.gz abcd/
 unzip file
 
 ```
-tar -xf abcd.tar.gz
+tar -zxvf abcd.tar.gz
 ```
 sync directory
 

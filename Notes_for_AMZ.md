@@ -40,8 +40,14 @@ unzip file
 ```
 tar -zxvf abcd.tar.gz
 ```
+
 sync directory
 
 ```
 !aws s3 sync directory1 directory2
+```
+
+remove directory
+```
+!aws s3 rm s3://bucket/folder --recursive
 ```

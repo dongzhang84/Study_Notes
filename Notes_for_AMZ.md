@@ -16,6 +16,12 @@ df['orderDate']=df.orderDate.apply(lambda x: datetime.fromtimestamp(x))
 
 ```
 
+### Check Categorial Variables
+```python
+object_list = list(df_train.select_dtypes(include=['object']).columns)
+object_list
+```
+
 ### Query Time Format
 
 ```SQL

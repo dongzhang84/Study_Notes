@@ -22,6 +22,12 @@ object_list = list(df_train.select_dtypes(include=['object']).columns)
 object_list
 ```
 
+### Check Numerical Variables
+```python
+number_list = list(df.select_dtypes(include=['float64','int64']).columns)
+len(number_list)
+```
+
 ### Query Time Format
 
 ```SQL

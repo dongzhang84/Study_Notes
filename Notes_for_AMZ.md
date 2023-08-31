@@ -28,6 +28,11 @@ number_list = list(df.select_dtypes(include=['float64','int64']).columns)
 len(number_list)
 ```
 
+### Group and rename column in one line
+```python
+tmp = df.groupby(['weekofyear','week'])['C'].sum().reset_index(name='D')
+```
+
 ### Query Time Format
 
 ```SQL

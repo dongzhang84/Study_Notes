@@ -51,6 +51,10 @@ compress a directory
 ```
 tar -czvf abcd.tar.gz .
 ```
+or
+```
+tar -cvzf abcd.tar.gz *.csv
+```
 
 unzip file
 

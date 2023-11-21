@@ -33,6 +33,20 @@ len(number_list)
 tmp = df.groupby(['weekofyear','week'])['C'].sum().reset_index(name='D')
 ```
 
+### AutoGluon Template
+```
+!pip install autogluon
+
+```
+
+```
+from autogluon.tabular import TabularDataset, TabularPredictor
+
+```
+```
+df_train = pd.concat([df_train,df_val],axis=0)
+```
+
 ### Query Time Format
 
 ```SQL

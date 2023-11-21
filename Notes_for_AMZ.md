@@ -57,6 +57,25 @@ from autogluon.tabular import TabularDataset, TabularPredictor
 df_train = pd.concat([df_train,df_val],axis=0)
 ```
 
+```
+%%time
+
+eval_metric = 'roc_auc'
+label = '__tag__'
+
+predictor = TabularPredictor(label=label, eval_metric=eval_metric)\
+.fit(df_train,hyperparameters={'GBM':{'ag_args_fit': {'max_memory_usage_ratio': 1.2}}, 
+                               'XGB':{'ag_args_fit': {'max_memory_usage_ratio': 1.2}}, 
+                               'XT':{'ag_args_fit': {'max_memory_usage_ratio': 1.2}}})
+```
+
+```
+%%time
+#%%capture cap --no-stderr
+
+predictor.leaderboard(df_test, silent=True)
+```
+
 
 ## Command and AWS
 

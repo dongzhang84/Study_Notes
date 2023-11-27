@@ -16,6 +16,13 @@ df['orderDate']=df.orderDate.apply(lambda x: datetime.fromtimestamp(x))
 
 ```
 
+### Convert Datetime to Strings
+```
+df_us['year'] = df_us['order_day'].dt.year
+df_us['week'] = df_us['order_day'].dt.isocalendar().week
+df_us['weekofyear'] = df_us['year'].astype('str') + df_us['week'].astype('str').str.zfill(2)
+```
+
 ### Check Categorial Variables
 ```python
 object_list = list(df_train.select_dtypes(include=['object']).columns)

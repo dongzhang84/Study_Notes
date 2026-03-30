@@ -19,6 +19,9 @@ env/
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
+# Obsidian
+.obsidian/
+
 # VS Code
 .vscode/
 

@@ -474,7 +474,7 @@ plt.ylim(0,1)
 plt.show()
 ```
 
-![random_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/random_1.png?raw=true)
+![random_1.png](../figures/python_notes/random_1.png)
 
 Note that we can use random.randint(a,b) to generate random integers between a and b.
 
@@ -498,7 +498,7 @@ plt.ylim(-1,1)
 plt.show()
 ```
 
-![pi_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/pi_1.png?raw=true)
+![pi_1.png](../figures/python_notes/pi_1.png)
 
 One can calculate Pi by
 
@@ -537,7 +537,7 @@ plt.ylim(-1,1)
 plt.show()
 ```
 
-![pi_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/pi_2.png?raw=true)
+![pi_2.png](../figures/python_notes/pi_2.png)
 
 
 
@@ -570,7 +570,7 @@ s = np.random.normal(mu, sigma, 1000)
 count, bins, ignored = plt.hist(s, 30, density=True)
 ```
 
-![gaussian_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_1.png?raw=true)
+![gaussian_1.png](../figures/python_notes/gaussian_1.png)
 
 Visualization: 
 
@@ -585,7 +585,7 @@ plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
 plt.show()
 ```
 
-![gaussian_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/gaussian_2.png?raw=true)
+![gaussian_2.png](../figures/python_notes/gaussian_2.png)
 
 2D Gaussian Distribution
 
@@ -622,7 +622,7 @@ plt.plot(bins, np.exp(-bins/scale)/scale, linewidth=2, color='r')
 plt.show()
 ```
 
-![exponential_dist](https://raw.githubusercontent.com/dongzhang84/Study_Notes/main/figures/python_notes/exponential_1.png)
+![exponential_dist](../figures/python_notes/exponential_1.png)
 
 
 
@@ -668,7 +668,7 @@ count, bins, ignored = plt.hist(s, 30, density=True)
 plt.show()
 ```
 
-![binomial_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/binomial_1.png?raw=true)
+![binomial_1.png](../figures/python_notes/binomial_1.png)
 
 
 
@@ -725,7 +725,7 @@ plt.yticks(fontsize=15)
 plt.show()
 ```
 
-![basic_plot.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/basic_plot.png?raw=true)
+![basic_plot.png](../figures/python_notes/basic_plot.png)
 
 ----
 
@@ -764,7 +764,7 @@ plt.show()
 
 
 
-![multiple_panels.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/multiple_panels.png?raw=true)
+![multiple_panels.png](../figures/python_notes/multiple_panels.png)
 
 ------
 
@@ -805,7 +805,7 @@ plt.show()
 
 
 
-![plot_contour_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/plot_contour_1.png?raw=true)
+![plot_contour_1.png](../figures/python_notes/plot_contour_1.png)
 
 -------
 
@@ -833,7 +833,7 @@ plt.show()
 
 The plot is like this:
 
-![seaborn_bar_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_1.png?raw=true)
+![seaborn_bar_1.png](../figures/python_notes/seaborn_bar_1.png)
 
 Add a line: 
 
@@ -843,7 +843,7 @@ plt.axhline(y=6000, color='r', linestyle='--')
 
 The plot becomes:
 
-![seaborn_bar_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_2.png?raw=true)
+![seaborn_bar_2.png](../figures/python_notes/seaborn_bar_2.png)
 
 ----
 
@@ -899,7 +899,7 @@ plt.show()
 
 The plot is:
 
-![seaborn_bar_hue_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_hue_1.png?raw=true)
+![seaborn_bar_hue_1.png](../figures/python_notes/seaborn_bar_hue_1.png)
 
 
 
@@ -939,7 +939,7 @@ plt.show()
 
 The above plot code is very useful, and the result is:
 
-![seaborn_bar_hue_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_bar_hue_2.png?raw=true)
+![seaborn_bar_hue_2.png](../figures/python_notes/seaborn_bar_hue_2.png)
 
 ----
 
@@ -957,7 +957,7 @@ sns.boxplot(y=df["sepal_length"])
 plt.show()
 ```
 
-![seaborn_box_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_box_1.png?raw=true)
+![seaborn_box_1.png](../figures/python_notes/seaborn_box_1.png)
 
 Another plot: 
 
@@ -966,6 +966,6 @@ sns.boxplot( y=df["species"], x=df["sepal_length"] );
 plt.show()
 ```
 
-![seaborn_box_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/python_notes/seaborn_box_2.png?raw=true)
+![seaborn_box_2.png](../figures/python_notes/seaborn_box_2.png)
 
 See [this link](https://pythonbasics.org/seaborn-boxplot/) for more details. 

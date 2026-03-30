@@ -18,7 +18,7 @@
 
 Download Docker Desktop for Mac (see the [link](https://docs.docker.com/get-started/)). One can manage Docker images and containers on one's machine by **Docker Dashboard**.
 
-![Docker_dashboard.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/Docker_dashboard.png?raw=true)
+![Docker_dashboard.png](../figures/Docker/Docker_dashboard.png)
 
  
 
@@ -155,7 +155,7 @@ $ docker run hello_world
 
 In the terminal one can observe the following result:
 
-![first_python.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_python.png?raw=true)
+![first_python.png](../figures/Docker/first_python.png)
 
 Check the container (which has been stoped) by 
 
@@ -163,7 +163,7 @@ Check the container (which has been stoped) by
 docker ps -a
 ```
 
-![first_python_check_container.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_python_check_container.png?raw=true)
+![first_python_check_container.png](../figures/Docker/first_python_check_container.png)
 
 You can remove the container by the command mentioned in the previous section. 
 
@@ -213,7 +213,7 @@ The result is shown in the terminal:
 $ Hello Docker container!
 ```
 
-![first_cpp_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_cpp_1.png?raw=true)
+![first_cpp_1.png](../figures/Docker/first_cpp_1.png)
 
 
 
@@ -240,7 +240,7 @@ $ docker run --rm cpp_test
 
 The result is as follows:
 
-![first_cpp_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_cpp_2.png?raw=true)
+![first_cpp_2.png](../figures/Docker/first_cpp_2.png)
 
 
 
@@ -374,7 +374,7 @@ $ docker build -t first_ml .
 $ docker run first_ml
 ```
 
-![first_ml_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/first_ml_1.png?raw=true)
+![first_ml_1.png](../figures/Docker/first_ml_1.png)
 
  
 
@@ -407,7 +407,7 @@ $ python3 app.py
 
 This launches a very simple builtin server http://127.0.0.1:5000/:
 
-![flask_hello_world.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_hello_world.png?raw=true)
+![flask_hello_world.png](../figures/Docker/flask_hello_world.png)
 
 
 
@@ -417,7 +417,7 @@ Deploy the **iris flower model** with Flask. One example can be seen in [this bl
 
 Create a folder with the following files:
 
-![flask_ml_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_2.png?raw=true)
+![flask_ml_2.png](../figures/Docker/flask_ml_2.png)
 
 Here the **train.py** is necessary to generate the model pickle file. The **index.html** and **result.html** are two basic html pages to load the input page and prediction (output) page. 
 
@@ -512,11 +512,11 @@ to generate the model pickle file **model.pkl**. Then to run the Flask file
 $ python3 app.py
 ```
 
-![flask_ml_app.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_app.png?raw=true)
+![flask_ml_app.png](../figures/Docker/flask_ml_app.png)
 
 Open the local server http://127.0.0.1:5000/: 
 
-![flask_ml_input.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_input.png?raw=true)
+![flask_ml_input.png](../figures/Docker/flask_ml_input.png)
 
 Let us input values: 
 
@@ -530,9 +530,9 @@ Let us input values:
 
 Click the "Submit" button, the output prediction is
 
-![flask_ml_output.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_output.png?raw=true)So the basic Flask application is running successfully. Note that in the terminal you can see something like:
+![flask_ml_output.png](../figures/Docker/flask_ml_output.png)So the basic Flask application is running successfully. Note that in the terminal you can see something like:
 
-![flask_ml_terminal.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_ml_terminal.png?raw=true)
+![flask_ml_terminal.png](../figures/Docker/flask_ml_terminal.png)
 
 
 
@@ -542,7 +542,7 @@ Now I would like to deploy the ML model with Flask and Docker.
 
 Here is the all files one needs for model deployment:
 
-![flask_Docker_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_1.png?raw=true)
+![flask_Docker_1.png](../figures/Docker/flask_Docker_1.png)
 
 The **requirements.txt** list the libraries should be installed (I do not specify the package versions):
 
@@ -603,11 +603,11 @@ Note that it is different from the local version. The server link to open the ap
 
 http://0.0.0.0:5000/: 
 
-![flask_Docker_input.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_input.png?raw=true)
+![flask_Docker_input.png](../figures/Docker/flask_Docker_input.png)
 
 Then it will be perfect to run the application. Here is the terminal screenshot:
 
-![flask_Docker_terminal.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Docker/flask_Docker_terminal.png?raw=true)
+![flask_Docker_terminal.png](../figures/Docker/flask_Docker_terminal.png)
 
 
 

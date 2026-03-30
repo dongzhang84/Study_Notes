@@ -197,9 +197,9 @@ cont_example3=exponential_inverse_trans(n=10000,mean=3)
 
 gives
 
-![inverse_CDF_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/inverse_CDF_1.png?raw=true)
+![inverse_CDF_1.png](../figures/statistics/inverse_CDF_1.png)
 
-![inverse_CDF_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/inverse_CDF_2.png?raw=true)
+![inverse_CDF_2.png](../figures/statistics/inverse_CDF_2.png)
 
 
 
@@ -211,7 +211,7 @@ gives
 
 #### Sample Mean
 
-![mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/mean.png?raw=true)
+![mean.png](../figures/statistics/mean.png)
 
 #### Standard Deviation
 
@@ -271,7 +271,7 @@ This is called [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_co
 
 ![{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/f9dac77577c2717cbb973388e4d6563915705742)
 
-![SE.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/SE.png?raw=true)
+![SE.png](../figures/statistics/SE.png)
 
 
 
@@ -342,25 +342,25 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 #### 2.3.1 Normal Distribution, Variance Known
 
-![CI_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_1.png?raw=true)
+![CI_1.png](../figures/statistics/CI_1.png)
 
 
 
 **Choice of Sample Size**
 
-![CI_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_2.png?raw=true)
+![CI_2.png](../figures/statistics/CI_2.png)
 
 
 
 **One-Sided Confidence Bounds**
 
-![CI_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_3.png?raw=true)
+![CI_3.png](../figures/statistics/CI_3.png)
 
 
 
 **Large-Sample Confidence Interval for μ**
 
-![CI_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_4.png?raw=true)
+![CI_4.png](../figures/statistics/CI_4.png)
 
 
 
@@ -372,7 +372,7 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 ***t* Confidence Interval **
 
-![CI_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_5.png?raw=true)
+![CI_5.png](../figures/statistics/CI_5.png)
 
 
 
@@ -380,21 +380,21 @@ The confidence interval (CI) is a range of values that’s likely to include a p
 
 **chi-squared distribution**
 
-![CI_6.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_6.png?raw=true)
+![CI_6.png](../figures/statistics/CI_6.png)
 
 
 
-![CI_7.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_7.png?raw=true)
+![CI_7.png](../figures/statistics/CI_7.png)
 
 
 
 #### 2.3.4 Confidence Interval for a Population Proportion
 
-![CI_8.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_8.png?raw=true)
+![CI_8.png](../figures/statistics/CI_8.png)
 
-![CI_9.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_9.png?raw=true)
+![CI_9.png](../figures/statistics/CI_9.png)
 
-![CI_10.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/CI_10.png?raw=true)
+![CI_10.png](../figures/statistics/CI_10.png)
 
 
 
@@ -474,7 +474,7 @@ A Z-test is any statistical test for which the distribution of the test statisti
 
 Samples come from a same population
 
-![z_test1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/z_test1.png?raw=true)
+![z_test1.png](../figures/statistics/z_test1.png)
 
 - **Step 1**: State the Null Hypothesis. 
 
@@ -574,7 +574,7 @@ Two-sample *t*-tests for a difference in mean involve **independent samples (unp
 
 This sort-of-paired observation happens when there is no presumption that all of the measurements are from the same population, and when *n* is the same for both samples.
 
-![t_test_2sample_paired.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/t_test_2sample_paired.png?raw=true)
+![t_test_2sample_paired.png](../figures/statistics/t_test_2sample_paired.png)
 
 
 
@@ -638,7 +638,7 @@ Under the null hypothesis $X^2$ Will have an approximate chi-square sampling dis
 
 The following [example](https://www.jmp.com/en_ch/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test.html):
 
-![chi_squred_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_2.png?raw=true)
+![chi_squred_2.png](../figures/statistics/chi_squred_2.png)
 
 ![img](https://www.jmp.com/en_ch/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test/_jcr_content/par/styledcontainer_2069/par/image_523413870.img.png/1623884285244.png)
 
@@ -650,7 +650,7 @@ The following [example](https://en.wikipedia.org/wiki/Chi-squared_test#Chi-squar
 
 **Example chi-squared test for categorical data**
 
-![chi_squred_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_3.png?raw=true)
+![chi_squred_3.png](../figures/statistics/chi_squred_3.png)
 
 
 
@@ -660,9 +660,9 @@ A chi-square test ( [Snedecor and Cochran, 1983](https://www.itl.nist.gov/div898
 
 [Reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda358.htm)
 
-![chi_squred_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_4.png?raw=true)
+![chi_squred_4.png](../figures/statistics/chi_squred_4.png)
 
-![chi_squred_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/chi_squred_5.png?raw=true)
+![chi_squred_5.png](../figures/statistics/chi_squred_5.png)
 
 
 
@@ -832,7 +832,7 @@ See [reference here](https://vitalflux.com/mean-square-error-r-squared-which-one
 
 R-squared and Adjust R-squared
 
-![R_squared.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/R_squared.png?raw=true)
+![R_squared.png](../figures/statistics/R_squared.png)
 
 
 
@@ -872,11 +872,11 @@ Here is a very good reference on regression test: [Linear Regression: Test and C
 
 **T-Test**
 
-![regress_t.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/regress_t.png?raw=true)
+![regress_t.png](../figures/statistics/regress_t.png)
 
 **F-Test**
 
-![regress_f.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/regress_f.png?raw=true)
+![regress_f.png](../figures/statistics/regress_f.png)
 
 Some references to read
 
@@ -938,13 +938,13 @@ https://en.wikipedia.org/wiki/One-way_analysis_of_variance
 
 Or from the textbook:
 
-![anova_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_1.png?raw=true)
+![anova_1.png](../figures/statistics/anova_1.png)
 
 
 
-![anova_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_2.png?raw=true)
+![anova_2.png](../figures/statistics/anova_2.png)
 
-![anova_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_3.png?raw=true)
+![anova_3.png](../figures/statistics/anova_3.png)
 
 
 
@@ -960,9 +960,9 @@ A two-way ANOVA with interaction tests three null hypotheses at the same time:
 
 https://www.itl.nist.gov/div898/handbook/prc/section4/prc437.htm
 
-![anova_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_4.png?raw=true)
+![anova_4.png](../figures/statistics/anova_4.png)
 
-![anova_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_5.png?raw=true)
+![anova_5.png](../figures/statistics/anova_5.png)
 
 
 
@@ -970,7 +970,7 @@ See this example: https://www.statology.org/two-way-anova/
 
 
 
-![anova_6.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/statistics/anova_6.png?raw=true)
+![anova_6.png](../figures/statistics/anova_6.png)
 
 https://www.youtube.com/watch?v=cNIIn9bConY
 
@@ -1077,7 +1077,7 @@ Marginal error (M) = Z score of the confidence interval * Standard Error (SE)
 
 Marginal error is function of proportion of success and sample size – means need to consider the proportion of success when deciding the sample size.
 
-![001.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/001.jpg?raw=true)
+![001.jpg](../figures/AB_testing/001.jpg)
 
 
 
@@ -1095,23 +1095,23 @@ See this [reference](https://towardsdatascience.com/bootstrapping-confidence-int
 
 Some basic equations/definitions:
 
-![002.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/002.jpg?raw=true)
+![002.jpg](../figures/AB_testing/002.jpg)
 
 #### How to Carry out Hypothesis Testing
 
 Pooled sample:
 
-![003.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/003.jpg?raw=true)
+![003.jpg](../figures/AB_testing/003.jpg)
 
-![004.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/004.jpg?raw=true)
+![004.jpg](../figures/AB_testing/004.jpg)
 
 One example: 
 
-![005.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/005.png?raw=true)
+![005.png](../figures/AB_testing/005.png)
 
 **Do we want to launch new features? ** 
 
-![006.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/006.png?raw=true)
+![006.png](../figures/AB_testing/006.png)
 
 
 
@@ -1127,19 +1127,19 @@ One example:
 
 
 
-![007.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/007.jpg?raw=true)
+![007.jpg](../figures/AB_testing/007.jpg)
 
 ![n equation](https://ceblog.s3.amazonaws.com/wp-content/uploads/2016/05/03115330/n-equation.png)
 
 #### Common test statistics
 
-![008.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/008.png?raw=true)
+![008.png](../figures/AB_testing/008.png)
 
 
 
 #### Metrics
 
-![009.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/009.jpg?raw=true)
+![009.jpg](../figures/AB_testing/009.jpg)
 
 Examples:
 
@@ -1149,9 +1149,9 @@ Examples:
 
 - Def #3 (Rate): Number of clicks divided by number of pageviews
 
-![010.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/010.jpg?raw=true)
+![010.jpg](../figures/AB_testing/010.jpg)
 
-![011.jpg](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/011.jpg?raw=true)
+![011.jpg](../figures/AB_testing/011.jpg)
 
 
 

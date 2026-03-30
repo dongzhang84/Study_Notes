@@ -33,7 +33,7 @@ WHERE condition;
 
 Check Operators in The WHERE Clause
 
-![sql_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/SQL/sql_1.png?raw=true)
+![sql_1.png](../figures/SQL/sql_1.png)
 
 ```python
 SELECT column1, column2, ...
@@ -174,7 +174,7 @@ FROM table_name
 WHERE columnN LIKE pattern;
 ```
 
-![sql_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/SQL/sql_2.png?raw=true)
+![sql_2.png](../figures/SQL/sql_2.png)
 
 ```sql
 SELECT * FROM Customers
@@ -220,7 +220,7 @@ WHERE column_name BETWEEN value1 AND value2;
 
 ### Join
 
-![sql_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/SQL/sql_3.png?raw=true)
+![sql_3.png](../figures/SQL/sql_3.png)
 
 ```sql
 SELECT column_name(s)

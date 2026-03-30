@@ -1,21 +1,24 @@
 # Study Notes
 
-## Data Science Review
+## Data Science
 
-- [Statistics Review](https://github.com/dongzhang84/Study_Notes/blob/main/Statistical_Review.md)
-- [SQL Review](https://github.com/dongzhang84/Study_Notes/blob/main/SQL_Review.md)
-- [ML Review](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Review.md)
-- [Python for DS](https://github.com/dongzhang84/Study_Notes/blob/main/Python_Notes.md)
-- [ML Pipeline for DS](https://github.com/dongzhang84/Study_Notes/blob/main/ML_Pipeline_Notes.md)
-- [Product Sense](https://github.com/dongzhang84/Study_Notes/blob/main/Product_Sense.md)
-- [Leetcode Notes](https://github.com/dongzhang84/Study_Notes/blob/main/Leetcode_notes.md)
-- [Notes_for_AMZ.md](https://github.com/dongzhang84/Study_Notes/blob/main/Notes_for_AMZ.md)
+- [Statistics Review](Data_Science/Statistical_Review.md)
+- [SQL Review](Data_Science/SQL_Review.md)
+- [ML Review](Data_Science/ML_Review.md)
+- [Python for DS](Data_Science/Python_Notes.md)
+- [ML Pipeline for DS](Data_Science/ML_Pipeline_Notes.md)
+- [Featuretools](Data_Science/FeatureTools_Notes.md): Automatic feature engineering
 
-## Tooling
+## Tools
 
-- [Featuretools](https://github.com/dongzhang84/Study_Notes/blob/main/FeatureTools_Notes.md): Automatic feature engineering
-- [Docker for DS](https://github.com/dongzhang84/Study_Notes/blob/main/Docker_Notes.md)
-- [Code Engine](https://github.com/dongzhang84/Study_Notes/blob/main/Code_Engine_Notes.md) : IBM Cloud Service for apps and jobs
+- [MLflow](Tools/MLflow_Notes.md): ML lifecycle management
+- [Docker for DS](Tools/Docker_Notes.md)
+- [Code Engine](Tools/Code_Engine_Notes.md): IBM Cloud Service for apps and jobs
+- [Github memo](Tools/Github_Notes.md)
+- [Tools Installation](Tools/Tools_Installation.md)
 
-## Others
-- [Github memo](https://github.com/dongzhang84/Study_Notes/blob/main/Github_Notes.md)
+## Interview Prep
+
+- [Leetcode Notes](Interview_Prep/Leetcode_notes.md)
+- [Product Sense](Interview_Prep/Product_Sense.md)
+- [Notes for AMZ](Interview_Prep/Notes_for_AMZ.md)

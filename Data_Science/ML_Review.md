@@ -313,7 +313,7 @@ Discriminative model learns the predictive distribution p(y|x) directly while ge
 
 Binary Classification:
 
-![confusion_matrix.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/confusion_matrix.png?raw=true)
+![confusion_matrix.png](../figures/ML/confusion_matrix.png)
 
 #### Accuracy, Precision, and Recall
 
@@ -577,7 +577,7 @@ The objective of the support vector machine algorithm is to find a hyperplane in
 
 #### Kernel
 
-![kernel_svm.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/kernel_svm.png?raw=true)
+![kernel_svm.png](../figures/ML/kernel_svm.png)
 
 
 
@@ -670,7 +670,7 @@ The raw RI score is then “adjusted for chance” into the ARI score using the 
 
 
 
-![K_mean.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/ML/K_mean.png?raw=true)
+![K_mean.png](../figures/ML/K_mean.png)
 
 
 

@@ -366,7 +366,7 @@ class Solution:
 
 DFS pseudocode: 
 
-![DFS_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Leetcode/DFS_1.png?raw=true)
+![DFS_1.png](../figures/Leetcode/DFS_1.png)
 
 
 
@@ -380,7 +380,7 @@ Output: 5
 Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
 ```
 
-![BFS_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/Leetcode/BFS_1.png?raw=true)
+![BFS_1.png](../figures/Leetcode/BFS_1.png)
 
 
 

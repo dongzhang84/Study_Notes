@@ -100,9 +100,9 @@ Go back to **Define Metrics** and **Test new features**.
 
 [reference](https://www.caseinterview.com/case_interview_frameworks.pdf)
 
-![product_sense1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/product_sense1.png?raw=true)
+![product_sense1.png](../figures/AB_testing/product_sense1.png)
 
-![product_sense2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/AB_testing/product_sense2.png?raw=true)
+![product_sense2.png](../figures/AB_testing/product_sense2.png)
 
 
 

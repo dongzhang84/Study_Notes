@@ -17,7 +17,7 @@ First of all, this is the Code Engine console
 
 https://cloud.ibm.com/codeengine/overview
 
-![console.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/console.png?raw=true)
+![console.png](../figures/code_engine/console.png)
 
 
 
@@ -91,7 +91,7 @@ There are two ways to create project.
 
 From the [Project page on the Code Engine console](https://cloud.ibm.com/codeengine/create/project), you can create it:
 
-![create_project.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/create_project.png?raw=true)
+![create_project.png](../figures/code_engine/create_project.png)
 
 Note that you need to select location, and select resource group. 
 
@@ -155,13 +155,13 @@ $ ibmcloud ce project delete --name myproject1 --hard -f
 
 From the console:
 
-![deploy_app_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_1.png?raw=true)
+![deploy_app_1.png](../figures/code_engine/deploy_app_1.png)
 
 There are two ways to deploy an app: (1) Run a container image. (2) Star with source code. 
 
 Selec tto run a container image, you will go to this page:
 
-![deploy_app_2.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_2.png?raw=true)
+![deploy_app_2.png](../figures/code_engine/deploy_app_2.png)
 
 Name the application as **myapp**, note that you need to select a project (for example, the created "hello_world"), and chose a **container image**, or from **source code**.
 
@@ -173,7 +173,7 @@ docker.io/ibmcom/codeengine
 
  Or do the **"Configure image"**:
 
-![deploy_app_3.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_3.png?raw=true)
+![deploy_app_3.png](../figures/code_engine/deploy_app_3.png)
 
 
 
@@ -181,11 +181,11 @@ The above is for public container image.
 
 Once you create the Application, you will have an app like this:
 
-![deploy_app_4.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_4.png?raw=true)
+![deploy_app_4.png](../figures/code_engine/deploy_app_4.png)
 
 Click the **"Open applicaiton URL"** on the top right of the above screenshot, you will have the application result like this:
 
-![deploy_app_5.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/deploy_app_5.png?raw=true)
+![deploy_app_5.png](../figures/code_engine/deploy_app_5.png)
 
 ### 3.2 Deploy an application from the CLI terminal
 
@@ -267,7 +267,7 @@ Follow [this link](https://cloud.ibm.com/docs/codeengine?topic=codeengine-deploy
 
 **Create and Submit a job from the console**
 
-![run_job_1.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/run_job_1.png?raw=true)
+![run_job_1.png](../figures/code_engine/run_job_1.png)
 
 - Job name: firstjob
 
@@ -386,7 +386,7 @@ Runtime:
 
 https://cloud.ibm.com/iam/apikeys
 
-![API_key.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/API_key.png?raw=true)
+![API_key.png](../figures/code_engine/API_key.png)
 
 Save your API key. 
 
@@ -411,7 +411,7 @@ OK
 
 And you can check you have the registry access:
 
-![myregistry.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/myregistry.png?raw=true)
+![myregistry.png](../figures/code_engine/myregistry.png)
 
 
 
@@ -427,7 +427,7 @@ Note that here **us.icr.io/mynamespace/hello_repo** is just a demonstartion. You
 
 Of course the console is better to select image and create job, like this:
 
-![create_job_image.png](https://github.com/dongzhang84/Study_Notes/blob/main/figures/code_engine/create_job_image.png?raw=true)
+![create_job_image.png](../figures/code_engine/create_job_image.png)
 
 Note that to configure image, you need to select:
 
@@ -639,7 +639,7 @@ Or
 
 Remember the example here:
 
-![img](https://raw.githubusercontent.com/dongzhang84/Study_Notes/main/figures/Docker/first_ml_1.png)
+![img](../figures/Docker/first_ml_1.png)
 
 where the code is here:
 
@@ -711,7 +711,7 @@ Recall the Iris Flask application with Docker:
 
 https://github.com/dongzhang84/Docker_tutorial/tree/main/first_flask_ML/flask_ML_Docker
 
-![flask_Docker_terminal.png](https://github.com/dongzhang84/Study_Notes/raw/main/figures/Docker/flask_Docker_terminal.png?raw=true)
+![flask_Docker_terminal.png](../figures/Docker/flask_Docker_terminal.png)
 
 The local command:
 

@@ -2,7 +2,7 @@
 
 > **How to use this**: A study sheet for US interviews. Part 1 walks through your resume/experience (interviewers dig here). Part 2 is a systematic ML knowledge review, basics → deep learning. Goal for each point: **explain the essence in 1–2 sentences + know when to use it** — not memorize formulas.
 >
-> ⚠️ **I need your input on 3 sections.** I don't have the specifics of your **Amazon**, **IBM**, and **AceRocket** work. I've built the interview-prep scaffolding below and marked exactly what to fill in with `[FILL IN]`. Give me 2–4 sentences on each and I'll turn them into tight, quantified talking points + predicted questions.
+> Part 1 is filled from your resume — real projects, real numbers, turned into talking points + likely follow-ups. Correct or add color where you remember more detail; the metrics here are the resume's, so keep them consistent with what you say out loud.
 
 ---
 
@@ -10,52 +10,62 @@
 
 > Principle: **every resume line must survive 3 layers of follow-up** — "What did you do?" → "Why did you choose that?" → "What would you do differently / how did you evaluate it?"
 
-## 1️⃣ Amazon — [role, e.g. Applied Scientist II]
+## 1️⃣ Amazon — Machine Learning Scientist (Feb 2022 – Jul 2025)
 
-**What to prepare** (fill in and I'll sharpen):
-- `[FILL IN]` What team / product? What was the business problem?
-- `[FILL IN]` What did you personally build/own? (model, pipeline, feature)
-- `[FILL IN]` What was the impact? (a metric — latency ↓, accuracy ↑, revenue, scale of data/traffic)
-- `[FILL IN]` What ML techniques / stack? (models, AWS services, distributed training, etc.)
+**One-line:** Owned fraud-detection ML end-to-end at Amazon scale — from LLM fine-tuning and multi-task deep models to the MLOps platform behind them.
 
-**How to frame it**: "large-scale, high-bar, production system, end-to-end owner." Be ready to talk:
-- Production ML lifecycle: data → features → training → evaluation → deployment → monitoring → iteration.
-- Online/offline metric mismatch, data/concept drift, A/B testing, model monitoring & rollback.
-- Scale: distributed training, feature stores, offline batch vs online inference.
-- ⚠️ Only talk about what you gained; never voice negativity about Amazon.
+**Projects to tell** (each is a STAR story — situation → action → result):
+- **LLM for fraud classification (LoRA).** Text-heavy fraud signals weren't well served by gradient-boosted trees. Fine-tuned LLMs with LoRA → **+15% F1 over GBDT**; shipped with **quantization** for production inference. *Why LoRA:* cheap to train/serve vs full fine-tune. *How evaluated:* F1 on held-out fraud, within a latency budget.
+- **20+ production fraud models.** Tree-based + deep nets (PyTorch), **millions of transactions/day** across global retail and Just Walk Out stores, **sub-100ms** inference. You owned the full lifecycle at scale.
+- **Multi-task learning model.** Consolidated several fraud tasks into one network — **shared embeddings + task-specific heads** → better generalization and **−60% training cost**. *Why MTL:* related tasks share signal, one model to maintain. *Risk you watched:* negative transfer, per-task metrics.
+- **Global unified model on SageMaker.** One unified model replaced per-region models → **Try Before You Buy non-payment fraud −50%** across US/EU/Japan.
+- **MLOps platform.** Data-drift detection, performance-degradation alerts, CI/CD retraining, feature store → **−70% maintenance overhead**.
 
-**Likely questions**: "Walk me through a model you shipped end to end." / "How did you measure success?" / "What broke in production and how did you handle it?"
+**Frame it as:** large-scale, high-bar, production owner, comfortable from modeling to monitoring. ⚠️ Only talk about what you gained; never voice negativity about Amazon.
 
-## 2️⃣ IBM — [role]
+**Likely questions + how to answer:**
+- *"Walk me through a model you shipped end to end."* → pick the unified model or MTL; go data → features → train → offline eval → deploy → monitor → iterate.
+- *"Why LoRA over full fine-tuning, and why beat GBDT?"* → memory/cost of LoRA; LLMs read text signals trees miss; quantify +15% F1.
+- *"Fraud drift / what broke in prod?"* → labels are delayed (chargebacks) + adversarial drift; drift detection + retraining triggers + rollback.
+- *"How did you set the decision threshold?"* → business cost curve + calibrated scores → target precision/recall, not 0.5.
 
-**What to prepare** (fill in):
-- `[FILL IN]` What group / product (e.g. Watson, Research, consulting)? Timeframe?
-- `[FILL IN]` Your main contribution and the problem it solved.
-- `[FILL IN]` Impact + techniques used.
+## 2️⃣ IBM — Data Scientist (Mar 2020 – Feb 2022)
 
-**How to frame it**: `[depends on your answers — likely "research-to-production" or "enterprise ML at scale"]`
+**One-line:** Enterprise data science across support operations — regression, NLP text classification, an early-warning classifier, and a recommender — shipped with MLOps and validated with real experiments.
 
-**Likely questions**: same 3-layer drill — what, why that approach, how evaluated.
+**Projects to tell:**
+- **Work-order duration regression.** Predicted onsite repair duration for all of IBM's technical-support onsite services; built MLOps to auto-update and retrain the model. *Be ready on:* feature choices, why regression, how validated.
+- **NPS Early Warning System.** Binary classifier on the support ticketing system → **+70% recall** over the previous model, validated with **A/B testing + hypothesis testing** (not just offline metrics). Your strongest "measured real impact" story — recall matters because the cost of missing an at-risk account is high.
+- **Text classification (Kenexa BrassRing email).** Linear SVC baseline → Watson NLC / ANN models. Shows baseline-first discipline and the classic NLP progression.
+- **Recommendation system for IBM business partners.** Rebuilt the data pipeline (**Spark, SQL**), added **time-series forecasting features** → **+30% recommendation relevance**.
+- **Mentored 6+ junior data scientists.** Seniority / leadership signal.
 
-## 3️⃣ AceRocket — AI education product (AP Calculus / SAT)
+**Frame it as:** enterprise ML with rigor — baseline-first, experiment-validated, MLOps-shipped.
 
-**What I know**: your own product — an AI-powered test-prep / practice platform (AP Calculus, SAT), question generation and recommendation. Live web app.
+**Likely questions + how to answer:**
+- *"How did you know the NPS model actually helped?"* → A/B + hypothesis test, +70% recall, what recall means here.
+- *"Why a Linear SVC baseline?"* → fast, interpretable, sets the bar before heavier models.
+- *"How did you evaluate the recommender?"* → relevance lift (+30%), offline ranking + business signal; time-series features captured trend/seasonality.
 
-**What to prepare** (fill in):
-- `[FILL IN]` What does the ML/AI actually do? (auto-generate questions? tag difficulty/topics? recommend next problem? grade?)
-- `[FILL IN]` What's under the hood — LLM + prompting? RAG over a question bank? A recommendation/adaptive-learning model?
-- `[FILL IN]` Any numbers — users, questions generated, accuracy of tagging, etc.
+## 3️⃣ AceRocket — Founder & CEO (2025 – Present)
 
-**Concepts to be ready to discuss** (this is your modern GenAI story — great fit for LLM/agentic roles):
-- LLM application architecture: prompt engineering, RAG (retrieval-augmented generation), function calling / agents, embedding search.
-- If it recommends next problems: this is an **adaptive learning / recommendation** problem — item difficulty, student ability estimation (think IRT / knowledge tracing), cold start.
-- 0-to-1 engineering: API orchestration, cost control, and the hard problem of **evaluating generated content** (no single ground truth → human eval / LLM-as-judge).
+**One-line:** Built and shipped an AI adaptive-learning SaaS for SAT/ACT/AP math 0→1 — full-stack product + LLM content pipeline + adaptive recommendation. This is your modern GenAI + product-ownership story, the best fit for LLM/agentic roles.
 
-**Likely questions**: "How do you know a generated question is good?" / "How would you personalize what problem to show next?" / "How do you keep costs / hallucinations under control?"
+**What the AI/ML actually does:**
+- **Adaptive recommendation.** Real-time performance analytics with topic/subtopic **mastery tracking** → recommends the next problem and surfaces knowledge gaps. Framed as ML: an **adaptive-learning / recommendation** problem — item difficulty + student ability (IRT / knowledge tracing), cold start for new students.
+- **LLM content pipeline.** A **1500+ problem** question bank with an automated **LLM-powered pipeline (RAG + prompt orchestration)** for content, plus behavioral analytics to optimize learning paths.
+- **Full-stack production SaaS.** Next.js/TypeScript frontend + Firebase backend (Auth, Firestore, Realtime DB); deployed and iterated on user analytics + tutoring feedback.
+
+**Frame it as:** 0→1 shipping, cost/quality control, and owning the whole stack.
+
+**Likely questions + how to answer:**
+- *"How do you know a generated question is good?"* → no single ground truth → tutor/human eval + LLM-as-judge + difficulty calibrated against real student performance.
+- *"How do you personalize the next problem?"* → per topic/subtopic mastery → adaptive recommendation; cold start → start from a diagnostic / popularity prior.
+- *"How do you control hallucination and cost?"* → RAG grounding on a vetted bank, prompt orchestration, validation checks on generated items, caching.
 
 ## 4️⃣ Research background (physics / astrophysics PhD) — keep it brief
 
-Astrophysics PhD (Ohio State, 2015), 13 first-author papers. Large-scale **numerical simulations** (radiation hydrodynamics, HPC/parallel computing), Monte Carlo, statistical modeling. **One-line pitch**: *"A physics PhD trained me to model messy problems from first principles, quantify uncertainty, and run large-scale numerical computation — the same instincts I bring to ML."* Don't over-explain the astrophysics; pivot quickly to the transferable skills (PDEs/numerical methods ↔ optimization & gradient descent; statistical mechanics ↔ softmax/max-entropy; Monte Carlo ↔ MCMC/Bayesian inference).
+Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-author), 1300+ citations. Large-scale **numerical simulations** (radiation hydrodynamics, HPC/parallel computing), Monte Carlo, statistical modeling. **One-line pitch**: *"A physics PhD trained me to model messy problems from first principles, quantify uncertainty, and run large-scale numerical computation — the same instincts I bring to ML."* Don't over-explain the astrophysics; pivot quickly to the transferable skills (PDEs/numerical methods ↔ optimization & gradient descent; statistical mechanics ↔ softmax/max-entropy; Monte Carlo ↔ MCMC/Bayesian inference).
 
 ---
 

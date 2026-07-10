@@ -231,10 +231,11 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 - **Why**: shared representation regularizes, improves generalization, and cuts training/serving cost vs one model per task.
 - **When it helps**: tasks share signal; it hurts when tasks conflict → **negative transfer**.
 - **Hard vs soft parameter sharing**; **loss weighting** matters (fixed, or uncertainty-based) so one task doesn't dominate.
+- **Mixture of Experts (MoE)** — a related conditional-computation architecture: many "expert" subnetworks + a **gating network** routes each input to a few experts. Experts can specialize by task/domain, and it scales capacity **without scaling per-token compute** (the idea behind modern sparse LLMs). 📄 [Sparsely-Gated MoE (Shazeer et al. 2017)](https://arxiv.org/abs/1701.06538) · [Switch Transformer (Fedus et al. 2021)](https://arxiv.org/abs/2101.03961)
 
 ## N. LLM Fine-Tuning (PEFT) & Inference Optimization
 
-- **LoRA**: freeze base weights, learn a **low-rank update** ΔW = B·A (rank r ≪ d) on chosen matrices; train only A,B → tiny % of params, small memory. Knobs: **rank r**, **alpha** (scaling), which layers (usually attention q/v).
+- **LoRA**: freeze base weights, learn a **low-rank update** ΔW = B·A (rank r ≪ d) on chosen matrices; train only A,B → tiny % of params, small memory. Forward: `h = Wx + (α/r)·BAx`; at inference you can merge BA into W so there's **no added latency**. Knobs: **rank r**, **alpha** (scaling), which layers (usually attention q/v). 📄 [LoRA paper (Hu et al. 2021)](https://arxiv.org/abs/2106.09685)
 - **QLoRA**: load the base model in **4-bit (NF4)** quantization, train LoRA adapters on top → fine-tune a big model on one GPU.
 - **Quantization**: INT8/INT4 to shrink memory and speed inference. **PTQ** (post-training: GPTQ, AWQ) vs **QAT** (quantization-aware, higher accuracy). Trade a little accuracy for latency/cost.
 - **Other PEFT**: prefix / prompt tuning, adapters.

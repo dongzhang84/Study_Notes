@@ -15,7 +15,7 @@
 **One-line:** Owned fraud-detection ML end-to-end at Amazon scale — from LLM fine-tuning and multi-task deep models to the MLOps platform behind them.
 
 **Projects to tell** (each is a STAR story — situation → action → result):
-- **LLM for fraud classification (LoRA).** Text-heavy fraud signals weren't well served by gradient-boosted trees. Fine-tuned LLMs with LoRA → **+15% F1 over GBDT**; shipped with **quantization** for production inference. *Why LoRA:* cheap to train/serve vs full fine-tune. *How evaluated:* F1 on held-out fraud, within a latency budget.
+- **LLM for fraud classification (LoRA).** Text-heavy fraud signals weren't well served by gradient-boosted trees. Fine-tuned LLMs with LoRA → **+15% F1 over GBDT**; shipped with **quantization** for production inference. *Why LoRA:* cheap to train/serve vs full fine-tune. *How evaluated:* F1 on held-out fraud, within a latency budget. 📄 LoRA: [original paper — Hu et al. 2021](https://arxiv.org/abs/2106.09685) · [plain-English explainer](https://www.digitalocean.com/community/tutorials/lora-low-rank-adaptation-llms-explained)
 - **20+ production fraud models.** Tree-based + deep nets (PyTorch), **millions of transactions/day** across global retail and Just Walk Out stores, **sub-100ms** inference. You owned the full lifecycle at scale.
 - **Multi-task learning model.** Consolidated several fraud tasks into one network — **shared embeddings + task-specific heads** → better generalization and **−60% training cost**. *Why MTL:* related tasks share signal, one model to maintain. *Risk you watched:* negative transfer, per-task metrics.
 - **Global unified model on SageMaker.** One unified model replaced per-region models → **Try Before You Buy non-payment fraud −50%** across US/EU/Japan.
@@ -235,7 +235,7 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 
 ## N. LLM Fine-Tuning (PEFT) & Inference Optimization
 
-- **LoRA**: freeze base weights, learn a **low-rank update** ΔW = B·A (rank r ≪ d) on chosen matrices; train only A,B → tiny % of params, small memory. Forward: `h = Wx + (α/r)·BAx`; at inference you can merge BA into W so there's **no added latency**. Knobs: **rank r**, **alpha** (scaling), which layers (usually attention q/v). 📄 [LoRA paper (Hu et al. 2021)](https://arxiv.org/abs/2106.09685)
+- **LoRA**: freeze base weights, learn a **low-rank update** ΔW = B·A (rank r ≪ d) on chosen matrices; train only A,B → tiny % of params, small memory. Forward: `h = Wx + (α/r)·BAx`; at inference you can merge BA into W so there's **no added latency**. Knobs: **rank r**, **alpha** (scaling), which layers (usually attention q/v).
 - **QLoRA**: load the base model in **4-bit (NF4)** quantization, train LoRA adapters on top → fine-tune a big model on one GPU.
 - **Quantization**: INT8/INT4 to shrink memory and speed inference. **PTQ** (post-training: GPTQ, AWQ) vs **QAT** (quantization-aware, higher accuracy). Trade a little accuracy for latency/cost.
 - **Other PEFT**: prefix / prompt tuning, adapters.

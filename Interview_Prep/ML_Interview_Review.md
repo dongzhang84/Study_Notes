@@ -116,7 +116,7 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 - Elastic Net: L1 + L2.
 - Geometric intuition: L1's diamond constraint has corners on the axes → sparse solutions.
 
-**Decision Trees** — split on features using information gain (entropy) or Gini impurity. Pros: interpretable, no scaling needed, captures non-linearity. Cons: overfits easily, unstable.
+**Decision Trees** — split on features using information gain (entropy) or Gini impurity. Impurity: **Gini** = 1−Σpᵢ², **entropy** = −Σpᵢ·log pᵢ (both measure node purity; Gini is faster, results usually similar). **Information gain** = parent impurity − weighted child impurity. Pros: interpretable, no scaling needed, captures non-linearity. Cons: overfits easily, unstable.
 
 **Random Forest** — bagging (bootstrap sampling) + random feature subsets, trees vote. Reduces variance, resists overfitting. Random features **decorrelate** the trees, which is what makes the ensemble work.
 
@@ -125,11 +125,22 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 - vs Random Forest: RF is parallel and reduces variance; GBDT is sequential and reduces bias — usually higher accuracy but more prone to overfitting and needs tuning.
 - XGBoost engineering: regularization term, 2nd-order Taylor approximation, parallelism, handles missing values. The king of tabular data.
 
-**SVM** — finds the maximum-margin hyperplane. The kernel trick maps data to higher dimensions for non-linear classification (RBF kernel most common). Support vectors are the points that define the boundary.
+**Ensembles: Bagging vs Boosting (must-know)**
+- **Bootstrapping**: sample the training set *with replacement* to build many varied subsets.
+- **Bagging** (e.g. Random Forest): models trained **in parallel** on bootstrap samples, then average/vote → reduces **variance**; base models are independent.
+- **Boosting** (e.g. AdaBoost, GBDT/XGBoost): models trained **sequentially**, each one fits the previous ensemble's errors/residuals → reduces **bias**; base models are dependent.
+- **Stacking**: a meta-model learns to combine the base models (see U).
+
+**SVM** — finds the maximum-margin hyperplane. The kernel trick maps data to higher dimensions for non-linear classification (RBF kernel most common). Support vectors are the points that define the boundary. **Hard margin** (no violations, separable data only) vs **soft margin** (slack variables + penalty **C**, trading margin width against misclassifications). Loss = **hinge loss**.
 
 **kNN** — lazy learner, votes among the k nearest neighbors. Needs scaling, sensitive to the curse of dimensionality, slow at inference.
 
 **Naive Bayes** — Bayes' theorem + conditional independence assumption. Fast and effective for text classification.
+
+**Generative vs Discriminative (concept, high frequency)**
+- **Generative** models P(x|y) and P(y) (the joint) → can *generate* data, handle missing features, work with few labels. Examples: Naive Bayes, GMM, LDA, HMM. Bayes' rule converts it to P(y|x).
+- **Discriminative** models P(y|x) directly → usually more accurate for pure classification. Examples: logistic regression, SVM, most neural nets.
+- Rule of thumb (Ng & Jordan 2001): generative (NB) converges faster with little data but to a higher error floor; discriminative (LogReg) needs more data but reaches a lower error.
 
 ## D. Unsupervised Learning (your strength — review well)
 
@@ -155,7 +166,7 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 
 ## F. Optimization
 
-**Gradient descent family**: Batch / Mini-batch / SGD — full-batch is stable but slow / mini-batch is the common compromise / SGD is noisy per sample. Learning rate: too high diverges, too low is slow — use schedules / warmup. Momentum, RMSprop, **Adam** (momentum + adaptive LR, the deep-learning default).
+**Gradient descent family**: Batch / Mini-batch / SGD — full-batch is stable but slow / mini-batch is the common compromise / SGD is noisy per sample. Learning rate: too high diverges, too low is slow — use schedules / warmup. Momentum (accumulates a velocity to smooth updates). Adaptive-LR lineage: **Adagrad** (per-parameter LR from accumulated squared gradients → LR keeps shrinking, can stall on long runs) → **RMSprop** (exponential moving average fixes that decay) → **Adam** (RMSprop + momentum, the deep-learning default).
 
 **Convex vs non-convex**: logistic/linear/SVM are convex with a global optimum; neural nets are non-convex — SGD finds a "good enough" local optimum.
 
@@ -292,6 +303,7 @@ Astrophysics PhD (Ohio State, 2015), 17 peer-reviewed publications (15 first-aut
 - **Ensembling beyond bagging/boosting**: **stacking** (a meta-model learns to combine base models).
 - **Cross-validation variants**: **stratified** (keep class ratios), **group** (no leakage across a user/group), **time-series** (rolling).
 - **Loss functions to know**: focal (imbalance), **Huber** (robust regression), hinge (SVM).
+- **KL divergence**: D_KL(P‖Q) = Σ P·log(P/Q) — an *asymmetric* 'distance' between distributions. Shows up in drift detection (MLOps), decision-tree information gain, VAEs, and the KL penalty in RLHF / reasoning-RL.
 
 ---
 

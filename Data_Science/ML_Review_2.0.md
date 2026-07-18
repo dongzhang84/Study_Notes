@@ -1,37 +1,41 @@
 
-
 # Machine Learning Review
 
-Traditional Machine Learning
+> **Table of Contents** — click any item to jump. (GitHub also shows an auto-generated outline via the ☰ button at the top-right of the rendered file.)
 
-- [Logistic regression](###logistic-regression), [Gradient Descent and other Methods](#Gradient-Descent-and-other-Methods), [Overfitting vs Underfitting](#overfitting-vs-underfitting)[Classification Metrics](#classification-metrics), [Generative VS Discriminative Models](#generative-vs-discriminative-models), [Classification Metrics](#classification-metrics), [Imbalanced Data](#imbalanced-data), [Cross Validation](#cross-validation)
-- [Decision Tree](#Decision-Tree), [Random Forest](#random-forest), [Bagging and Boosting](#bootstrapping-bagging-and-boosting)
-- [Support Vector Machine](#support-vector-machine), [kNN](#knn-code)
-- [Compare Difference Models](): [outliers]
+### [Traditional Machine Learning](#traditional-machine-learning)
 
-- [Unsupervised Learning](#unsupervised-learning), [k-Mean](#k-mean-clustering)
+- [Logistic Regression](#logistic-regression)
+  - [Multiple Classes (Softmax)](#multiple-classes)
+- [Gradient Descent and other Methods](#gradient-descent-and-other-methods)
+  - [Stochastic Gradient Descent](#stochastic-gradient-descent)
+  - [Vanishing / Exploding Gradient](#vanishing-gradient-and-exploding-gradient)
+  - [Adagrad](#adagrad-gradient-descent) · [Adam](#adam-adaptive-moment-estimation)
+- [Overfitting vs Underfitting](#overfitting-vs-underfitting)
+- [Bias vs Variance Trade-Off](#bias-vs-variance-trade-off)
+- [Generative vs Discriminative Models](#generative-vs-discriminative-models)
+- [Classification Metrics](#classification-metrics) — [Accuracy / Precision / Recall](#accuracy-precision-and-recall), [AUC](#auc)
+- [Cross Validation](#cross-validation) · [Imbalanced Data](#imbalanced-data)
+- [Decision Tree](#decision-tree) — [Gini / Information Gain](#metrics), [KL Divergence](#kullbackleibler-divergence)
+- [Random Forest](#random-forest) — [Parameters](#randomforestclassifier-parameters), [Advantages](#advantages-of-random-forest)
+- [Bootstrapping, Bagging and Boosting](#bootstrapping-bagging-and-boosting) — [Bagging vs Boosting](#bagging-vs-boosting)
+- [Support Vector Machine](#support-vector-machine) — [Loss](#loss-function-of-svm), [Margins](#maximal-margin-classifier), [Kernel](#kernel)
+- [kNN (code)](#knn-code)
+- [Compare Different Models](#compare-different-models) — [Outliers](#outliers)
+- [Unsupervised Learning](#unsupervised-learning) — [Clustering Metrics](#metrics-for-clustering), [k-Means](#k-mean-clustering)
 
+### [Deep Learning](#deep-learning)
 
+- [Basic Conceptions / Parameters](#deep-learning-conceptionsparameters)
+- [Back Propagation](#back-propagation)
+- [Convolutional Neural Networks](#convolutional-neural-networks)
+- [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
 
-Deep Learning 
+### [Recommendation System](#recommendation-system)
 
-- [Deep Learning](#deep-learning): [Basic Parameters](#deep-learning-conceptionsparameters), [Back Propagation](#back-propagation)
-- [CNN]
-- [RNN](#recurrent-neural-networks), [LSTM](#long-short-term-memory)
-
-
-
-Natural Language Processing
-
-
-
-Recommendation System
-
-- [Recommendation System](#recommendation-system), [Content-Based](#content-based-recommendation), [Collaborative-Filtering](#collaborative-filtering-algorithm)
-- [Matrix Factorization](#matrix-factorization), [Singular Value Decomposition](#singular-value-decomposition)
-
-
-
+- [Content-Based](#content-based-recommendation) · [Collaborative Filtering](#collaborative-filtering-algorithm)
+- [Matrix Factorization](#matrix-factorization) · [Singular Value Decomposition](#singular-value-decomposition)
+- [Recommendation System Design](#recommendation-system-design)
 
 
 ## Traditional Machine Learning
@@ -78,11 +82,25 @@ Instead, using MLE in logistic regression as the cost function is convex.
 
 **L1 and L2 Regularization**
 
-![img](https://miro.medium.com/v2/resize:fit:1400/1*vwhvjVQiEgLcssUPX6vxig.png)
+**L1 (Lasso)** — constrained form and equivalent penalized form:
 
-* L1: Lasso
+$$
+\begin{aligned}
+J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_1 \le C \\[4pt]
+J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{m}\sum_{j=1}^{n} |\theta_j|
+\end{aligned}
+$$
 
-* L2: Ridge
+**L2 (Ridge)** — constrained form and equivalent penalized form:
+
+$$
+\begin{aligned}
+J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_2^2 \le C^2 \\[4pt]
+J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{2m}\sum_{j=1}^{n} \theta_j^2
+\end{aligned}
+$$
+
+where $m$ = number of samples, $n$ = number of features, and $\lambda$ is the regularization strength.
 
 
 

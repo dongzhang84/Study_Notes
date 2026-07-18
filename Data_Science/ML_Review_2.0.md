@@ -46,11 +46,11 @@ An example of Logistic model:
 
 For more general consideration:
 
-![img](https://miro.medium.com/max/2000/1*WP6xNUvfdtHgjcjnOnQETw.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*WP6xNUvfdtHgjcjnOnQETw.png)
 
-![img](https://miro.medium.com/max/1712/1*P1Wu65ic5sK8Jhq8Sl-WxQ.png)
+![img](https://miro.medium.com/v2/resize:fit:1712/1*P1Wu65ic5sK8Jhq8Sl-WxQ.png)
 
-![img](https://miro.medium.com/max/2404/1*LFUX3uWdiZ-UTc5Vl4RVjA.png)
+![img](https://miro.medium.com/v2/resize:fit:2404/1*LFUX3uWdiZ-UTc5Vl4RVjA.png)
 
 
 
@@ -58,11 +58,11 @@ For more general consideration:
 
 **Cost Function**
 
-![img](https://miro.medium.com/max/2000/1*PT9WfxoXFuE-2yiYrEu9Zg.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*PT9WfxoXFuE-2yiYrEu9Zg.png)
 
 Or written as:
 
-![img](https://miro.medium.com/max/1400/1*dEZxrHeNGlhfNt-JyRLpig.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*dEZxrHeNGlhfNt-JyRLpig.png)
 
 
 
@@ -78,7 +78,7 @@ Instead, using MLE in logistic regression as the cost function is convex.
 
 **L1 and L2 Regularization**
 
-![img](https://miro.medium.com/max/1400/1*vwhvjVQiEgLcssUPX6vxig.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*vwhvjVQiEgLcssUPX6vxig.png)
 
 * L1: Lasso
 
@@ -112,9 +112,9 @@ The standard (unit) softmax function {\displaystyle \sigma :\mathbb {R} ^{K}\to 
 
 See this [reference](https://medium.com/@lachlanmiller_52885/machine-learning-week-1-cost-function-gradient-descent-and-univariate-linear-regression-8f5fe69815fd):
 
-![img](https://miro.medium.com/max/1400/1*WGHn1L4NveQ85nn3o7Dd2g.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*WGHn1L4NveQ85nn3o7Dd2g.png)
 
-![img](https://miro.medium.com/max/1020/1*QKHtyn4Rr-0R-s0an1eSsA.png)
+![img](https://miro.medium.com/v2/resize:fit:1020/1*QKHtyn4Rr-0R-s0an1eSsA.png)
 
 
 
@@ -188,19 +188,19 @@ A common solution is to change the error derivative before back propagating it.
 
 **gᵢ = ∇J(θᵢ),** where g is the gradient wrt to each parameter θᵢ.
 
-![img](https://miro.medium.com/max/1400/0*vc6jz6eb2qLSz5jw.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*vc6jz6eb2qLSz5jw.png)
 
 
 
 #### Adam (Adaptive Moment Estimation)
 
-![img](https://miro.medium.com/max/1400/0*xSBhhUgJuxAbu_PQ.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*xSBhhUgJuxAbu_PQ.png)
 
-![img](https://miro.medium.com/max/1400/0*d4z6F204ady2leqB.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*d4z6F204ady2leqB.png)
 
 
 
-![img](https://miro.medium.com/max/670/0*zKIH-3pSjclDGfM5.png)
+![img](https://miro.medium.com/v2/resize:fit:670/0*zKIH-3pSjclDGfM5.png)
 
 
 
@@ -219,13 +219,13 @@ A common solution is to change the error derivative before back propagating it.
 
 3. **Data augmentation**
 
-   ![img](https://miro.medium.com/max/1400/0*JgP_DG16kisBAdpS.png)
+   ![img](https://miro.medium.com/v2/resize:fit:1400/0*JgP_DG16kisBAdpS.png)
 
 4. **Feature selection**
-   ![img](https://miro.medium.com/max/1400/0*N3paES6IzJ8oyh9p)
+   ![img](https://miro.medium.com/v2/resize:fit:1400/0*N3paES6IzJ8oyh9p)
 
 5. **L1 / L2 regularization**
-   ![img](https://miro.medium.com/max/1400/0*69Jgv2gwAPtOIwNh.png)
+   ![img](https://miro.medium.com/v2/resize:fit:1400/0*69Jgv2gwAPtOIwNh.png)
 
    ![L1 and L2 Regularization - YouTube](https://i.ytimg.com/vi/QNxNCgtWSaY/maxresdefault.jpg)
    
@@ -238,7 +238,7 @@ A common solution is to change the error derivative before back propagating it.
 6. **Remove layers / number of units per layer**
 
 7. **Dropout**
-   ![img](https://miro.medium.com/max/1400/0*YCofAkhSErYvlpRT.png)
+   ![img](https://miro.medium.com/v2/resize:fit:1400/0*YCofAkhSErYvlpRT.png)
 
    **Difference between Dropout and Pruning**:
 
@@ -249,7 +249,7 @@ A common solution is to change the error derivative before back propagating it.
 
 8. **Early stopping**
 
-   ![img](https://miro.medium.com/max/920/0*b4lf4K0PswVYZXdI.png)
+   ![img](https://miro.medium.com/v2/resize:fit:920/0*b4lf4K0PswVYZXdI.png)
 
 
 
@@ -267,13 +267,13 @@ Variance is the variability of model prediction for a given data point or a valu
 
 
 
-![img](https://miro.medium.com/max/580/1*BtpFTBrGaQNE3TvU-0EVSQ.png)
+![img](https://miro.medium.com/v2/resize:fit:580/1*BtpFTBrGaQNE3TvU-0EVSQ.png)
 
-![img](https://miro.medium.com/max/1158/1*e7VaoBh5apjaM2p4afkFyg.png)
+![img](https://miro.medium.com/v2/resize:fit:1158/1*e7VaoBh5apjaM2p4afkFyg.png)
 
-![img](https://miro.medium.com/max/936/1*xwtSpR_zg7j7zusa4IDHNQ.png)
+![img](https://miro.medium.com/v2/resize:fit:936/1*xwtSpR_zg7j7zusa4IDHNQ.png)
 
-![img](https://miro.medium.com/max/1124/1*RQ6ICt_FBSx6mkAsGVwx8g.png)
+![img](https://miro.medium.com/v2/resize:fit:1124/1*RQ6ICt_FBSx6mkAsGVwx8g.png)
 
 
 
@@ -325,11 +325,11 @@ Precision = (TP)/(TP+FP)
 Recall = (TP)/(TP+FN)
 ```
 
-![img](https://miro.medium.com/max/752/0*-lZUM_HsT3RsgePy.png)
+![img](https://miro.medium.com/v2/resize:fit:752/0*-lZUM_HsT3RsgePy.png)
 
 Weighted F1 score:
 
-![img](https://miro.medium.com/max/744/0*Z4hC6C2XOV192LgE)
+![img](https://miro.medium.com/v2/resize:fit:744/0*Z4hC6C2XOV192LgE)
 
 #### AUC
 
@@ -341,7 +341,7 @@ Sensitivty = TPR(True Positive Rate)= Recall = TP/(TP+FN)
 
 
 
-![img](https://miro.medium.com/max/1400/0*Dkq9YLJM5t8k0Fcb)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*Dkq9YLJM5t8k0Fcb)
 
 
 
@@ -351,7 +351,7 @@ Sensitivty = TPR(True Positive Rate)= Recall = TP/(TP+FN)
 
 ### Cross Validation
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/K-fold_cross_validation_EN.svg/2880px-K-fold_cross_validation_EN.svg.png)
+![k-fold cross validation](../figures/ML/kfold_cross_validation.svg)
 
 
 
@@ -401,7 +401,7 @@ A decision tree is a map of the possible outcomes of a series of related choices
 
 [reference](https://towardsdatascience.com/understanding-random-forest-58381e0602d2)
 
-![img](https://miro.medium.com/max/960/0*Od-Z7H_-t_ipQDV6)
+![img](https://miro.medium.com/v2/resize:fit:960/0*Od-Z7H_-t_ipQDV6)
 
 
 
@@ -414,9 +414,9 @@ A decision tree is a map of the possible outcomes of a series of related choices
 
 
 
-![img](https://miro.medium.com/max/1400/1*l16JAxJR5MJea12jut-FLQ.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*l16JAxJR5MJea12jut-FLQ.png)
 
-![img](https://miro.medium.com/max/1400/1*5vlUF8FRR6flPPWK4wt-Kw.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*5vlUF8FRR6flPPWK4wt-Kw.png)
 
 
 
@@ -485,11 +485,11 @@ A decision tree is a map of the possible outcomes of a series of related choices
 
 Bootstrapping is any test or metric that uses random sampling with replacement (e.g. mimicking the sampling process), and falls under the broader class of resampling methods. Bootstrapping assigns measures of accuracy (bias, variance, confidence intervals, prediction error, etc.) to sample estimates. This technique allows estimation of the sampling distribution of almost any statistic using random sampling methods.
 
-![img](https://miro.medium.com/max/1400/1*lWnm3eJVe3uo95OcSg5jUA@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*lWnm3eJVe3uo95OcSg5jUA@2x.png)
 
 
 
-![img](https://miro.medium.com/max/2000/1*7XVde-bMixpKf8mj61qhJQ@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*7XVde-bMixpKf8mj61qhJQ@2x.png)
 
 #### Bagging: Bootstrapping Aggregation
 
@@ -497,25 +497,25 @@ we can **fit a weak learner for each of these samples and finally aggregate them
 
 Assuming that we have L bootstrap samples (approximations of L independent datasets) of size B denoted
 
-![img](https://miro.medium.com/max/2000/1*nu96mPOtrXosJYgWA4Rvbw@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*nu96mPOtrXosJYgWA4Rvbw@2x.png)
 
 we can fit L almost independent weak learners (one on each dataset)
 
-![img](https://miro.medium.com/max/708/1*Dn6v09t5_L5cvADxJHJzHQ@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:708/1*Dn6v09t5_L5cvADxJHJzHQ@2x.png)
 
 and then aggregate them into some kind of averaging process in order to get an ensemble model with a lower variance. For example, we can define our strong model such that
 
-![img](https://miro.medium.com/max/2000/1*jEbEHwvfUzAUI00muEAVGw@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*jEbEHwvfUzAUI00muEAVGw@2x.png)
 
 
 
 **Bagging Demo**:
 
-![img](https://miro.medium.com/max/2000/1*zAMhmZ78a6V9W878zfk5eA@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*zAMhmZ78a6V9W878zfk5eA@2x.png)
 
 **Bagging Example: Random Forest**: Demo:
 
-![img](https://miro.medium.com/max/2000/1*_B5HX2whbTs3DS8M6YBD_w@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*_B5HX2whbTs3DS8M6YBD_w@2x.png)
 
 
 
@@ -523,13 +523,13 @@ and then aggregate them into some kind of averaging process in order to get an e
 
 Being **mainly focused at reducing bias**
 
-![img](https://miro.medium.com/max/2000/1*VGSoqefx3Rz5Pws6qpLwOQ@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*VGSoqefx3Rz5Pws6qpLwOQ@2x.png)
 
 Depending on the last step:
 
-![img](https://miro.medium.com/max/892/1*YUJJ5nDbhBi0SkFeccsTxQ@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:892/1*YUJJ5nDbhBi0SkFeccsTxQ@2x.png)
 
-![img](https://miro.medium.com/max/2000/1*6JbndZ2zY2c4QqS73HQ47g@2x.png)
+![img](https://miro.medium.com/v2/resize:fit:2000/1*6JbndZ2zY2c4QqS73HQ47g@2x.png)
 
 #### Bagging vs Boosting
 
@@ -554,7 +554,7 @@ The objective of the support vector machine algorithm is to find a hyperplane in
 
 ![\ell(y) = \max(0, 1 + \max_{y \ne t} \mathbf{w}_y \mathbf{x} - \mathbf{w}_t \mathbf{x})](https://wikimedia.org/api/rest_v1/media/math/render/svg/81d2483d6d6511dc0fce3afb627f0c58c84a205d)
 
-![img](https://miro.medium.com/max/1400/1*GQAd28bK8LKOL2kOOFY-tg.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*GQAd28bK8LKOL2kOOFY-tg.png)
 
 
 
@@ -650,7 +650,7 @@ Another commonly used metric is the Rand Index. It computes a similarity measure
 
 The formula of the Rand Index is:
 
-![img](https://miro.medium.com/max/1378/0*6i-kV9SM-IHKgrxm)
+![img](https://miro.medium.com/v2/resize:fit:1378/0*6i-kV9SM-IHKgrxm)
 
 
 
@@ -658,7 +658,7 @@ The formula of the Rand Index is:
 
 The raw RI score is then “adjusted for chance” into the ARI score using the following scheme:
 
-![img](https://miro.medium.com/max/1346/0*o_4xLVQEl5H--ZAR)
+![img](https://miro.medium.com/v2/resize:fit:1346/0*o_4xLVQEl5H--ZAR)
 
 **4. Calinski-Harabasz Index**
 
@@ -715,7 +715,7 @@ An epoch is a term used in machine learning that refers to the number of passes 
 
 The term “dropout” refers to dropping out units (both hidden and visible) in a neural network.
 
-![img](https://miro.medium.com/max/1400/0*YCofAkhSErYvlpRT.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*YCofAkhSErYvlpRT.png)
 
 
 
@@ -729,7 +729,7 @@ The forward and backward phases are repeated from some epochs. In each epoch, th
 2. The network error is calculated.
 3. The error is propagated from the output layer to the input layer.
 
-![Backpropagation passes architecture](https://i1.wp.com/neptune.ai/wp-content/uploads/Backpropagation-passes-architecture.png?resize=434%2C414&ssl=1)
+![Backpropagation on a simple neural network](../figures/ML/backpropagation_simple_nn.png)
 
 
 
@@ -817,41 +817,41 @@ Matrix factorization is a simple embedding model. Given the feedback matrix A �
 
 [reference](https://medium.datadriveninvestor.com/how-to-built-a-recommender-system-rs-616c988d64b2)
 
-![img](https://miro.medium.com/max/1400/1*bhsECuKCTSHOGapubG33JA.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*bhsECuKCTSHOGapubG33JA.png)
 
 Optimization: 
 
-![img](https://miro.medium.com/max/594/1*vZ5PAfak7r7tT26acWSU4A.png)
+![img](https://miro.medium.com/v2/resize:fit:594/1*vZ5PAfak7r7tT26acWSU4A.png)
 
 [reference2](https://towardsdatascience.com/recommendation-system-matrix-factorization-d61978660b4b)
 
 Matrix P represents the association between a user and the features while matrix Q represents the association between an item and the features. We can get the prediction of a rating of an item by the calculation of the dot product of the two vectors corresponding to u_i and d_j.
 
-![img](https://miro.medium.com/max/1224/1*bfag_KKHukbSaGBCVpp1Rg.png)
+![img](https://miro.medium.com/v2/resize:fit:1224/1*bfag_KKHukbSaGBCVpp1Rg.png)
 
 To get two entities of both P and Q, we need to initialize the two matrices and calculate the difference of the product named as matrix M. Next, we minimize the difference through the iterations. The method is called **gradient descent**, aiming at finding a local minimum of the difference.
 
-![img](https://miro.medium.com/max/60/1*VyRq_SNz7CTIPW10fCRWgg.png?q=20)
+![img](https://miro.medium.com/v2/resize:fit:60/1*VyRq_SNz7CTIPW10fCRWgg.png?q=20)
 
-![img](https://miro.medium.com/max/1400/1*VyRq_SNz7CTIPW10fCRWgg.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*VyRq_SNz7CTIPW10fCRWgg.png)
 
 To minimize the error, the gradient is able to minimize the error, and therefore we differentiate the above equation with respect to these two variables separately.
 
-![img](https://miro.medium.com/max/60/1*zQ2qL_eUdw6Y_nXPItou9A.png?q=20)
+![img](https://miro.medium.com/v2/resize:fit:60/1*zQ2qL_eUdw6Y_nXPItou9A.png?q=20)
 
-![img](https://miro.medium.com/max/1400/1*zQ2qL_eUdw6Y_nXPItou9A.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*zQ2qL_eUdw6Y_nXPItou9A.png)
 
 From the gradient, the mathematic formula can be updated for both p_ik and q_kj. a is the step to reach the minimum while the gradient is calculated, and a is usually set with a small value.
 
-![img](https://miro.medium.com/max/60/1*aIKCpXdgFRUec5DrFllZpQ.png?q=20)
+![img](https://miro.medium.com/v2/resize:fit:60/1*aIKCpXdgFRUec5DrFllZpQ.png?q=20)
 
-![img](https://miro.medium.com/max/1400/1*aIKCpXdgFRUec5DrFllZpQ.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*aIKCpXdgFRUec5DrFllZpQ.png)
 
 From the above equation, p’_ik and q’_kj can both be updated through iterations until the error converges to its minimum.
 
-![img](https://miro.medium.com/max/60/1*cEUZ-2rCfC2TQ_v7gReAag.png?q=20)
+![img](https://miro.medium.com/v2/resize:fit:60/1*cEUZ-2rCfC2TQ_v7gReAag.png?q=20)
 
-![img](https://miro.medium.com/max/1400/1*cEUZ-2rCfC2TQ_v7gReAag.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/1*cEUZ-2rCfC2TQ_v7gReAag.png)
 
 
 
@@ -865,9 +865,9 @@ Enter Singular Value Decomposition (SVD). SVD is a fancy way to factorizing a ma
 
 
 
-![img](https://miro.medium.com/max/736/1*nTRaEa_ZlXcFKXT-rxQHIg.png)
+![img](https://miro.medium.com/v2/resize:fit:736/1*nTRaEa_ZlXcFKXT-rxQHIg.png)
 
-![img](https://miro.medium.com/max/1400/0*arP2ZshqOKgXss-h.png)
+![img](https://miro.medium.com/v2/resize:fit:1400/0*arP2ZshqOKgXss-h.png)
 
 
 

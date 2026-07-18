@@ -18,7 +18,7 @@ Personal notes on machine learning, data science, LLM engineering, and US tech i
 
 - [Statistics Review](Data_Science/Statistical_Review.md)
 - [SQL Review](Data_Science/SQL_Review.md)
-- [ML Review](Data_Science/ML_Review.md)
+- [ML Review](Data_Science/ML_Review_2.0.md) ([v1.0 archive](Data_Science/ML_Review_1.0.md))
 - [Python for DS](Data_Science/Python_Notes.md)
 - [ML Pipeline for DS](Data_Science/ML_Pipeline_Notes.md)
 - [Featuretools](Data_Science/FeatureTools_Notes.md): Automatic feature engineering

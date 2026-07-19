@@ -863,13 +863,8 @@ Self-attention is **permutation-invariant** — it has no notion of order on its
 
 ![Transformer full architecture](https://upload.wikimedia.org/wikipedia/commons/3/34/Transformer%2C_full_architecture.png)
 
-*Diagram: Wikimedia Commons, dvgodoy, CC BY 4.0.*
-
 Encoder–decoder stack of identical blocks. One block =
-
-$$
-\text{Multi-Head Attention} \to \text{Add \& Norm} \to \text{FFN} \to \text{Add \& Norm}
-$$
+**Multi-Head Attention → Add & Norm → FFN → Add & Norm**.
 
 - **Residual connection + LayerNorm** around each sub-layer — stabilizes training of deep stacks. **LayerNorm (not BatchNorm)** because sequence lengths vary and batch statistics are unstable/leaky across time steps.
 - **FFN**: two linear layers with a ReLU/GELU in between, applied position-wise — adds non-linear capacity.

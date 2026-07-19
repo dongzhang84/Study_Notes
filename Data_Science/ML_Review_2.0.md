@@ -32,6 +32,7 @@
 - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
 - [Transformer](#transformer) — [Architecture](#architecture), [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding), [Encoder vs Decoder & Masking](#encoder-vs-decoder--masking), [KV Cache](#kv-cache), [Inference Performance](#inference-performance)
+- [LLM Training](#llm-training) — [Tokenization](#why-tokenization), [SFT](#sft-supervised-fine-tuning), [Full SFT vs LoRA vs QLoRA](#full-sft-vs-lora-vs-qlora)
 
 ### [Recommendation System](#recommendation-system)
 
@@ -918,6 +919,46 @@ At each decode step, the new token must attend to the K and V of **all previous 
 - **Why/where masking?** In the decoder's self-attention, to prevent attending to future positions during autoregressive generation.
 - **Self-attention complexity & fix?** $O(n^2)$; long-sequence variants use sparse / linear attention (Longformer, Performer) to reduce it.
 - **BERT vs GPT?** BERT = encoder-only, bidirectional, masked-LM pretraining (good for understanding). GPT = decoder-only, causal/autoregressive (good for generation).
+
+
+
+### LLM Training
+
+#### Why Tokenization?
+
+Models operate on a fixed vocabulary of integer IDs, not raw text — tokenization maps text ↔ token IDs. Modern LLMs use **subword** tokenization (BPE / WordPiece / SentencePiece) as a middle ground:
+
+| | Vocab size | Sequence length | OOV (unseen words) |
+|---|---|---|---|
+| **Word-level** | huge | short | breaks (unknown word → `<UNK>`) |
+| **Char-level** | tiny | very long → expensive $O(S^2)$ attention | none, but weak per-token meaning |
+| **Subword** ✅ | fixed & moderate | reasonable | none — rare words split into known pieces |
+
+- **BPE**: start from characters, iteratively merge the most frequent adjacent pair until the target vocab size is reached.
+- Subword handles morphology and rare words gracefully while keeping the vocab (and softmax output layer) a fixed, manageable size.
+
+#### SFT (Supervised Fine-Tuning)
+
+Fine-tune a pretrained model on curated **(prompt, response)** pairs with plain next-token **cross-entropy** loss — teaches instruction-following / task format.
+
+- **Can you add a KL term?** Vanilla SFT has **no KL** — it's just cross-entropy. KL is the hallmark of the **preference/RL stage** (RLHF-PPO, DPO), where you penalize the policy for drifting too far from a frozen reference model to prevent reward hacking and catastrophic forgetting.
+- You *can* add a KL-to-base regularizer during SFT to reduce forgetting, but it's uncommon — SFT usually controls drift via limited epochs, data quality, and PEFT (LoRA) instead.
+
+#### Full SFT vs LoRA vs QLoRA
+
+| | **Full SFT** | **LoRA** | **QLoRA** |
+|---|---|---|---|
+| What trains | all weights | small low-rank adapters $W + BA$ (base frozen) | LoRA adapters on a **4-bit (NF4) quantized** frozen base |
+| Trainable params | 100% | < 1% | < 1% |
+| Memory | highest (optimizer states ≈ 2× params for Adam, + grads + activations) | low (no optimizer state for frozen weights) | lowest (4-bit base) — e.g. fine-tune 65B on one 48 GB GPU |
+| Checkpoint | full model per task | tiny adapter, swappable | tiny adapter |
+| Quality | best, highest capacity | near-full on most tasks | ≈ LoRA, small quantization trade-off |
+
+**How to choose:**
+
+- **Full SFT** — when you have the compute and need max quality / a large domain shift (or continued pretraining).
+- **LoRA** — limited GPUs, or many tasks sharing one base with swappable adapters (the common instruction-tuning choice).
+- **QLoRA** — most memory-constrained; fit the largest model that otherwise wouldn't, at a small dequant-compute and quantization cost.
 
 
 

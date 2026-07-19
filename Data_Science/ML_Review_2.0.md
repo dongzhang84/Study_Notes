@@ -405,7 +405,7 @@ Sensitivty = TPR(True Positive Rate)= Recall = TP/(TP+FN)
 
 How to deal with Imbalanced data?
 
--  Oversample minority class
+- Oversample minority class
 
 - Undersample majority class
 
@@ -584,10 +584,6 @@ Depending on the last step:
 
 
 
-
-
-
-
 ### Support Vector Machine
 
 The objective of the support vector machine algorithm is to find a hyperplane in an N-dimensional space(N — the number of features) that distinctly classifies the data points.
@@ -743,11 +739,9 @@ Algorithm [reference](https://realpython.com/k-means-clustering-python/)
 See [this reference](https://medium.com/mlearning-ai/difference-between-the-batch-size-and-epoch-in-neural-network-2d2cb2a16734)
 
 
-
 **Batch Size**
 
 Batch size is **the number of samples that usually pass through the neural network at one time**. The batch size commonly referred to as mini-batch.
-
 
 
 **Epoch**
@@ -926,7 +920,16 @@ At each decode step, the new token must attend to the K and V of **all previous 
 
 #### Why Tokenization?
 
-Models operate on a fixed vocabulary of integer IDs, not raw text — tokenization maps text ↔ token IDs. Modern LLMs use **subword** tokenization (BPE / WordPiece / SentencePiece) as a middle ground:
+Models operate on a fixed vocabulary of integer IDs, not raw text — tokenization maps text ↔ token IDs. Modern LLMs use **subword** tokenization (BPE / WordPiece / SentencePiece) as a middle ground.
+
+**Ordinary word splitting vs tokenization — example.** Take `"unhappiness"`:
+
+- **Word splitting** (what humans/NLP normally do): just split on spaces/punctuation → one whole word `["unhappiness"]`. If that exact word wasn't in the vocab, the model has never seen it → `<UNK>`.
+- **Subword tokenization** (what an LLM does): break it into known reusable pieces → e.g. `["un", "happi", "ness"]`, each mapped to an integer ID like `[281, 15039, 1467]`. The model has seen `un-`, `-ness` in thousands of other words, so it still understands a word it never saw as a whole.
+
+So tokenization is *not* the same as splitting into words — it splits text into **subword units** the model has learned, which is why it never runs out of vocabulary. (A tokenizer may also split one Chinese word into several tokens, or merge a common word into a single token.)
+
+Modern LLMs use subword tokenization as a middle ground between word-level and character-level:
 
 | | Vocab size | Sequence length | OOV (unseen words) |
 |---|---|---|---|
@@ -941,6 +944,7 @@ Models operate on a fixed vocabulary of integer IDs, not raw text — tokenizati
 
 Fine-tune a pretrained model on curated **(prompt, response)** pairs with plain next-token **cross-entropy** loss — teaches instruction-following / task format.
 
+- **What is KL?** **KL divergence** $D_{\text{KL}}(P \parallel Q) = \sum_x P(x)\log\frac{P(x)}{Q(x)}$ measures how far one probability distribution $P$ is from a reference $Q$ (0 = identical, larger = more different; see [KL Divergence](#kullbackleibler-divergence)). Here $P$ = the model being trained, $Q$ = a frozen reference model — a KL term says "don't drift too far from the reference."
 - **Can you add a KL term?** Vanilla SFT has **no KL** — it's just cross-entropy. KL is the hallmark of the **preference/RL stage** (RLHF-PPO, DPO), where you penalize the policy for drifting too far from a frozen reference model to prevent reward hacking and catastrophic forgetting.
 - You *can* add a KL-to-base regularizer during SFT to reduce forgetting, but it's uncommon — SFT usually controls drift via limited epochs, data quality, and PEFT (LoRA) instead.
 

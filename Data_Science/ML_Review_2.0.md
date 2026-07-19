@@ -107,6 +107,16 @@ where $m$ = number of samples, $n$ = number of features, and $\lambda$ is the re
 
 
 
+**Geometric Intuition — why L1 gives sparse solutions**
+
+![L1 and L2 Regularization - YouTube](https://i.ytimg.com/vi/QNxNCgtWSaY/maxresdefault.jpg)
+
+You can see in the left graph (L1) that the loss contours are likely to hit the constraint region on one of the **corners**, on the axes. This implies that $\beta_1 = 0$ → **L1 produces sparse weights (feature selection)**. On the right (L2), where the constraint region is round due to the quadratic constraint, the contours hit it at more arbitrary places, so weights are **shrunk toward but rarely exactly zero**.
+
+![img](https://miro.medium.com/v2/resize:fit:1400/0*69Jgv2gwAPtOIwNh.png)
+
+
+
 **Gradient Descent**
 
 ![img](https://i.stack.imgur.com/zgdnk.png)
@@ -245,17 +255,8 @@ A common solution is to change the error derivative before back propagating it.
 4. **Feature selection**
    ![img](https://miro.medium.com/v2/resize:fit:1400/0*N3paES6IzJ8oyh9p)
 
-5. **L1 / L2 regularization**
-   ![img](https://miro.medium.com/v2/resize:fit:1400/0*69Jgv2gwAPtOIwNh.png)
+5. **L1 / L2 regularization** — adds a penalty on the weights so the model can't over-fit noise. L1 (Lasso) drives some weights to exactly zero (sparse / feature selection), L2 (Ridge) shrinks weights smoothly. See the dedicated [L1 and L2 Regularization](#l1-and-l2-regularization) section for formulas and geometric intuition.
 
-   ![L1 and L2 Regularization - YouTube](https://i.ytimg.com/vi/QNxNCgtWSaY/maxresdefault.jpg)
-   
-   
-   
-   You can see that in the left graph that the function is likely to hit the possible value space on one of the corners, on the axes. This implies that β1 is 0. On the right, where the space of allowed values is round due to the quadratic constraint, the function can hit the possible space in more arbitrary places. 
-   
-   
-   
 6. **Remove layers / number of units per layer**
 
 7. **Dropout**

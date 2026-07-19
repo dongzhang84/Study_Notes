@@ -7,6 +7,7 @@
 
 - [Logistic Regression](#logistic-regression)
   - [Multiple Classes (Softmax)](#multiple-classes)
+- [L1 and L2 Regularization](#l1-and-l2-regularization)
 - [Gradient Descent and other Methods](#gradient-descent-and-other-methods)
   - [Stochastic Gradient Descent](#stochastic-gradient-descent)
   - [Vanishing / Exploding Gradient](#vanishing-gradient-and-exploding-gradient)
@@ -80,24 +81,26 @@ Instead, using MLE in logistic regression as the cost function is convex.
 
 
 
-**L1 and L2 Regularization**
+### L1 and L2 Regularization
 
 **L1 (Lasso)** — constrained form and equivalent penalized form:
 
 $$
-\begin{aligned}
-J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_1 \le C \\[4pt]
-J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{m}\sum_{j=1}^{n} |\theta_j|
-\end{aligned}
+J(\theta) = \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_1 \le C
+$$
+
+$$
+J(\theta) = \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{m}\sum_{j=1}^{n} |\theta_j|
 $$
 
 **L2 (Ridge)** — constrained form and equivalent penalized form:
 
 $$
-\begin{aligned}
-J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_2^2 \le C^2 \\[4pt]
-J(\theta) &= \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{2m}\sum_{j=1}^{n} \theta_j^2
-\end{aligned}
+J(\theta) = \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) \quad \text{s.t.}\quad \lVert\theta\rVert_2^2 \le C^2
+$$
+
+$$
+J(\theta) = \frac{1}{m}\sum_{i=1}^{m} \text{Cost}\big(h_\theta(x^{(i)}), y^{(i)}\big) + \frac{\lambda}{2m}\sum_{j=1}^{n} \theta_j^2
 $$
 
 where $m$ = number of samples, $n$ = number of features, and $\lambda$ is the regularization strength.

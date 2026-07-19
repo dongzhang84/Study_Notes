@@ -31,7 +31,7 @@
 - [Back Propagation](#back-propagation)
 - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
-- [Transformer](#transformer) — [Architecture](#architecture), [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding)
+- [Transformer](#transformer) — [Architecture](#architecture), [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding), [Encoder vs Decoder & Masking](#encoder-vs-decoder--masking), [KV Cache](#kv-cache), [Inference Performance](#inference-performance)
 
 ### [Recommendation System](#recommendation-system)
 
@@ -881,6 +881,36 @@ Self-attention is **permutation-invariant** — it has no notion of order on its
 | Long-range dependency | Direct, $O(1)$ path | Decays over distance | Grows with depth |
 | Complexity / layer | $O(n^2 d)$ | $O(n d^2)$ | $O(k n d^2)$ |
 | Inductive bias | Weak (needs more data) | Sequential | Locality |
+
+#### Encoder vs Decoder & Masking
+
+| | **Encoder** (BERT) | **Decoder** (GPT) |
+|---|---|---|
+| Self-attention | **Bidirectional** — every token sees all tokens | **Causal** — token *i* sees only ≤ *i* |
+| Mask | none | lower-triangular (future = $-\infty$ before softmax) |
+| Direction | non-autoregressive, one pass | autoregressive, token by token |
+| Use case | understanding / embedding | generation |
+
+- **Why the causal mask?** An autoregressive LM predicts the next token, so at training time each position must **not** see future tokens — otherwise it "cheats" and train/inference behavior diverges. The mask sets future-position logits to $-\infty$ so softmax gives them 0 weight.
+- **Encoder–decoder** models (T5, translation) use both: bidirectional encoder + causal decoder + cross-attention from decoder → encoder outputs.
+
+#### KV Cache
+
+At each decode step, the new token must attend to the K and V of **all previous tokens**. Those past K/V never change → **cache them** instead of recomputing every step.
+
+- **Why cache K/V but not Q?** Each step produces only **one new query** (for the current token); past queries are used once and never needed again. K/V, in contrast, are reused by **every future step** — so you cache exactly the reused part.
+- **Why does only the decoder benefit?** The encoder is **non-autoregressive** — it processes the whole sequence in a single forward pass, so there's no step-to-step reuse to cache. The decoder generates token by token; caching turns each step's attention cost from $O(S)$-recompute into a lookup.
+- **Cost:** KV cache memory ≈ $2 \times \text{layers} \times \text{heads} \times d_\text{head} \times S \times \text{batch} \times \text{bytes}$ — the dominant memory cost in long-context serving (motivates MQA/GQA and PagedAttention).
+
+#### Inference Performance
+
+- **Why is attention $O(S^2)$?** $QK^\top$ makes every one of $S$ queries dot with every one of $S$ keys → an $S \times S$ score matrix; softmax and the $\times V$ all run over it. Compute $O(S^2 d)$, memory $O(S^2)$ — quadratic in sequence length.
+- **Why is Transformer inference memory-bound?** What matters is **arithmetic intensity** (FLOPs per byte read from HBM). During decode (small batch, one token at a time) the matmuls degrade to GEMV: you stream the entire weight set + KV cache from HBM but do very few FLOPs per byte, so compute units idle waiting on bandwidth. On the **roofline** this sits left of the ridge point = bandwidth-bound. (Prefill / training = large-batch GEMM, high intensity → compute-bound.)
+- **MFU vs HFU** — utilization = achieved FLOPs ÷ hardware peak FLOPs:
+  - **MFU** (Model FLOPs Utilization): counts only the **model-defined** FLOPs, excludes recomputation. The "useful work" metric (from PaLM); LLM training typically ~30–55%.
+  - **HFU** (Hardware FLOPs Utilization): counts **all** FLOPs actually executed, including activation recompute (gradient checkpointing). So **HFU ≥ MFU**; the gap is redundant work.
+- **Kernel fusion:** merge several small ops (or the whole attention) into **one CUDA kernel** → fewer kernel launches and fewer HBM round-trips (intermediates stay in SRAM/registers). **FlashAttention** is the canonical example: never materializes the $S \times S$ matrix in HBM — compute stays $O(S^2)$ but memory drops to $O(S)$, directly attacking the memory-bound bottleneck.
+- **CUDA graph:** record a sequence of kernel launches once and **replay it as one graph**, eliminating per-kernel CPU launch overhead. Big win in decode, where each step launches many tiny memory-bound kernels and CPU launch latency would otherwise dominate.
 
 #### Quick Q&A
 

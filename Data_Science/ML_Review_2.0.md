@@ -31,6 +31,7 @@
 - [Back Propagation](#back-propagation)
 - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
+- [Transformer](#transformer) — [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding), [Architecture](#architecture)
 
 ### [Recommendation System](#recommendation-system)
 
@@ -822,6 +823,76 @@ RNN --> because the gradient of the loss function decays exponentially with time
 ![A gated recurrent unit neural network.](https://colah.github.io/posts/2015-08-Understanding-LSTMs/img/LSTM3-var-GRU.png)
 
 
+
+### Transformer
+
+[reference: *Attention Is All You Need*](https://arxiv.org/abs/1706.03762). Replaces recurrence entirely with attention → fully parallel over the sequence and models any-distance dependencies directly.
+
+#### Self-Attention
+
+Each input embedding is projected into three vectors via learned matrices $W_Q, W_K, W_V$:
+
+- **Query (Q)** — what this token is looking for
+- **Key (K)** — what each token offers
+- **Value (V)** — the actual content passed on
+
+**Scaled Dot-Product Attention:**
+
+$$
+\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+$$
+
+- **Why divide by $\sqrt{d_k}$?** For large $d_k$ the dot products grow large in magnitude, pushing softmax into regions with tiny gradients (saturation). Scaling keeps the variance ~1 and gradients healthy. *(common interview question)*
+- **Complexity:** $O(n^2 d)$ in sequence length $n$ — quadratic, the bottleneck for long sequences.
+
+#### Multi-Head Attention
+
+Run $h$ attention "heads" in parallel, each with its own $W_Q, W_K, W_V$ on a lower-dim subspace ($d_k = d_{\text{model}}/h$), then concatenate and project.
+
+- **Why multiple heads?** Each head can attend to a different type of relationship / subspace (e.g. syntax vs. long-range coreference). Single-head averaging would blur these.
+- Total cost ≈ single full-dim head (dims are split, not duplicated).
+
+#### Positional Encoding
+
+Self-attention is **permutation-invariant** — it has no notion of order on its own. So position information is injected into the input embeddings:
+
+- **Sinusoidal** (original paper): fixed $\sin/\cos$ of different frequencies — generalizes to unseen lengths.
+- **Learned** positional embeddings (used by BERT/GPT) — a trainable vector per position.
+
+#### Architecture
+
+![Transformer full architecture](https://upload.wikimedia.org/wikipedia/commons/3/34/Transformer%2C_full_architecture.png)
+
+*Diagram: Wikimedia Commons, dvgodoy, CC BY 4.0.*
+
+Encoder–decoder stack of identical blocks. One block =
+
+$$
+\text{Multi-Head Attention} \to \text{Add \& Norm} \to \text{FFN} \to \text{Add \& Norm}
+$$
+
+- **Residual connection + LayerNorm** around each sub-layer — stabilizes training of deep stacks. **LayerNorm (not BatchNorm)** because sequence lengths vary and batch statistics are unstable/leaky across time steps.
+- **FFN**: two linear layers with a ReLU/GELU in between, applied position-wise — adds non-linear capacity.
+- **Three attention flavors:**
+  - *Encoder self-attention* — each token attends to all tokens (bidirectional).
+  - *Decoder masked self-attention* — **masked** so a position can't see future tokens (preserves autoregressive property).
+  - *Cross-attention* — decoder queries attend to encoder outputs (K, V from encoder).
+
+#### Transformer vs RNN vs CNN
+
+| | **Transformer** | **RNN / LSTM** | **CNN** |
+|---|---|---|---|
+| Parallelism | Full (over sequence) | Sequential (slow) | Full |
+| Long-range dependency | Direct, $O(1)$ path | Decays over distance | Grows with depth |
+| Complexity / layer | $O(n^2 d)$ | $O(n d^2)$ | $O(k n d^2)$ |
+| Inductive bias | Weak (needs more data) | Sequential | Locality |
+
+#### Quick Q&A
+
+- **Why scale by $\sqrt{d_k}$?** Keep softmax out of the saturated, low-gradient regime.
+- **Why/where masking?** In the decoder's self-attention, to prevent attending to future positions during autoregressive generation.
+- **Self-attention complexity & fix?** $O(n^2)$; long-sequence variants use sparse / linear attention (Longformer, Performer) to reduce it.
+- **BERT vs GPT?** BERT = encoder-only, bidirectional, masked-LM pretraining (good for understanding). GPT = decoder-only, causal/autoregressive (good for generation).
 
 
 

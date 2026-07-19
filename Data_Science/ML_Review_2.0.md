@@ -71,6 +71,14 @@ Or written as:
 
 
 
+**Gradient Descent**
+
+Same log-loss cost, with the parameter update rule for logistic regression:
+
+![img](https://i.stack.imgur.com/zgdnk.png)
+
+
+
 
 
 **Why MSE doesn’t work with logistic regression?**
@@ -125,12 +133,6 @@ where $m$ = number of samples, $n$ = number of features, and $\lambda$ is the re
 You can see in the left graph (L1) that the loss contours are likely to hit the constraint region on one of the **corners**, on the axes. This implies that $\beta_1 = 0$ → **L1 produces sparse weights (feature selection)**. On the right (L2), where the constraint region is round due to the quadratic constraint, the contours hit it at more arbitrary places, so weights are **shrunk toward but rarely exactly zero**.
 
 ![img](https://miro.medium.com/v2/resize:fit:1400/0*69Jgv2gwAPtOIwNh.png)
-
-
-
-**Gradient Descent**
-
-![img](https://i.stack.imgur.com/zgdnk.png)
 
 
 

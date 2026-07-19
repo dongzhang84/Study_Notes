@@ -942,10 +942,19 @@ Modern LLMs use subword tokenization as a middle ground between word-level and c
 
 #### SFT (Supervised Fine-Tuning)
 
-Fine-tune a pretrained model on curated **(prompt, response)** pairs with plain next-token **cross-entropy** loss — teaches instruction-following / task format.
+**Where it fits.** The LLM pipeline is **Pretraining** (next-token prediction on a huge web corpus → a *base model* that only continues text) → **SFT** (teach it to follow instructions / chat format) → **Alignment** (RLHF / DPO, not covered here).
 
-- **Can you add a KL term?** Vanilla SFT has **no KL** — it's just cross-entropy. A **KL** term (KL divergence measures how far the trained model's distribution is from a frozen reference model's — see [KL Divergence](#kullbackleibler-divergence)) is the hallmark of the **preference/RL stage** (RLHF-PPO, DPO), where you penalize the policy for drifting too far from the reference to prevent reward hacking and catastrophic forgetting.
-- You *can* add a KL-to-base regularizer during SFT to reduce forgetting, but it's uncommon — SFT usually controls drift via limited epochs, data quality, and PEFT (LoRA) instead.
+**What & why.** A base model predicts the next token but doesn't "answer" a request. SFT fine-tunes it on demonstration **(instruction, response)** pairs so it learns the assistant's behavior and output format. It is plain **supervised learning** — no reinforcement learning involved.
+
+**Loss.** Next-token **cross-entropy**, usually computed **only on the response tokens** (the prompt is masked out so the model isn't trained to generate the question itself).
+
+**Demonstration data — where it comes from:**
+
+1. **Human-written** — annotators write the ideal response for each instruction (e.g. InstructGPT). Highest quality, most expensive.
+2. **Reformatted existing datasets** — wrap standard NLP tasks (translation, QA, summarization) in instruction templates (FLAN, T0). Cheap and large.
+3. **Distilled / synthetic** — generate responses from a stronger model (Self-Instruct, Alpaca uses GPT outputs). Fast and cheap, but limited by the teacher model's quality/license.
+
+> **Can you add a KL term?** Not in vanilla SFT — it's just cross-entropy. A KL penalty (keeping the model close to a reference — see [KL Divergence](#kullbackleibler-divergence)) belongs to the **alignment stage** (RLHF-PPO / DPO), not SFT.
 
 #### Full SFT vs LoRA vs QLoRA
 

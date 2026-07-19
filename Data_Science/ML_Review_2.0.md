@@ -6,7 +6,6 @@
 ### [Traditional Machine Learning](#traditional-machine-learning)
 
 - [Logistic Regression](#logistic-regression)
-  - [Multiple Classes (Softmax)](#multiple-classes)
 - [L1 and L2 Regularization](#l1-and-l2-regularization)
 - [Gradient Descent and other Methods](#gradient-descent-and-other-methods)
   - [Stochastic Gradient Descent](#stochastic-gradient-descent)
@@ -23,6 +22,7 @@
 - [Support Vector Machine](#support-vector-machine) — [Loss](#loss-function-of-svm), [Margins](#maximal-margin-classifier), [Kernel](#kernel)
 - [kNN (code)](#knn-code)
 - [Compare Different Models](#compare-different-models) — [Outliers](#outliers)
+- [Multiple Classes (Softmax)](#multiple-classes)
 - [Unsupervised Learning](#unsupervised-learning) — [Clustering Metrics](#metrics-for-clustering), [k-Means](#k-mean-clustering)
 
 ### [Deep Learning](#deep-learning)
@@ -156,22 +156,6 @@ You can see in the left graph (L1) that the loss contours are likely to hit the 
 - **Standardize features first.** The penalty depends on weight magnitude, so features must be on the same scale or the penalty is applied unfairly.
 - **Don't regularize the bias/intercept** $\theta_0$ — it only shifts the output, penalizing it just biases predictions.
 - L1 = "Lasso", L2 = "Ridge"; L2 is also called **weight decay** in deep learning.
-
-
-
-### Multiple Classes
-
-Metrics: **Softmax**
-
-The standard (unit) softmax function {\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}![{\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50f02bd665042635a9aabb2485a4e2d0cfa6458e)is defined by the formula
-
-![{\displaystyle \sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}}\ \ \ \ {\text{ for }}i=1,\dotsc ,K{\text{ and }}\mathbf {z} =(z_{1},\dotsc ,z_{K})\in \mathbb {R} ^{K}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ab3ef6ba51afd36c1d2baf06540022053b2dca73)
-
-![PyTorch Lecture 09: Softmax Classifier - YouTube](https://i.ytimg.com/vi/lvNdl7yg4Pg/maxresdefault.jpg)
-
-
-
-
 
 
 
@@ -688,7 +672,15 @@ Tree-based Algorithms do not need normalization/scaling.
 
 
 
+### Multiple Classes
 
+Metrics: **Softmax**
+
+The standard (unit) softmax function {\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}![{\displaystyle \sigma :\mathbb {R} ^{K}\to [0,1]^{K}}](https://wikimedia.org/api/rest_v1/media/math/render/svg/50f02bd665042635a9aabb2485a4e2d0cfa6458e)is defined by the formula
+
+![{\displaystyle \sigma (\mathbf {z} )_{i}={\frac {e^{z_{i}}}{\sum _{j=1}^{K}e^{z_{j}}}}\ \ \ \ {\text{ for }}i=1,\dotsc ,K{\text{ and }}\mathbf {z} =(z_{1},\dotsc ,z_{K})\in \mathbb {R} ^{K}.}](https://wikimedia.org/api/rest_v1/media/math/render/svg/ab3ef6ba51afd36c1d2baf06540022053b2dca73)
+
+![PyTorch Lecture 09: Softmax Classifier - YouTube](https://i.ytimg.com/vi/lvNdl7yg4Pg/maxresdefault.jpg)
 
 
 

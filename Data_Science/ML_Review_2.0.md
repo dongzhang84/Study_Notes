@@ -83,6 +83,17 @@ Instead, using MLE in logistic regression as the cost function is convex.
 
 ### L1 and L2 Regularization
 
+**Why regularize?**
+
+Regularization adds a penalty on the size of the weights to the loss function. The motivation:
+
+- **Prevent overfitting.** Unconstrained models can fit noise by using large weights. Penalizing $\lVert\theta\rVert$ forces a simpler model that generalizes better.
+- **Bias–variance trade-off.** Regularization *increases bias slightly but reduces variance* — usually a net win on test error. It is a way to move along the [bias–variance trade-off](#bias-vs-variance-trade-off).
+- **Handle multicollinearity / ill-posed problems.** When features are correlated or $n > m$, the un-regularized solution is unstable; the penalty makes it well-posed.
+- **Feature selection (L1).** L1 zeros out weak features automatically.
+
+The strength $\lambda$ controls the trade-off: $\lambda = 0$ → no regularization (may overfit); $\lambda \to \infty$ → all weights shrink toward 0 (underfit).
+
 **L1 (Lasso)** — constrained form and equivalent penalized form:
 
 $$
@@ -120,6 +131,29 @@ You can see in the left graph (L1) that the loss contours are likely to hit the 
 **Gradient Descent**
 
 ![img](https://i.stack.imgur.com/zgdnk.png)
+
+
+
+**Summary — L1 vs L2**
+
+| | **L1 (Lasso)** | **L2 (Ridge)** |
+|---|---|---|
+| Penalty | $\sum_j \lvert\theta_j\rvert$ | $\sum_j \theta_j^2$ |
+| Effect on weights | drives some to **exactly 0** (sparse) | shrinks all **toward 0**, rarely exactly 0 |
+| Feature selection | **Yes** (built-in) | No |
+| Solution | can be non-unique | unique (strictly convex) |
+| Differentiable at 0 | No (uses sub-gradient / coordinate descent) | Yes (smooth) |
+| Correlated features | tends to pick **one**, zero the rest | shrinks them **together** |
+| Bayesian prior | Laplace | Gaussian |
+| Robust to outliers | more | less |
+
+**Elastic Net** combines both: $\lambda_1\lVert\theta\rVert_1 + \lambda_2\lVert\theta\rVert_2^2$ — gets L1's sparsity while keeping L2's stability with correlated features.
+
+**Practical notes (interview traps):**
+
+- **Standardize features first.** The penalty depends on weight magnitude, so features must be on the same scale or the penalty is applied unfairly.
+- **Don't regularize the bias/intercept** $\theta_0$ — it only shifts the output, penalizing it just biases predictions.
+- L1 = "Lasso", L2 = "Ridge"; L2 is also called **weight decay** in deep learning.
 
 
 

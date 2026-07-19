@@ -31,7 +31,7 @@
 - [Back Propagation](#back-propagation)
 - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
-- [Transformer](#transformer) — [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding), [Architecture](#architecture)
+- [Transformer](#transformer) — [Architecture](#architecture), [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding)
 
 ### [Recommendation System](#recommendation-system)
 
@@ -828,6 +828,20 @@ RNN --> because the gradient of the loss function decays exponentially with time
 
 [reference: *Attention Is All You Need*](https://arxiv.org/abs/1706.03762). Replaces recurrence entirely with attention → fully parallel over the sequence and models any-distance dependencies directly.
 
+#### Architecture
+
+![Transformer full architecture](https://upload.wikimedia.org/wikipedia/commons/3/34/Transformer%2C_full_architecture.png)
+
+Encoder–decoder stack of identical blocks. One block =
+**Multi-Head Attention → Add & Norm → FFN → Add & Norm**.
+
+- **Residual connection + LayerNorm** around each sub-layer — stabilizes training of deep stacks. **LayerNorm (not BatchNorm)** because sequence lengths vary and batch statistics are unstable/leaky across time steps.
+- **FFN**: two linear layers with a ReLU/GELU in between, applied position-wise — adds non-linear capacity.
+- **Three attention flavors:**
+  - *Encoder self-attention* — each token attends to all tokens (bidirectional).
+  - *Decoder masked self-attention* — **masked** so a position can't see future tokens (preserves autoregressive property).
+  - *Cross-attention* — decoder queries attend to encoder outputs (K, V from encoder).
+
 #### Self-Attention
 
 Each input embedding is projected into three vectors via learned matrices $W_Q, W_K, W_V$:
@@ -858,20 +872,6 @@ Self-attention is **permutation-invariant** — it has no notion of order on its
 
 - **Sinusoidal** (original paper): fixed $\sin/\cos$ of different frequencies — generalizes to unseen lengths.
 - **Learned** positional embeddings (used by BERT/GPT) — a trainable vector per position.
-
-#### Architecture
-
-![Transformer full architecture](https://upload.wikimedia.org/wikipedia/commons/3/34/Transformer%2C_full_architecture.png)
-
-Encoder–decoder stack of identical blocks. One block =
-**Multi-Head Attention → Add & Norm → FFN → Add & Norm**.
-
-- **Residual connection + LayerNorm** around each sub-layer — stabilizes training of deep stacks. **LayerNorm (not BatchNorm)** because sequence lengths vary and batch statistics are unstable/leaky across time steps.
-- **FFN**: two linear layers with a ReLU/GELU in between, applied position-wise — adds non-linear capacity.
-- **Three attention flavors:**
-  - *Encoder self-attention* — each token attends to all tokens (bidirectional).
-  - *Decoder masked self-attention* — **masked** so a position can't see future tokens (preserves autoregressive property).
-  - *Cross-attention* — decoder queries attend to encoder outputs (K, V from encoder).
 
 #### Transformer vs RNN vs CNN
 

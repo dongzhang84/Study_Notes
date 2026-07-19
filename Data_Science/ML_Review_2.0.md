@@ -12,14 +12,14 @@
   - [Adagrad](#adagrad-gradient-descent) · [Adam](#adam-adaptive-moment-estimation)
 - [Overfitting vs Underfitting](#overfitting-vs-underfitting)
 - [Bias vs Variance Trade-Off](#bias-vs-variance-trade-off)
-- [Generative vs Discriminative Models](#generative-vs-discriminative-models)
-- [Classification Metrics](#classification-metrics) — [Accuracy / Precision / Recall](#accuracy-precision-and-recall), [AUC](#auc)
+- [Generative vs Discriminative Models](#generative-vs-discriminative-models) · [Naive Bayes](#naive-bayes)
+- [Classification Metrics](#classification-metrics) — [Accuracy / Precision / Recall / F1](#accuracy-precision-and-recall), [AUC](#auc)
 - [Cross Validation](#cross-validation) · [Imbalanced Data](#imbalanced-data)
 - [Decision Tree](#decision-tree) — [Gini / Information Gain](#metrics), [KL Divergence](#kullbackleibler-divergence)
 - [Random Forest](#random-forest) — [Parameters](#randomforestclassifier-parameters), [Advantages](#advantages-of-random-forest)
 - [Bootstrapping, Bagging and Boosting](#bootstrapping-bagging-and-boosting) — [Bagging vs Boosting](#bagging-vs-boosting)
 - [Support Vector Machine](#support-vector-machine) — [Loss](#loss-function-of-svm), [Margins](#maximal-margin-classifier), [Kernel](#kernel)
-- [kNN (code)](#knn-code)
+- [kNN](#knn)
 - [Compare Different Models](#compare-different-models) — [Outliers](#outliers)
 - [Multiple Classes (Softmax)](#multiple-classes)
 - [Unsupervised Learning](#unsupervised-learning) — [Clustering Metrics](#metrics-for-clustering), [k-Means](#k-mean-clustering)
@@ -303,9 +303,15 @@ Variance is the variability of model prediction for a given data point or a valu
 
 ![img](https://miro.medium.com/v2/resize:fit:1124/1*RQ6ICt_FBSx6mkAsGVwx8g.png)
 
+**Error decomposition.** Expected test error splits into three parts:
 
+$$
+\mathbb{E}[(y - \hat{f}(x))^2] = \underbrace{\text{Bias}[\hat{f}(x)]^2}_{\text{underfit}} + \underbrace{\text{Var}[\hat{f}(x)]}_{\text{overfit}} + \underbrace{\sigma^2}_{\text{irreducible noise}}
+$$
 
-
+- **High bias** (underfit) → too simple; both train and test error high. *Fix:* more complex model, more features, less regularization.
+- **High variance** (overfit) → too complex; low train error, high test error. *Fix:* more data, regularization, simpler model, bagging.
+- Increasing model complexity lowers bias but raises variance — the **trade-off** is finding the sweet spot that minimizes total error.
 
 ### Generative VS Discriminative Models
 
@@ -335,6 +341,23 @@ Discriminative model learns the predictive distribution p(y|x) directly while ge
 
 
 
+### Naive Bayes
+
+A **generative** classifier built on **Bayes' theorem**:
+
+$$
+P(y \mid x_1, \dots, x_n) = \frac{P(y)\,\prod_{i=1}^{n} P(x_i \mid y)}{P(x_1, \dots, x_n)} \;\propto\; P(y)\prod_{i=1}^{n} P(x_i \mid y)
+$$
+
+- **The "naive" assumption:** all features $x_i$ are **conditionally independent given the class** $y$. This is rarely true, but it makes the model simple and it works surprisingly well in practice.
+- **Prediction:** pick the class with the highest posterior — $\hat{y} = \arg\max_y P(y)\prod_i P(x_i \mid y)$ (denominator is constant across classes, so ignored).
+- **Variants** by how $P(x_i \mid y)$ is modeled: **Multinomial** (word counts — text), **Bernoulli** (binary features), **Gaussian** (continuous features).
+- **Log-space trick:** multiply many small probabilities → underflow, so sum logs instead: $\log P(y) + \sum_i \log P(x_i \mid y)$.
+- **Laplace (add-1) smoothing:** avoids a zero probability killing the whole product when a feature value was unseen in training.
+
+**Pros:** fast, scales to high dimensions, needs little data, strong baseline for **text classification / spam filtering**.
+**Cons:** the independence assumption hurts when features are correlated; probability estimates are poorly calibrated.
+
 ### Classification Metrics
 
 [reference](https://towardsdatascience.com/the-5-classification-evaluation-metrics-you-must-know-aa97784ff226)
@@ -354,6 +377,15 @@ Recall = (TP)/(TP+FN)
 ```
 
 ![img](https://miro.medium.com/v2/resize:fit:752/0*-lZUM_HsT3RsgePy.png)
+
+**F1 score** — harmonic mean of precision and recall (punishes imbalance between the two; high only when *both* are high):
+
+$$
+F_1 = \frac{2 \cdot P \cdot R}{P + R}
+$$
+
+- **When to use F1** instead of accuracy: **imbalanced classes** (accuracy is misleading when one class dominates).
+- **Precision vs recall trade-off:** raising the decision threshold ↑precision ↓recall, and vice versa. Optimize precision when false positives are costly (spam), recall when false negatives are costly (disease screening).
 
 Weighted F1 score:
 
@@ -605,7 +637,19 @@ The objective of the support vector machine algorithm is to find a hyperplane in
 
 
 
-### KNN Code
+### KNN
+
+**k-Nearest Neighbors** — to classify a point, find the **k closest training points** (by a distance metric) and take a **majority vote** of their labels (or average, for regression).
+
+- **Lazy learner:** no training phase — it just stores the data; all computation happens at prediction time. Cost per query is $O(N \cdot d)$ (scan all $N$ points).
+- **Choosing k:** small k → low bias, high variance (noisy, overfits); large k → smoother, higher bias. Odd k avoids ties in binary classification; tune via cross-validation.
+- **Distance metric:** Euclidean (L2) is default; also Manhattan (L1), cosine. **Feature scaling is essential** — an unscaled large-range feature dominates the distance.
+- **Curse of dimensionality:** in high dimensions distances concentrate (everything looks equidistant) → KNN degrades; reduce dimensions first.
+
+**Pros:** simple, no training, naturally multi-class, non-linear boundaries.
+**Cons:** slow / memory-heavy at prediction, sensitive to scaling and irrelevant features, struggles in high dimensions.
+
+**Code** — from-scratch implementation:
 
 [reference](https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/)
 
@@ -767,13 +811,13 @@ The forward and backward phases are repeated from some epochs. In each epoch, th
 
 **Why needed?** They introduce **non-linearity**. Without them a stack of linear layers collapses to a single linear layer — the network could only learn linear functions.
 
-| | Formula | Range | Notes |
-|---|---|---|---|
-| **Sigmoid** | $\frac{1}{1+e^{-x}}$ | (0, 1) | saturates → **vanishing gradient**; not zero-centered; used for binary output |
-| **Tanh** | $\frac{e^x - e^{-x}}{e^x + e^{-x}}$ | (−1, 1) | zero-centered (better than sigmoid) but still saturates |
-| **ReLU** | $\max(0, x)$ | [0, ∞) | no saturation for $x>0$, cheap, sparse → **default choice**; but **dead ReLU** ($x<0 \Rightarrow$ gradient 0 forever), not zero-centered |
-| **Leaky ReLU / PReLU** | $\max(\alpha x, x)$ | (−∞, ∞) | small slope $\alpha$ for $x<0$ fixes dead ReLU |
-| **GELU** | $x\,\Phi(x)$ | ≈(−0.17, ∞) | smooth; standard in Transformers (BERT/GPT) |
+|                        | Formula                             | Range       | Notes                                                                                                                                    |
+| ---------------------- | ----------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sigmoid**            | $\frac{1}{1+e^{-x}}$                | (0, 1)      | saturates → **vanishing gradient**; not zero-centered; used for binary output                                                            |
+| **Tanh**               | $\frac{e^x - e^{-x}}{e^x + e^{-x}}$ | (−1, 1)     | zero-centered (better than sigmoid) but still saturates                                                                                  |
+| **ReLU**               | $\max(0, x)$                        | [0, ∞)      | no saturation for $x>0$, cheap, sparse → **default choice**; but **dead ReLU** ($x<0 \Rightarrow$ gradient 0 forever), not zero-centered |
+| **Leaky ReLU / PReLU** | $\max(\alpha x, x)$                 | (−∞, ∞)     | small slope $\alpha$ for $x<0$ fixes dead ReLU                                                                                           |
+| **GELU**               | $x\,\Phi(x)$                        | ≈(−0.17, ∞) | smooth; standard in Transformers (BERT/GPT)                                                                                              |
 
 **Key point:** the derivative of sigmoid/tanh is $\le 1$ (sigmoid $\le 0.25$), so multiplying many of them shrinks gradients → **ReLU (derivative 1 for $x>0$) largely fixes vanishing gradient**.
 

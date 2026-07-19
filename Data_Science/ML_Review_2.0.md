@@ -9,7 +9,6 @@
 - [L1 and L2 Regularization](#l1-and-l2-regularization)
 - [Gradient Descent and other Methods](#gradient-descent-and-other-methods)
   - [Stochastic Gradient Descent](#stochastic-gradient-descent)
-  - [Vanishing / Exploding Gradient](#vanishing-gradient-and-exploding-gradient)
   - [Adagrad](#adagrad-gradient-descent) · [Adam](#adam-adaptive-moment-estimation)
 - [Overfitting vs Underfitting](#overfitting-vs-underfitting)
 - [Bias vs Variance Trade-Off](#bias-vs-variance-trade-off)
@@ -29,6 +28,7 @@
 
 - [Basic Conceptions / Parameters](#deep-learning-conceptionsparameters)
 - [Back Propagation](#back-propagation)
+- [Activation Functions](#activation-functions) · [Vanishing / Exploding Gradient](#vanishing-and-exploding-gradient) · [Residual Connections](#residual-connections) · [Batch Normalization](#batch-normalization)
 - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Recurrent Neural Networks](#recurrent-neural-networks) — [LSTM](#long-short-term-memory)
 - [Transformer](#transformer) — [Architecture](#architecture), [Self-Attention](#self-attention), [Multi-Head](#multi-head-attention), [Positional Encoding](#positional-encoding), [Encoder vs Decoder & Masking](#encoder-vs-decoder--masking), [KV Cache](#kv-cache), [Inference Performance](#inference-performance)
@@ -218,22 +218,6 @@ for i in range(nb_epochs):
     params_grad = evaluate_gradient(loss_function, example, params)
     params = params - learning_rate * params_grad
 ```
-
-
-
-#### Vanishing Gradient and Exploding Gradient
-
-- The gradient will be vanishingly small, effectively preventing the weight from changing its value. In worst case, this may completely stop the neural network from further training.
-
-Common solutions:
-
-1. Use other activation functions such as ReLU.
-2. Use residual networks.
-3. Use batch normalization.
-
-- The large error gradients accumulate and result in very large updates to neural network model weights during training. This may make the model unstable and unable to learn from the data.
-
-A common solution is to change the error derivative before back propagating it.
 
 
 
@@ -779,7 +763,55 @@ The forward and backward phases are repeated from some epochs. In each epoch, th
 
 
 
+### Activation Functions
 
+**Why needed?** They introduce **non-linearity**. Without them a stack of linear layers collapses to a single linear layer — the network could only learn linear functions.
+
+| | Formula | Range | Notes |
+|---|---|---|---|
+| **Sigmoid** | $\frac{1}{1+e^{-x}}$ | (0, 1) | saturates → **vanishing gradient**; not zero-centered; used for binary output |
+| **Tanh** | $\frac{e^x - e^{-x}}{e^x + e^{-x}}$ | (−1, 1) | zero-centered (better than sigmoid) but still saturates |
+| **ReLU** | $\max(0, x)$ | [0, ∞) | no saturation for $x>0$, cheap, sparse → **default choice**; but **dead ReLU** ($x<0 \Rightarrow$ gradient 0 forever), not zero-centered |
+| **Leaky ReLU / PReLU** | $\max(\alpha x, x)$ | (−∞, ∞) | small slope $\alpha$ for $x<0$ fixes dead ReLU |
+| **GELU** | $x\,\Phi(x)$ | ≈(−0.17, ∞) | smooth; standard in Transformers (BERT/GPT) |
+
+**Key point:** the derivative of sigmoid/tanh is $\le 1$ (sigmoid $\le 0.25$), so multiplying many of them shrinks gradients → **ReLU (derivative 1 for $x>0$) largely fixes vanishing gradient**.
+
+### Vanishing and Exploding Gradient
+
+Backprop applies the **chain rule**, multiplying the per-layer derivatives together. In a deep net this is a long product:
+
+- **Vanishing** — if each factor is $<1$ (e.g. saturating sigmoid/tanh, derivative $\le 0.25$), the product shrinks **exponentially** with depth → early layers get near-zero gradients and barely train.
+- **Exploding** — if factors are $>1$ (large weights), the product blows up → unstable updates, NaNs.
+
+**Fixes:**
+
+| Vanishing | Exploding |
+|---|---|
+| ReLU-family activations | **gradient clipping** |
+| **residual connections** (gradient highway) | weight regularization |
+| **batch / layer normalization** | careful initialization |
+| good init (He / Xavier) | |
+| LSTM/GRU gating (for RNNs) | |
+
+### Residual Connections
+
+From **ResNet**. A block computes $\;y = F(x) + x\;$ — an **identity shortcut** added to the transformed output.
+
+- **Why it helps:** the gradient of the $+x$ term is exactly **1**, giving gradients a **direct "highway"** back through the network → they don't vanish across many layers. This is what makes training very deep nets (100+ layers, and every Transformer block) possible.
+- The layer only has to learn the **residual** $F(x)$ (the change from identity), which is easier to optimize.
+
+### Batch Normalization
+
+Normalize each layer's pre-activations over the **mini-batch** to mean 0 / variance 1, then rescale with **learnable** $\gamma, \beta$:
+
+$$
+\hat{x} = \frac{x - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}, \qquad y = \gamma \hat{x} + \beta
+$$
+
+- **Why it helps:** smooths the loss landscape → allows **higher learning rates**, faster and more stable training; also a mild regularizer.
+- **Train vs inference:** training uses the current **batch** mean/variance; inference uses **running (moving-average)** statistics collected during training.
+- **BN vs LayerNorm:** BN normalizes across the batch (per feature) and needs a reasonable batch size — awkward for variable-length sequences, so **Transformers/RNNs use LayerNorm** (normalize across features within each token, batch-independent). See the [Transformer architecture](#architecture) note.
 
 ### Convolutional Neural Networks
 

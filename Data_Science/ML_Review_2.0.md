@@ -944,8 +944,7 @@ Modern LLMs use subword tokenization as a middle ground between word-level and c
 
 Fine-tune a pretrained model on curated **(prompt, response)** pairs with plain next-token **cross-entropy** loss — teaches instruction-following / task format.
 
-- **What is KL?** **KL divergence** $D_{\text{KL}}(P \parallel Q) = \sum_x P(x)\log\frac{P(x)}{Q(x)}$ measures how far one probability distribution $P$ is from a reference $Q$ (0 = identical, larger = more different; see [KL Divergence](#kullbackleibler-divergence)). Here $P$ = the model being trained, $Q$ = a frozen reference model — a KL term says "don't drift too far from the reference."
-- **Can you add a KL term?** Vanilla SFT has **no KL** — it's just cross-entropy. KL is the hallmark of the **preference/RL stage** (RLHF-PPO, DPO), where you penalize the policy for drifting too far from a frozen reference model to prevent reward hacking and catastrophic forgetting.
+- **Can you add a KL term?** Vanilla SFT has **no KL** — it's just cross-entropy. A **KL** term (KL divergence measures how far the trained model's distribution is from a frozen reference model's — see [KL Divergence](#kullbackleibler-divergence)) is the hallmark of the **preference/RL stage** (RLHF-PPO, DPO), where you penalize the policy for drifting too far from the reference to prevent reward hacking and catastrophic forgetting.
 - You *can* add a KL-to-base regularizer during SFT to reduce forgetting, but it's uncommon — SFT usually controls drift via limited epochs, data quality, and PEFT (LoRA) instead.
 
 #### Full SFT vs LoRA vs QLoRA
